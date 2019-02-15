@@ -14,3 +14,4 @@
 ![State diagram](UML/STATE.png?raw=true "State")
 ##### Class diagram
 ![Class diagram](UML/CLASS.png?raw=true "Class")
+
