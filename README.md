@@ -4,6 +4,7 @@
 ## Setup project:
 1. Clone the repository
 2. Run command __npm install__ to install the project dependencies.
+3. __npm run dev__ to run the application
 
 ## UML:
 ##### Activity diagram
