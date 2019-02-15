@@ -2,7 +2,7 @@
   "name": "supplychaindapp",
   "version": "1.0.0",
   "description": "Wine supply chain DApp",
-  "main": "truffle-config.js",
+  "main": "index.js",
   "directories": {
     "test": "test"
   },
