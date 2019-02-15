@@ -17,5 +17,4 @@
 
 ## Credits
 ##### Images
-* https://pixabay.com/en/fruit-grape-vines-wine-vineyard-3215625/
-* https://pixabay.com/en/still-life-eat-drink-wine-red-wine-2905834/
+* https://pixabay.com/en/butler-tray-beverages-wine-964007/
