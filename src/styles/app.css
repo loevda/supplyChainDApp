@@ -6,6 +6,30 @@ body {
     background-size: cover;
 }
 
+.work {
+    font-family: 'Work Sans', sans-serif;
+}
+
+.fw400 {
+    font-weight: 400!important;
+}
+
+.fw300 {
+    font-weight: 300!important;
+}
+
+.fw700 {
+    font-weight: 700!important;
+}
+
+.fw800 {
+    font-weight: 800!important;
+}
+.fw900 {
+    font-weight: 900!important;
+}
+
+
 label {
     display: inline-block;
     text-align: center;
@@ -70,6 +94,28 @@ h3 {
     margin-top: 128px;
 }
 
+.mt20 {
+    margin-top: 20px;
+}
+
+
+.mt10 {
+    margin-top: 10px;
+}
+
+
+.mt30 {
+    margin-top: 30px;
+}
+
+
+.mt40 {
+    margin-top: 40px;
+}
+
+.smoke {
+    color: whitesmoke;
+}
 
 .niceTile {
     text-align: center;
