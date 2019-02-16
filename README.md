@@ -14,12 +14,15 @@ Consumer __buyWine__ has been renamed __purchaseWine__ to remove ambiguity with 
 ---
 ##### Activity diagram
 ![Activity diagram](UML/ACTIVITY.png?raw=true "Activity")
+
 ---
 ##### Sequence diagram
 ![Sequence diagram](UML/SEQUENCE.png?raw=true "Sequence")
+
 ---
 ##### State diagram
 ![State diagram](UML/STATE.png?raw=true "State")
+
 ---
 ##### Class diagram
 ![Class diagram](UML/CLASS.png?raw=true "Class")
