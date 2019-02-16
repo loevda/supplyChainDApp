@@ -21,7 +21,7 @@ Consumer __buyWine__ has been renamed __purchaseWine__ to remove ambiguity with 
 
 ## Credits
 ##### Wine supply chain
-The basic concept fo the supply chain is trying to map the Wine Supply Chain Traceability GS1 best practice:
+The basic concept fo the supply chain is trying to map the Wine Supply Chain Traceability GS1 Application Guideline:
 * https://www.gs1us.org/DesktopModules/Bring2mind/DMX/Download.aspx?Command=Core_Download&EntryId=660&language=en-US&PortalId=0&TabId=134
 ##### Images
 * https://pixabay.com/en/butler-tray-beverages-wine-964007/
