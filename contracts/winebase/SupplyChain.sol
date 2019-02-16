@@ -12,7 +12,7 @@ contract SupplyChain {
     uint  sku;
 
     // Define a public mapping 'grapes' that maps the UPC to an Item.
-    mapping (uint => Wine) wines;
+    mapping (uint => Grape) grapes;
 
     // Define a public mapping 'wines' that maps the UPC to a wine.
     mapping (uint => Wine) wines;
@@ -55,7 +55,7 @@ contract SupplyChain {
         uint    productID;  // Product ID potentially a combination of upc + sku
         string  productNotes; // Product Notes
         uint    productPrice; // Product Price
-        State   itemState;  // Product State as represented in the enum above
+        GrapeState   grapeState;  // Grape State as represented in the enum above
         address distributorID;  // Metamask-Ethereum address of the Distributor
         address retailerID; // Metamask-Ethereum address of the Retailer
         address consumerID; // Metamask-Ethereum address of the Consumer
@@ -74,7 +74,7 @@ contract SupplyChain {
         uint    productID;  // Product ID potentially a combination of upc + sku
         string  productNotes; // Product Notes
         uint    productPrice; // Product Price
-        State   itemState;  // Product State as represented in the enum above
+        WineState   wineState;  // Product State as represented in the enum above
         address distributorID;  // Metamask-Ethereum address of the Distributor
         address retailerID; // Metamask-Ethereum address of the Retailer
         address consumerID; // Metamask-Ethereum address of the Consumer
