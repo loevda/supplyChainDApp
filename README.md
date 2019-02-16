@@ -7,8 +7,8 @@
 3. __npm run dev__ to run the application
 
 ## UML:
-Activity, sequence and state diagrams have been updated:<br />
-Consumer buyWine has been renamed purchaseWine to remove ambiguity with retailer buyWine.
+__Activity__, __sequence__ and __state__ diagrams have been updated:<br />
+Consumer __buyWine__ has been renamed __purchaseWine__ to remove ambiguity with retailer __buyWine__.
 ##### Activity diagram
 ![Activity diagram](UML/ACTIVITY.png?raw=true "Activity")
 ##### Sequence diagram
