@@ -2,6 +2,7 @@
 DApp supply chain that lets you track wine authenticity on the Ethereum blockchain.
 
 ## Setup project:
+__Notes:__ The project has been test with Solidity 0.5.0
 1. Clone the repository
 2. Run command __npm install__ to install the project dependencies.
 3. __npm run dev__ to run the application
