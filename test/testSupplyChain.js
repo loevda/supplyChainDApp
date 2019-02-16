@@ -115,7 +115,7 @@ contract('SupplyChain', function(accounts) {
         assert.equal(true, false, 'Incomplete test');
     });
 
-    // 11th
+    // 12th
     it("Testing smart contract function purchaseWine() that allows a consumer to purchase wine", async() => {
         const supplyChain = await SupplyChain.deployed()
         // Verify the result set
