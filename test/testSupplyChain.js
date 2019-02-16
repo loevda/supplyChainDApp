@@ -20,7 +20,7 @@ contract('SupplyChain', function(accounts) {
     var productID = sku + upc;
     const productNotes = "Award winning Wine";
 
-    const productPrice = web3.toWei(1, "ether");
+    const productPrice = web3.utils.toWei("1", "ether");
 
     var grapeState = 0;
     var wineState = 0;
