@@ -8,7 +8,7 @@ __Notes:__ The project has been test with Solidity 0.5.0
 3. __npm run dev__ to run the application
 
 ## UML:
-__IMPORTANT NOTE__: __Activity__, __sequence__ and __state__ diagrams have been updated:<br />
+__IMPORTANT NOTE__: __Activity__, __sequence__ and __state__ diagrams have been updated.
 Consumer __buyWine__ has been renamed __purchaseWine__ to remove ambiguity with retailer __buyWine__.
 ##### Activity diagram
 ![Activity diagram](UML/ACTIVITY.png?raw=true "Activity")
