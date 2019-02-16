@@ -1,5 +1,5 @@
 # Supply Chain DApp
-
+DApp supply chain that lets you track wine authenticity on the Ethereum blockchain.
 
 ## Setup project:
 1. Clone the repository
