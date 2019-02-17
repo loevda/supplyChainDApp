@@ -31,7 +31,7 @@ contract('SupplyChain', function(accounts) {
 
     const emptyAddress = '0x00000000000000000000000000000000000000';
 
-    console.log("ganache-cli accounts used here...")
+    console.log("ganache-cli accounts used here...");
     console.log("Contract Owner: accounts[0] ", accounts[0]);
     console.log("Grower: accounts[1] ", accounts[1]);
     console.log("Producer: accounts[2] ", accounts[2]);
@@ -41,7 +41,7 @@ contract('SupplyChain', function(accounts) {
 
     // 1st Test
     it("Testing smart contract function harvestGrape() that allows a grower to harvest grapes", async() => {
-        const supplyChain = await SupplyChain.deployed()
+        const supplyChain = await SupplyChain.deployed();
         assert.equal(true, false, 'Incomplete test');
     })
 

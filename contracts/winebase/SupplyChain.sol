@@ -85,9 +85,44 @@ contract SupplyChain is
 
     }
 
+    // Define events for grapes
+    event grapeHarvested(uint upc);
+    event grapeForSale(uint upc);
+    event grapeSold(uint upc);
+    event grapeShipped(uint upc);
+    event grapeReceived(uint upc);
+
+    // Define events for wine
+    event wineProduced(uint upc);
+    event winePacked(uint upc);
+    event wineForSale(uint upc);
+    event wineForSold(uint upc);
+    event wineForShipped(uint upc);
+    event wineReceived(uint upc);
+    event winePurchased(uint upc);
+
 
     constructor() public {
 
+    }
+
+
+    // Define a modifer that checks to see if msg.sender == owner of the contract
+    modifier onlyOwner() {
+        require(msg.sender == owner);
+        _;
+    }
+
+    // Define a modifer that verifies the Caller
+    modifier verifyCaller (address _address) {
+        require(msg.sender == _address);
+        _;
+    }
+
+    // Define a modifier that checks if the paid amount is sufficient to cover the price
+    modifier paidEnough(uint _price) {
+        require(msg.value >= _price);
+        _;
     }
 
 }
