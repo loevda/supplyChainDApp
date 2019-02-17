@@ -42,6 +42,30 @@ contract('SupplyChain', function(accounts) {
     // 1st Test
     it("Testing smart contract function harvestGrape() that allows a grower to harvest grapes", async() => {
         const supplyChain = await SupplyChain.deployed();
+
+        // Declare and Initialize a variable for event
+        var eventEmitted = false;
+
+        // Watch the emitted event Harvested()
+        var event = supplyChain.Harvested()
+        await event.watch((err, res) => {
+            eventEmitted = true;
+        });
+
+        // Mark an item as Harvested by calling function harvestItem()
+        await supplyChain.harvestGrape(upc,
+            originFarmerID,
+            originFarmName,
+            originFarmInformation,
+            originFarmLatitude,
+            originFarmLongitude,
+            productNotes
+        );
+
+        // Retrieve the just now saved item from blockchain by calling function fetchItem()
+        const resultBufferOne = await supplyChain.fetchItemBufferOne.call(upc)
+        const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc)
+
         assert.equal(true, false, 'Incomplete test');
     })
 

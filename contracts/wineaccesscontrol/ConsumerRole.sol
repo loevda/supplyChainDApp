@@ -52,4 +52,5 @@ contract ConsumerRole {
         Consumers.remove(account);
         emit ConsumerRemoved(account);
     }
+
 }
