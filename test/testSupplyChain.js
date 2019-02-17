@@ -7,15 +7,15 @@ contract('SupplyChain', function(accounts) {
     const ownerID = accounts[0];
     const growerID = accounts[1];
 
-    const growerFarmName = "Granazzi"
-    const growerFarmInformation = "Valpolicella"
-    const growerFarmLatitude = "45.491084"
-    const growerFarmLongitude = "10.770316"
+    const growerFarmName = "Granazzi";
+    const growerFarmInformation = "Valpolicella";
+    const growerFarmLatitude = "45.491084";
+    const growerFarmLongitude = "10.770316";
 
-    const producerFarmName = "Valpolinazzi"
-    const producerFarmInformation = "Valpolicella"
-    const producerFarmLatitude = "45.486297"
-    const producerFarmLongitude = "10.774519"
+    const producerFarmName = "Valpolinazzi";
+    const producerFarmInformation = "Valpolicella";
+    const producerFarmLatitude = "45.486297";
+    const producerFarmLongitude = "10.774519";
 
     var productID = sku + upc;
     const productNotes = "Award winning Wine";

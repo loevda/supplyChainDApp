@@ -17,6 +17,8 @@
   "author": "loevda",
   "license": "MIT",
   "devDependencies": {
+    "babel-polyfill": "^6.26.0",
+    "babel-register": "^6.26.0",
     "lite-server": "^2.4.0"
   },
   "dependencies": {
