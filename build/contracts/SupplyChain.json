@@ -2,26 +2,382 @@
   "contractName": "SupplyChain",
   "abi": [
     {
+      "constant": false,
+      "inputs": [],
+      "name": "renounceGrower",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function",
+      "signature": "0x0c11596b"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "addConsumer",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function",
+      "signature": "0x112940f9"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "isRetailer",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function",
+      "signature": "0x5da09b88"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "renounceConsumer",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function",
+      "signature": "0x61e6982d"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "isWholesaler",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function",
+      "signature": "0x64d1ba1f"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "isConsumer",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function",
+      "signature": "0x834ff739"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "addRetailer",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function",
+      "signature": "0x8ec4f505"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "addGrower",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function",
+      "signature": "0xb8b06c86"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "isGrower",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function",
+      "signature": "0xc4d10d74"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "renounceRetailer",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function",
+      "signature": "0xdb0e6a2f"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "addProducer",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function",
+      "signature": "0xddf80166"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "addWholesaler",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function",
+      "signature": "0xde63bdb9"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "isProducer",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function",
+      "signature": "0xf5521022"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "renounceProducer",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function",
+      "signature": "0xf9b867d8"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "renounceWholesaler",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function",
+      "signature": "0xfe19d152"
+    },
+    {
       "inputs": [],
       "payable": false,
       "stateMutability": "nonpayable",
-      "type": "constructor"
+      "type": "constructor",
+      "signature": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "ConsumerAdded",
+      "type": "event",
+      "signature": "0x28b26e7a3d20aedbc5f8f2ebf7da671c0491723a2b78f47a097b0e46dee07142"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "ConsumerRemoved",
+      "type": "event",
+      "signature": "0xe3f5ed5f263f1f01764a96edfc7d025f511ec5f7d180e8816908b78bcf74f098"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "RetailerAdded",
+      "type": "event",
+      "signature": "0x71ae26cad02663e3d92efd6ec56031a80d74a20c0ab4183faa8bf262261c9baa"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "RetailerRemoved",
+      "type": "event",
+      "signature": "0xdb7176e79cffef81cb01767dd0447a0b24bb72ca9778d4b245581086b2a7e6db"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "WholesalerAdded",
+      "type": "event",
+      "signature": "0xd8a7ad7929975a375d2b12bf49040286b5b105df0fe351f10df6d85e5b7142f7"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "WholesalerRemoved",
+      "type": "event",
+      "signature": "0x7f865f710a7604537eb2bc0334f082fa642d210a705398937f53663384485b28"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "ProducerAdded",
+      "type": "event",
+      "signature": "0x2977383b0207d39ef14220620b6cf3e6c9b6e78592af90baeef6614ed2fcd2c6"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "ProducerRemoved",
+      "type": "event",
+      "signature": "0xb78e9906c5bae930ccf756a5214c9855b1782f0eb30f9566de2384f034af48f3"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "GrowerAdded",
+      "type": "event",
+      "signature": "0x423fd8158a2c5772d65f93f5aa158245f414b4da880b0d6d2a3361a3915ad3ae"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "GrowerRemoved",
+      "type": "event",
+      "signature": "0x686dbfa27271f8cf2fe2e5eaeaf43f15d839d20c7e162ca3aee8362b6c6a861b"
     }
   ],
-  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3fe6080604052600080fdfea165627a7a72305820d87acca9eed3573c01acec8847e6dd4c41250eafb7dacd4f16203392e7b326400029",
-  "deployedBytecode": "0x6080604052600080fdfea165627a7a72305820d87acca9eed3573c01acec8847e6dd4c41250eafb7dacd4f16203392e7b326400029",
-  "sourceMap": "26:3293:19:-;;;3288:29;8:9:-1;5:2;;;30:1;27;20:12;5:2;3288:29:19;26:3293;;;;;;",
-  "deployedSourceMap": "26:3293:19:-;;;;;",
-  "source": "pragma solidity = 0.5.0;\n\ncontract SupplyChain {\n\n    // Define 'owner'\n    address owner;\n\n    // Define a variable called 'upc' for Universal Product Code (UPC)\n    uint  upc;\n\n    // Define a variable called 'sku' for Stock Keeping Unit (SKU)\n    uint  sku;\n\n    // Define a public mapping 'grapes' that maps the UPC to an Item.\n    mapping (uint => Grape) grapes;\n\n    // Define a public mapping 'wines' that maps the UPC to a wine.\n    mapping (uint => Wine) wines;\n\n    // Define a public mapping 'itemsHistory' that maps the UPC to an array of TxHash,\n    // that track its journey through the supply chain -- to be sent from DApp.\n    mapping (uint => string[]) winesHistory;\n\n    // Define enum 'GrapeState' with the following values:\n    enum GrapeState\n    {\n        Harvested,  // 0\n        ForSale,    // 1\n        Sold,       // 2\n        Shipped,    // 3\n        Received    // 4\n    }\n\n    // Define enum 'WineState' with the following values:\n    enum WineState\n    {\n        Produced,  // 0\n        Packed,    // 1\n        ForSale,   // 2\n        Sold,      // 3\n        Shipped,   // 4\n        Received,  // 5\n        Purchased   // 6\n    }\n\n    //TODO: set default states for wine and grapes\n\n    struct Grape {\n        address ownerID;  // Metamask-Ethereum address of the current owner as the product moves through 8 stages\n        address originFarmerID; // Metamask-Ethereum address of the Farmer\n        string  originFarmName; // Farmer Name\n        string  originFarmInformation;  // Farmer Information\n        string  originFarmLatitude; // Farm Latitude\n        string  originFarmLongitude;  // Farm Longitude\n        uint    productID;  // Product ID potentially a combination of upc + sku\n        string  productNotes; // Product Notes\n        uint    productPrice; // Product Price\n        GrapeState   grapeState;  // Grape State as represented in the enum above\n        address distributorID;  // Metamask-Ethereum address of the Distributor\n        address retailerID; // Metamask-Ethereum address of the Retailer\n        address consumerID; // Metamask-Ethereum address of the Consumer\n    }\n\n    // Define a struct 'Item' with the following fields:\n    struct Wine {\n        uint    sku;  // Stock Keeping Unit (SKU)\n        uint    upc; // Universal Product Code (UPC), generated by the Farmer, goes on the package, can be verified by the Consumer\n        address ownerID;  // Metamask-Ethereum address of the current owner as the product moves through 8 stages\n        address originFarmerID; // Metamask-Ethereum address of the Farmer\n        string  originFarmName; // Farmer Name\n        string  originFarmInformation;  // Farmer Information\n        string  originFarmLatitude; // Farm Latitude\n        string  originFarmLongitude;  // Farm Longitude\n        uint    productID;  // Product ID potentially a combination of upc + sku\n        string  productNotes; // Product Notes\n        uint    productPrice; // Product Price\n        WineState   wineState;  // Product State as represented in the enum above\n        address distributorID;  // Metamask-Ethereum address of the Distributor\n        address retailerID; // Metamask-Ethereum address of the Retailer\n        address consumerID; // Metamask-Ethereum address of the Consumer\n    }\n\n\n    constructor() public {\n\n    }\n}\n",
+  "bytecode": "0x60806040523480156200001157600080fd5b506200002c336200009a640100000000026401000000009004565b620000463362000104640100000000026401000000009004565b62000060336200016e640100000000026401000000009004565b6200007a33620001d8640100000000026401000000009004565b620000943362000242640100000000026401000000009004565b62000404565b620000be816000620002ac6401000000000262000b24179091906401000000009004565b8073ffffffffffffffffffffffffffffffffffffffff167f423fd8158a2c5772d65f93f5aa158245f414b4da880b0d6d2a3361a3915ad3ae60405160405180910390a250565b62000128816001620002ac6401000000000262000b24179091906401000000009004565b8073ffffffffffffffffffffffffffffffffffffffff167f2977383b0207d39ef14220620b6cf3e6c9b6e78592af90baeef6614ed2fcd2c660405160405180910390a250565b62000192816002620002ac6401000000000262000b24179091906401000000009004565b8073ffffffffffffffffffffffffffffffffffffffff167fd8a7ad7929975a375d2b12bf49040286b5b105df0fe351f10df6d85e5b7142f760405160405180910390a250565b620001fc816003620002ac6401000000000262000b24179091906401000000009004565b8073ffffffffffffffffffffffffffffffffffffffff167f71ae26cad02663e3d92efd6ec56031a80d74a20c0ab4183faa8bf262261c9baa60405160405180910390a250565b62000266816004620002ac6401000000000262000b24179091906401000000009004565b8073ffffffffffffffffffffffffffffffffffffffff167f28b26e7a3d20aedbc5f8f2ebf7da671c0491723a2b78f47a097b0e46dee0714260405160405180910390a250565b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff1614151515620002e957600080fd5b6200030482826200036f640100000000026401000000009004565b1515156200031157600080fd5b60018260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055505050565b60008073ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff1614151515620003ad57600080fd5b8260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16905092915050565b610c0080620004146000396000f3fe6080604052600436106100db576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680630c11596b146100e0578063112940f9146100f75780635da09b881461014857806361e6982d146101b157806364d1ba1f146101c8578063834ff739146102315780638ec4f5051461029a578063b8b06c86146102eb578063c4d10d741461033c578063db0e6a2f146103a5578063ddf80166146103bc578063de63bdb91461040d578063f55210221461045e578063f9b867d8146104c7578063fe19d152146104de575b600080fd5b3480156100ec57600080fd5b506100f56104f5565b005b34801561010357600080fd5b506101466004803603602081101561011a57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610500565b005b34801561015457600080fd5b506101976004803603602081101561016b57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610520565b604051808215151515815260200191505060405180910390f35b3480156101bd57600080fd5b506101c661053d565b005b3480156101d457600080fd5b50610217600480360360208110156101eb57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610548565b604051808215151515815260200191505060405180910390f35b34801561023d57600080fd5b506102806004803603602081101561025457600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610565565b604051808215151515815260200191505060405180910390f35b3480156102a657600080fd5b506102e9600480360360208110156102bd57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610582565b005b3480156102f757600080fd5b5061033a6004803603602081101561030e57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506105a2565b005b34801561034857600080fd5b5061038b6004803603602081101561035f57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506105c2565b604051808215151515815260200191505060405180910390f35b3480156103b157600080fd5b506103ba6105df565b005b3480156103c857600080fd5b5061040b600480360360208110156103df57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506105ea565b005b34801561041957600080fd5b5061045c6004803603602081101561043057600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061060a565b005b34801561046a57600080fd5b506104ad6004803603602081101561048157600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061062a565b604051808215151515815260200191505060405180910390f35b3480156104d357600080fd5b506104dc610647565b005b3480156104ea57600080fd5b506104f3610652565b005b6104fe3361065d565b565b61050933610565565b151561051457600080fd5b61051d816106b7565b50565b600061053682600361071190919063ffffffff16565b9050919050565b610546336107a5565b565b600061055e82600261071190919063ffffffff16565b9050919050565b600061057b82600461071190919063ffffffff16565b9050919050565b61058b33610520565b151561059657600080fd5b61059f816107ff565b50565b6105ab336105c2565b15156105b657600080fd5b6105bf81610859565b50565b60006105d882600061071190919063ffffffff16565b9050919050565b6105e8336108b3565b565b6105f33361062a565b15156105fe57600080fd5b6106078161090d565b50565b61061333610548565b151561061e57600080fd5b61062781610967565b50565b600061064082600161071190919063ffffffff16565b9050919050565b610650336109c1565b565b61065b33610a1b565b565b610671816000610a7590919063ffffffff16565b8073ffffffffffffffffffffffffffffffffffffffff167f686dbfa27271f8cf2fe2e5eaeaf43f15d839d20c7e162ca3aee8362b6c6a861b60405160405180910390a250565b6106cb816004610b2490919063ffffffff16565b8073ffffffffffffffffffffffffffffffffffffffff167f28b26e7a3d20aedbc5f8f2ebf7da671c0491723a2b78f47a097b0e46dee0714260405160405180910390a250565b60008073ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff161415151561074e57600080fd5b8260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16905092915050565b6107b9816004610a7590919063ffffffff16565b8073ffffffffffffffffffffffffffffffffffffffff167fe3f5ed5f263f1f01764a96edfc7d025f511ec5f7d180e8816908b78bcf74f09860405160405180910390a250565b610813816003610b2490919063ffffffff16565b8073ffffffffffffffffffffffffffffffffffffffff167f71ae26cad02663e3d92efd6ec56031a80d74a20c0ab4183faa8bf262261c9baa60405160405180910390a250565b61086d816000610b2490919063ffffffff16565b8073ffffffffffffffffffffffffffffffffffffffff167f423fd8158a2c5772d65f93f5aa158245f414b4da880b0d6d2a3361a3915ad3ae60405160405180910390a250565b6108c7816003610a7590919063ffffffff16565b8073ffffffffffffffffffffffffffffffffffffffff167fdb7176e79cffef81cb01767dd0447a0b24bb72ca9778d4b245581086b2a7e6db60405160405180910390a250565b610921816001610b2490919063ffffffff16565b8073ffffffffffffffffffffffffffffffffffffffff167f2977383b0207d39ef14220620b6cf3e6c9b6e78592af90baeef6614ed2fcd2c660405160405180910390a250565b61097b816002610b2490919063ffffffff16565b8073ffffffffffffffffffffffffffffffffffffffff167fd8a7ad7929975a375d2b12bf49040286b5b105df0fe351f10df6d85e5b7142f760405160405180910390a250565b6109d5816001610a7590919063ffffffff16565b8073ffffffffffffffffffffffffffffffffffffffff167fb78e9906c5bae930ccf756a5214c9855b1782f0eb30f9566de2384f034af48f360405160405180910390a250565b610a2f816002610a7590919063ffffffff16565b8073ffffffffffffffffffffffffffffffffffffffff167f7f865f710a7604537eb2bc0334f082fa642d210a705398937f53663384485b2860405160405180910390a250565b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff1614151515610ab157600080fd5b610abb8282610711565b1515610ac657600080fd5b60008260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055505050565b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff1614151515610b6057600080fd5b610b6a8282610711565b151515610b7657600080fd5b60018260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550505056fea165627a7a7230582092b8a5ae844521a1884e721045a3efcb7e92ebc162a4a1b328a752bdb25ba8690029",
+  "deployedBytecode": "0x6080604052600436106100db576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680630c11596b146100e0578063112940f9146100f75780635da09b881461014857806361e6982d146101b157806364d1ba1f146101c8578063834ff739146102315780638ec4f5051461029a578063b8b06c86146102eb578063c4d10d741461033c578063db0e6a2f146103a5578063ddf80166146103bc578063de63bdb91461040d578063f55210221461045e578063f9b867d8146104c7578063fe19d152146104de575b600080fd5b3480156100ec57600080fd5b506100f56104f5565b005b34801561010357600080fd5b506101466004803603602081101561011a57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610500565b005b34801561015457600080fd5b506101976004803603602081101561016b57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610520565b604051808215151515815260200191505060405180910390f35b3480156101bd57600080fd5b506101c661053d565b005b3480156101d457600080fd5b50610217600480360360208110156101eb57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610548565b604051808215151515815260200191505060405180910390f35b34801561023d57600080fd5b506102806004803603602081101561025457600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610565565b604051808215151515815260200191505060405180910390f35b3480156102a657600080fd5b506102e9600480360360208110156102bd57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610582565b005b3480156102f757600080fd5b5061033a6004803603602081101561030e57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506105a2565b005b34801561034857600080fd5b5061038b6004803603602081101561035f57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506105c2565b604051808215151515815260200191505060405180910390f35b3480156103b157600080fd5b506103ba6105df565b005b3480156103c857600080fd5b5061040b600480360360208110156103df57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506105ea565b005b34801561041957600080fd5b5061045c6004803603602081101561043057600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061060a565b005b34801561046a57600080fd5b506104ad6004803603602081101561048157600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061062a565b604051808215151515815260200191505060405180910390f35b3480156104d357600080fd5b506104dc610647565b005b3480156104ea57600080fd5b506104f3610652565b005b6104fe3361065d565b565b61050933610565565b151561051457600080fd5b61051d816106b7565b50565b600061053682600361071190919063ffffffff16565b9050919050565b610546336107a5565b565b600061055e82600261071190919063ffffffff16565b9050919050565b600061057b82600461071190919063ffffffff16565b9050919050565b61058b33610520565b151561059657600080fd5b61059f816107ff565b50565b6105ab336105c2565b15156105b657600080fd5b6105bf81610859565b50565b60006105d882600061071190919063ffffffff16565b9050919050565b6105e8336108b3565b565b6105f33361062a565b15156105fe57600080fd5b6106078161090d565b50565b61061333610548565b151561061e57600080fd5b61062781610967565b50565b600061064082600161071190919063ffffffff16565b9050919050565b610650336109c1565b565b61065b33610a1b565b565b610671816000610a7590919063ffffffff16565b8073ffffffffffffffffffffffffffffffffffffffff167f686dbfa27271f8cf2fe2e5eaeaf43f15d839d20c7e162ca3aee8362b6c6a861b60405160405180910390a250565b6106cb816004610b2490919063ffffffff16565b8073ffffffffffffffffffffffffffffffffffffffff167f28b26e7a3d20aedbc5f8f2ebf7da671c0491723a2b78f47a097b0e46dee0714260405160405180910390a250565b60008073ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff161415151561074e57600080fd5b8260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16905092915050565b6107b9816004610a7590919063ffffffff16565b8073ffffffffffffffffffffffffffffffffffffffff167fe3f5ed5f263f1f01764a96edfc7d025f511ec5f7d180e8816908b78bcf74f09860405160405180910390a250565b610813816003610b2490919063ffffffff16565b8073ffffffffffffffffffffffffffffffffffffffff167f71ae26cad02663e3d92efd6ec56031a80d74a20c0ab4183faa8bf262261c9baa60405160405180910390a250565b61086d816000610b2490919063ffffffff16565b8073ffffffffffffffffffffffffffffffffffffffff167f423fd8158a2c5772d65f93f5aa158245f414b4da880b0d6d2a3361a3915ad3ae60405160405180910390a250565b6108c7816003610a7590919063ffffffff16565b8073ffffffffffffffffffffffffffffffffffffffff167fdb7176e79cffef81cb01767dd0447a0b24bb72ca9778d4b245581086b2a7e6db60405160405180910390a250565b610921816001610b2490919063ffffffff16565b8073ffffffffffffffffffffffffffffffffffffffff167f2977383b0207d39ef14220620b6cf3e6c9b6e78592af90baeef6614ed2fcd2c660405160405180910390a250565b61097b816002610b2490919063ffffffff16565b8073ffffffffffffffffffffffffffffffffffffffff167fd8a7ad7929975a375d2b12bf49040286b5b105df0fe351f10df6d85e5b7142f760405160405180910390a250565b6109d5816001610a7590919063ffffffff16565b8073ffffffffffffffffffffffffffffffffffffffff167fb78e9906c5bae930ccf756a5214c9855b1782f0eb30f9566de2384f034af48f360405160405180910390a250565b610a2f816002610a7590919063ffffffff16565b8073ffffffffffffffffffffffffffffffffffffffff167f7f865f710a7604537eb2bc0334f082fa642d210a705398937f53663384485b2860405160405180910390a250565b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff1614151515610ab157600080fd5b610abb8282610711565b1515610ac657600080fd5b60008260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055505050565b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff1614151515610b6057600080fd5b610b6a8282610711565b151515610b7657600080fd5b60018260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550505056fea165627a7a7230582092b8a5ae844521a1884e721045a3efcb7e92ebc162a4a1b328a752bdb25ba8690029",
+  "sourceMap": "267:2746:19:-;;;2981:29;8:9:-1;5:2;;;30:1;27;20:12;5:2;2981:29:19;605:22:2;616:10;605;;;:22;;;:::i;:::-;620:24:3;633:10;620:12;;;:24;;;:::i;:::-;634:26:6;649:10;634:14;;;:26;;;:::i;:::-;620:24:4;633:10;620:12;;;:24;;;:::i;:::-;::1;633:10;620:12;;;:24;;;:::i;:::-;267:2746:19;;1361:118:2;1417:20;1429:7;1417;:11;;;;;;:20;;;;;:::i;:::-;1464:7;1452:20;;;;;;;;;;;;1361:118;:::o;1406:124:3:-;1464:22;1478:7;1464:9;:13;;;;;;:22;;;;;:::i;:::-;1515:7;1501:22;;;;;;;;;;;;1406:124;:::o;1450:130:6:-;1510:24;1526:7;1510:11;:15;;;;;;:24;;;;;:::i;:::-;1565:7;1549:24;;;;;;;;;;;;1450:130;:::o;1406:124:4:-;1464:22;1478:7;1464:9;:13;;;;;;:22;;;;;:::i;:::-;1515:7;1501:22;;;;;;;;;;;;1406:124;:::o;::1:-;1464:22;1478:7;1464:9;:13;;;;;;:22;;;;;:::i;:::-;1515:7;1501:22;;;;;;;;;;;;1406:124;:::o;260:181:5:-;355:1;336:21;;:7;:21;;;;328:30;;;;;;;;377:18;381:4;387:7;377:3;;;:18;;;:::i;:::-;376:19;368:28;;;;;;;;430:4;407;:11;;:20;419:7;407:20;;;;;;;;;;;;;;;;:27;;;;;;;;;;;;;;;;;;260:181;;:::o;787:178::-;871:4;918:1;899:21;;:7;:21;;;;891:30;;;;;;;;938:4;:11;;:20;950:7;938:20;;;;;;;;;;;;;;;;;;;;;;;;;931:27;;787:178;;;;:::o;267:2746:19:-;;;;;;;",
+  "deployedSourceMap": "267:2746:19:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1192:75:2;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1192:75:2;;;;;;1061:96:1;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1061:96:1;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1061:96:1;;;;;;;;;;;;;;;;;;;;;;886:110:4;;8:9:-1;5:2;;;30:1;27;20:12;5:2;886:110:4;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;886:110:4;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1229:79:1;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1229:79:1;;;;;;908:114:6;;8:9:-1;5:2;;;30:1;27;20:12;5:2;908:114:6;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;908:114:6;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;886:110:1;;8:9:-1;5:2;;;30:1;27;20:12;5:2;886:110:1;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;886:110:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1061:96:4;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1061:96:4;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1061:96:4;;;;;;;;;;;;;;;;;;;;;;1032:90:2;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1032:90:2;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1032:90:2;;;;;;;;;;;;;;;;;;;;;;863:106;;8:9:-1;5:2;;;30:1;27;20:12;5:2;863:106:2;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;863:106:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1229:79:4;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1229:79:4;;;;;;1061:96:3;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1061:96:3;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1061:96:3;;;;;;;;;;;;;;;;;;;;;;1089:102:6;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1089:102:6;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1089:102:6;;;;;;;;;;;;;;;;;;;;;;886:110:3;;8:9:-1;5:2;;;30:1;27;20:12;5:2;886:110:3;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;886:110:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1229:79;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1229:79:3;;;;;;1265:83:6;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1265:83:6;;;;;;1192:75:2;1235:25;1249:10;1235:13;:25::i;:::-;1192:75::o;1061:96:1:-;782:22;793:10;782;:22::i;:::-;774:31;;;;;;;;1129:21;1142:7;1129:12;:21::i;:::-;1061:96;:::o;886:110:4:-;944:4;967:22;981:7;967:9;:13;;:22;;;;:::i;:::-;960:29;;886:110;;;:::o;1229:79:1:-;1274:27;1290:10;1274:15;:27::i;:::-;1229:79::o;908:114:6:-;968:4;991:24;1007:7;991:11;:15;;:24;;;;:::i;:::-;984:31;;908:114;;;:::o;886:110:1:-;944:4;967:22;981:7;967:9;:13;;:22;;;;:::i;:::-;960:29;;886:110;;;:::o;1061:96:4:-;782:22;793:10;782;:22::i;:::-;774:31;;;;;;;;1129:21;1142:7;1129:12;:21::i;:::-;1061:96;:::o;1032:90:2:-;763:20;772:10;763:8;:20::i;:::-;755:29;;;;;;;;1096:19;1107:7;1096:10;:19::i;:::-;1032:90;:::o;863:106::-;919:4;942:20;954:7;942;:11;;:20;;;;:::i;:::-;935:27;;863:106;;;:::o;1229:79:4:-;1274:27;1290:10;1274:15;:27::i;:::-;1229:79::o;1061:96:3:-;782:22;793:10;782;:22::i;:::-;774:31;;;;;;;;1129:21;1142:7;1129:12;:21::i;:::-;1061:96;:::o;1089:102:6:-;800:24;813:10;800:12;:24::i;:::-;792:33;;;;;;;;1161:23;1176:7;1161:14;:23::i;:::-;1089:102;:::o;886:110:3:-;944:4;967:22;981:7;967:9;:13;;:22;;;;:::i;:::-;960:29;;886:110;;;:::o;1229:79::-;1274:27;1290:10;1274:15;:27::i;:::-;1229:79::o;1265:83:6:-;1312:29;1330:10;1312:17;:29::i;:::-;1265:83::o;1582:126:2:-;1641:23;1656:7;1641;:14;;:23;;;;:::i;:::-;1693:7;1679:22;;;;;;;;;;;;1582:126;:::o;1406:124:1:-;1464:22;1478:7;1464:9;:13;;:22;;;;:::i;:::-;1515:7;1501:22;;;;;;;;;;;;1406:124;:::o;787:178:5:-;871:4;918:1;899:21;;:7;:21;;;;891:30;;;;;;;;938:4;:11;;:20;950:7;938:20;;;;;;;;;;;;;;;;;;;;;;;;;931:27;;787:178;;;;:::o;1637:132:1:-;1698:25;1715:7;1698:9;:16;;:25;;;;:::i;:::-;1754:7;1738:24;;;;;;;;;;;;1637:132;:::o;1406:124:4:-;1464:22;1478:7;1464:9;:13;;:22;;;;:::i;:::-;1515:7;1501:22;;;;;;;;;;;;1406:124;:::o;1361:118:2:-;1417:20;1429:7;1417;:11;;:20;;;;:::i;:::-;1464:7;1452:20;;;;;;;;;;;;1361:118;:::o;1637:132:4:-;1698:25;1715:7;1698:9;:16;;:25;;;;:::i;:::-;1754:7;1738:24;;;;;;;;;;;;1637:132;:::o;1406:124:3:-;1464:22;1478:7;1464:9;:13;;:22;;;;:::i;:::-;1515:7;1501:22;;;;;;;;;;;;1406:124;:::o;1450:130:6:-;1510:24;1526:7;1510:11;:15;;:24;;;;:::i;:::-;1565:7;1549:24;;;;;;;;;;;;1450:130;:::o;1637:132:3:-;1698:25;1715:7;1698:9;:16;;:25;;;;:::i;:::-;1754:7;1738:24;;;;;;;;;;;;1637:132;:::o;1691:138:6:-;1754:27;1773:7;1754:11;:18;;:27;;;;:::i;:::-;1814:7;1796:26;;;;;;;;;;;;1691:138;:::o;515:184:5:-;613:1;594:21;;:7;:21;;;;586:30;;;;;;;;634:18;638:4;644:7;634:3;:18::i;:::-;626:27;;;;;;;;687:5;664:4;:11;;:20;676:7;664:20;;;;;;;;;;;;;;;;:28;;;;;;;;;;;;;;;;;;515:184;;:::o;260:181::-;355:1;336:21;;:7;:21;;;;328:30;;;;;;;;377:18;381:4;387:7;377:3;:18::i;:::-;376:19;368:28;;;;;;;;430:4;407;:11;;:20;419:7;407:20;;;;;;;;;;;;;;;;:27;;;;;;;;;;;;;;;;;;260:181;;:::o",
+  "source": "pragma solidity = 0.5.0;\nimport \"../wineaccesscontrol/ConsumerRole.sol\";\nimport \"../wineaccesscontrol/GrowerRole.sol\";\nimport \"../wineaccesscontrol/ProducerRole.sol\";\nimport \"../wineaccesscontrol/RetailerRole.sol\";\nimport \"../wineaccesscontrol/WholesalerRole.sol\";\n\n\ncontract SupplyChain is\n    GrowerRole,\n    ProducerRole,\n    WholeSalerRole,\n    RetailerRole,\n    ConsumerRole\n{\n\n    // Define 'owner'\n    address owner;\n\n    // Define a variable called 'upc' for Universal Product Code (UPC)\n    uint  upc;\n\n    // Define a variable called 'sku' for Stock Keeping Unit (SKU)\n    uint  sku;\n\n    // Define a public mapping 'wines' that maps the UPC to a wine.\n    mapping (uint => Wine) wines;\n\n    // Define a public mapping 'itemsHistory' that maps the UPC to an array of TxHash,\n    // that track its journey through the supply chain -- to be sent from DApp.\n    mapping (uint => string[]) winesHistory;\n\n    // Define enum 'GrapeState' with the following values:\n    enum GrapeState\n    {\n        Harvested,  // 0\n        ForSale,    // 1\n        Sold,       // 2\n        Shipped,    // 3\n        Received    // 4\n    }\n\n    // Define enum 'WineState' with the following values:\n    enum WineState\n    {\n        Produced,  // 0\n        Packed,    // 1\n        ForSale,   // 2\n        Sold,      // 3\n        Shipped,   // 4\n        Received,  // 5\n        Purchased   // 6\n    }\n\n    //TODO: set default states for wine and grapes\n\n    // Define a struct 'Item' with the following fields:\n    struct Wine {\n        uint    sku;  // Stock Keeping Unit (SKU)\n        uint    upc; // Universal Product Code (UPC), generated by the Producer, goes on the package, can be verified by the Consumer\n        address ownerID;  // Metamask-Ethereum address of the current owner as the product moves through different stages\n\n        address growerID; // Metamask-Ethereum address of the Grower\n        string  growerName; // Grower Name\n        string  growerInformation;  // Grower Information\n        string  growerLatitude; // Grower plot Latitude\n        string  growerLongitude;  // Grower plot Longitude\n\n        address producerID; // Metamask-Ethereum address of the Producer\n        string  producerName; // Producer Name\n        string  producerInformation;  // Producer Information\n        string  producerLatitude; // Producer Latitude\n        string  producerLongitude;  // Producer Longitude\n\n        uint    productID;  // Product ID potentially a combination of upc + sku\n        string  productNotes; // Product Notes\n        uint    productPrice; // Product Price\n\n        GrapeState   grapeState;  // Grape State as represented in the enum above\n        WineState   wineState;  // Product State as represented in the enum above\n\n        address wholesalerID;  // Metamask-Ethereum address of the Wholesaler\n        address retailerID; // Metamask-Ethereum address of the Retailer\n        address consumerID; // Metamask-Ethereum address of the Consumer\n\n    }\n\n\n    constructor() public {\n\n    }\n\n}\n",
   "sourcePath": "/home/david2099/Documents/nodesall/supplyChainDApp/contracts/winebase/SupplyChain.sol",
   "ast": {
     "absolutePath": "/home/david2099/Documents/nodesall/supplyChainDApp/contracts/winebase/SupplyChain.sol",
     "exportedSymbols": {
       "SupplyChain": [
-        849
+        845
       ]
     },
-    "id": 850,
+    "id": 846,
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -36,25 +392,182 @@
         "src": "0:24:19"
       },
       {
-        "baseContracts": [],
-        "contractDependencies": [],
+        "absolutePath": "/home/david2099/Documents/nodesall/supplyChainDApp/contracts/wineaccesscontrol/ConsumerRole.sol",
+        "file": "../wineaccesscontrol/ConsumerRole.sol",
+        "id": 754,
+        "nodeType": "ImportDirective",
+        "scope": 846,
+        "sourceUnit": 160,
+        "src": "25:47:19",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/home/david2099/Documents/nodesall/supplyChainDApp/contracts/wineaccesscontrol/GrowerRole.sol",
+        "file": "../wineaccesscontrol/GrowerRole.sol",
+        "id": 755,
+        "nodeType": "ImportDirective",
+        "scope": 846,
+        "sourceUnit": 263,
+        "src": "73:45:19",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/home/david2099/Documents/nodesall/supplyChainDApp/contracts/wineaccesscontrol/ProducerRole.sol",
+        "file": "../wineaccesscontrol/ProducerRole.sol",
+        "id": 756,
+        "nodeType": "ImportDirective",
+        "scope": 846,
+        "sourceUnit": 366,
+        "src": "119:47:19",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/home/david2099/Documents/nodesall/supplyChainDApp/contracts/wineaccesscontrol/RetailerRole.sol",
+        "file": "../wineaccesscontrol/RetailerRole.sol",
+        "id": 757,
+        "nodeType": "ImportDirective",
+        "scope": 846,
+        "sourceUnit": 469,
+        "src": "167:47:19",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/home/david2099/Documents/nodesall/supplyChainDApp/contracts/wineaccesscontrol/WholesalerRole.sol",
+        "file": "../wineaccesscontrol/WholesalerRole.sol",
+        "id": 758,
+        "nodeType": "ImportDirective",
+        "scope": 846,
+        "sourceUnit": 666,
+        "src": "215:49:19",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 759,
+              "name": "GrowerRole",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 262,
+              "src": "295:10:19",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_GrowerRole_$262",
+                "typeString": "contract GrowerRole"
+              }
+            },
+            "id": 760,
+            "nodeType": "InheritanceSpecifier",
+            "src": "295:10:19"
+          },
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 761,
+              "name": "ProducerRole",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 365,
+              "src": "311:12:19",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_ProducerRole_$365",
+                "typeString": "contract ProducerRole"
+              }
+            },
+            "id": 762,
+            "nodeType": "InheritanceSpecifier",
+            "src": "311:12:19"
+          },
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 763,
+              "name": "WholeSalerRole",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 665,
+              "src": "329:14:19",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_WholeSalerRole_$665",
+                "typeString": "contract WholeSalerRole"
+              }
+            },
+            "id": 764,
+            "nodeType": "InheritanceSpecifier",
+            "src": "329:14:19"
+          },
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 765,
+              "name": "RetailerRole",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 468,
+              "src": "349:12:19",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_RetailerRole_$468",
+                "typeString": "contract RetailerRole"
+              }
+            },
+            "id": 766,
+            "nodeType": "InheritanceSpecifier",
+            "src": "349:12:19"
+          },
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 767,
+              "name": "ConsumerRole",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 159,
+              "src": "367:12:19",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_ConsumerRole_$159",
+                "typeString": "contract ConsumerRole"
+              }
+            },
+            "id": 768,
+            "nodeType": "InheritanceSpecifier",
+            "src": "367:12:19"
+          }
+        ],
+        "contractDependencies": [
+          159,
+          262,
+          365,
+          468,
+          665
+        ],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 849,
+        "id": 845,
         "linearizedBaseContracts": [
-          849
+          845,
+          159,
+          468,
+          665,
+          365,
+          262
         ],
         "name": "SupplyChain",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 755,
+            "id": 770,
             "name": "owner",
             "nodeType": "VariableDeclaration",
-            "scope": 849,
-            "src": "76:13:19",
+            "scope": 845,
+            "src": "409:13:19",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -62,10 +575,10 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 754,
+              "id": 769,
               "name": "address",
               "nodeType": "ElementaryTypeName",
-              "src": "76:7:19",
+              "src": "409:7:19",
               "stateMutability": "nonpayable",
               "typeDescriptions": {
                 "typeIdentifier": "t_address",
@@ -77,11 +590,11 @@
           },
           {
             "constant": false,
-            "id": 757,
+            "id": 772,
             "name": "upc",
             "nodeType": "VariableDeclaration",
-            "scope": 849,
-            "src": "167:9:19",
+            "scope": 845,
+            "src": "500:9:19",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -89,10 +602,10 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 756,
+              "id": 771,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
-              "src": "167:4:19",
+              "src": "500:4:19",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint256",
                 "typeString": "uint256"
@@ -103,11 +616,11 @@
           },
           {
             "constant": false,
-            "id": 759,
+            "id": 774,
             "name": "sku",
             "nodeType": "VariableDeclaration",
-            "scope": 849,
-            "src": "250:9:19",
+            "scope": 845,
+            "src": "583:9:19",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -115,10 +628,10 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 758,
+              "id": 773,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
-              "src": "250:4:19",
+              "src": "583:4:19",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint256",
                 "typeString": "uint256"
@@ -129,91 +642,44 @@
           },
           {
             "constant": false,
-            "id": 763,
-            "name": "grapes",
-            "nodeType": "VariableDeclaration",
-            "scope": 849,
-            "src": "336:30:19",
-            "stateVariable": true,
-            "storageLocation": "default",
-            "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Grape_$813_storage_$",
-              "typeString": "mapping(uint256 => struct SupplyChain.Grape)"
-            },
-            "typeName": {
-              "id": 762,
-              "keyType": {
-                "id": 760,
-                "name": "uint",
-                "nodeType": "ElementaryTypeName",
-                "src": "345:4:19",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
-                }
-              },
-              "nodeType": "Mapping",
-              "src": "336:23:19",
-              "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Grape_$813_storage_$",
-                "typeString": "mapping(uint256 => struct SupplyChain.Grape)"
-              },
-              "valueType": {
-                "contractScope": null,
-                "id": 761,
-                "name": "Grape",
-                "nodeType": "UserDefinedTypeName",
-                "referencedDeclaration": 813,
-                "src": "353:5:19",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_Grape_$813_storage_ptr",
-                  "typeString": "struct SupplyChain.Grape"
-                }
-              }
-            },
-            "value": null,
-            "visibility": "internal"
-          },
-          {
-            "constant": false,
-            "id": 767,
+            "id": 778,
             "name": "wines",
             "nodeType": "VariableDeclaration",
-            "scope": 849,
-            "src": "441:28:19",
+            "scope": 845,
+            "src": "667:28:19",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Wine_$844_storage_$",
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Wine_$840_storage_$",
               "typeString": "mapping(uint256 => struct SupplyChain.Wine)"
             },
             "typeName": {
-              "id": 766,
+              "id": 777,
               "keyType": {
-                "id": 764,
+                "id": 775,
                 "name": "uint",
                 "nodeType": "ElementaryTypeName",
-                "src": "450:4:19",
+                "src": "676:4:19",
                 "typeDescriptions": {
                   "typeIdentifier": "t_uint256",
                   "typeString": "uint256"
                 }
               },
               "nodeType": "Mapping",
-              "src": "441:22:19",
+              "src": "667:22:19",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Wine_$844_storage_$",
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Wine_$840_storage_$",
                 "typeString": "mapping(uint256 => struct SupplyChain.Wine)"
               },
               "valueType": {
                 "contractScope": null,
-                "id": 765,
+                "id": 776,
                 "name": "Wine",
                 "nodeType": "UserDefinedTypeName",
-                "referencedDeclaration": 844,
-                "src": "458:4:19",
+                "referencedDeclaration": 840,
+                "src": "684:4:19",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_Wine_$844_storage_ptr",
+                  "typeIdentifier": "t_struct$_Wine_$840_storage_ptr",
                   "typeString": "struct SupplyChain.Wine"
                 }
               }
@@ -223,11 +689,11 @@
           },
           {
             "constant": false,
-            "id": 772,
+            "id": 783,
             "name": "winesHistory",
             "nodeType": "VariableDeclaration",
-            "scope": 849,
-            "src": "643:39:19",
+            "scope": 845,
+            "src": "869:39:19",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -235,38 +701,38 @@
               "typeString": "mapping(uint256 => string[])"
             },
             "typeName": {
-              "id": 771,
+              "id": 782,
               "keyType": {
-                "id": 768,
+                "id": 779,
                 "name": "uint",
                 "nodeType": "ElementaryTypeName",
-                "src": "652:4:19",
+                "src": "878:4:19",
                 "typeDescriptions": {
                   "typeIdentifier": "t_uint256",
                   "typeString": "uint256"
                 }
               },
               "nodeType": "Mapping",
-              "src": "643:26:19",
+              "src": "869:26:19",
               "typeDescriptions": {
                 "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_string_storage_$dyn_storage_$",
                 "typeString": "mapping(uint256 => string[])"
               },
               "valueType": {
                 "baseType": {
-                  "id": 769,
+                  "id": 780,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "660:6:19",
+                  "src": "886:6:19",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
                   }
                 },
-                "id": 770,
+                "id": 781,
                 "length": null,
                 "nodeType": "ArrayTypeName",
-                "src": "660:8:19",
+                "src": "886:8:19",
                 "typeDescriptions": {
                   "typeIdentifier": "t_array$_t_string_storage_$dyn_storage_ptr",
                   "typeString": "string[]"
@@ -278,461 +744,105 @@
           },
           {
             "canonicalName": "SupplyChain.GrapeState",
-            "id": 778,
+            "id": 789,
             "members": [
               {
-                "id": 773,
+                "id": 784,
                 "name": "Harvested",
                 "nodeType": "EnumValue",
-                "src": "778:9:19"
+                "src": "1004:9:19"
               },
               {
-                "id": 774,
+                "id": 785,
                 "name": "ForSale",
                 "nodeType": "EnumValue",
-                "src": "803:7:19"
+                "src": "1029:7:19"
               },
               {
-                "id": 775,
+                "id": 786,
                 "name": "Sold",
                 "nodeType": "EnumValue",
-                "src": "828:4:19"
+                "src": "1054:4:19"
               },
               {
-                "id": 776,
+                "id": 787,
                 "name": "Shipped",
                 "nodeType": "EnumValue",
-                "src": "853:7:19"
+                "src": "1079:7:19"
               },
               {
-                "id": 777,
+                "id": 788,
                 "name": "Received",
                 "nodeType": "EnumValue",
-                "src": "878:8:19"
+                "src": "1104:8:19"
               }
             ],
             "name": "GrapeState",
             "nodeType": "EnumDefinition",
-            "src": "748:152:19"
+            "src": "974:152:19"
           },
           {
             "canonicalName": "SupplyChain.WineState",
-            "id": 786,
+            "id": 797,
             "members": [
               {
-                "id": 779,
+                "id": 790,
                 "name": "Produced",
                 "nodeType": "EnumValue",
-                "src": "993:8:19"
+                "src": "1219:8:19"
               },
               {
-                "id": 780,
+                "id": 791,
                 "name": "Packed",
                 "nodeType": "EnumValue",
-                "src": "1017:6:19"
+                "src": "1243:6:19"
               },
               {
-                "id": 781,
+                "id": 792,
                 "name": "ForSale",
                 "nodeType": "EnumValue",
-                "src": "1041:7:19"
+                "src": "1267:7:19"
               },
               {
-                "id": 782,
+                "id": 793,
                 "name": "Sold",
                 "nodeType": "EnumValue",
-                "src": "1065:4:19"
+                "src": "1291:4:19"
               },
               {
-                "id": 783,
+                "id": 794,
                 "name": "Shipped",
                 "nodeType": "EnumValue",
-                "src": "1089:7:19"
+                "src": "1315:7:19"
               },
               {
-                "id": 784,
+                "id": 795,
                 "name": "Received",
                 "nodeType": "EnumValue",
-                "src": "1113:8:19"
+                "src": "1339:8:19"
               },
               {
-                "id": 785,
+                "id": 796,
                 "name": "Purchased",
                 "nodeType": "EnumValue",
-                "src": "1137:9:19"
+                "src": "1363:9:19"
               }
             ],
             "name": "WineState",
             "nodeType": "EnumDefinition",
-            "src": "964:195:19"
-          },
-          {
-            "canonicalName": "SupplyChain.Grape",
-            "id": 813,
-            "members": [
-              {
-                "constant": false,
-                "id": 788,
-                "name": "ownerID",
-                "nodeType": "VariableDeclaration",
-                "scope": 813,
-                "src": "1240:15:19",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_address",
-                  "typeString": "address"
-                },
-                "typeName": {
-                  "id": 787,
-                  "name": "address",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "1240:7:19",
-                  "stateMutability": "nonpayable",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 790,
-                "name": "originFarmerID",
-                "nodeType": "VariableDeclaration",
-                "scope": 813,
-                "src": "1354:22:19",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_address",
-                  "typeString": "address"
-                },
-                "typeName": {
-                  "id": 789,
-                  "name": "address",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "1354:7:19",
-                  "stateMutability": "nonpayable",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 792,
-                "name": "originFarmName",
-                "nodeType": "VariableDeclaration",
-                "scope": 813,
-                "src": "1429:22:19",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_string_storage_ptr",
-                  "typeString": "string"
-                },
-                "typeName": {
-                  "id": 791,
-                  "name": "string",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "1429:6:19",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_string_storage_ptr",
-                    "typeString": "string"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 794,
-                "name": "originFarmInformation",
-                "nodeType": "VariableDeclaration",
-                "scope": 813,
-                "src": "1476:29:19",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_string_storage_ptr",
-                  "typeString": "string"
-                },
-                "typeName": {
-                  "id": 793,
-                  "name": "string",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "1476:6:19",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_string_storage_ptr",
-                    "typeString": "string"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 796,
-                "name": "originFarmLatitude",
-                "nodeType": "VariableDeclaration",
-                "scope": 813,
-                "src": "1538:26:19",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_string_storage_ptr",
-                  "typeString": "string"
-                },
-                "typeName": {
-                  "id": 795,
-                  "name": "string",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "1538:6:19",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_string_storage_ptr",
-                    "typeString": "string"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 798,
-                "name": "originFarmLongitude",
-                "nodeType": "VariableDeclaration",
-                "scope": 813,
-                "src": "1591:27:19",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_string_storage_ptr",
-                  "typeString": "string"
-                },
-                "typeName": {
-                  "id": 797,
-                  "name": "string",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "1591:6:19",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_string_storage_ptr",
-                    "typeString": "string"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 800,
-                "name": "productID",
-                "nodeType": "VariableDeclaration",
-                "scope": 813,
-                "src": "1647:17:19",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
-                },
-                "typeName": {
-                  "id": 799,
-                  "name": "uint",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "1647:4:19",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 802,
-                "name": "productNotes",
-                "nodeType": "VariableDeclaration",
-                "scope": 813,
-                "src": "1728:20:19",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_string_storage_ptr",
-                  "typeString": "string"
-                },
-                "typeName": {
-                  "id": 801,
-                  "name": "string",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "1728:6:19",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_string_storage_ptr",
-                    "typeString": "string"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 804,
-                "name": "productPrice",
-                "nodeType": "VariableDeclaration",
-                "scope": 813,
-                "src": "1775:20:19",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
-                },
-                "typeName": {
-                  "id": 803,
-                  "name": "uint",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "1775:4:19",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 806,
-                "name": "grapeState",
-                "nodeType": "VariableDeclaration",
-                "scope": 813,
-                "src": "1822:23:19",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_enum$_GrapeState_$778",
-                  "typeString": "enum SupplyChain.GrapeState"
-                },
-                "typeName": {
-                  "contractScope": null,
-                  "id": 805,
-                  "name": "GrapeState",
-                  "nodeType": "UserDefinedTypeName",
-                  "referencedDeclaration": 778,
-                  "src": "1822:10:19",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_enum$_GrapeState_$778",
-                    "typeString": "enum SupplyChain.GrapeState"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 808,
-                "name": "distributorID",
-                "nodeType": "VariableDeclaration",
-                "scope": 813,
-                "src": "1904:21:19",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_address",
-                  "typeString": "address"
-                },
-                "typeName": {
-                  "id": 807,
-                  "name": "address",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "1904:7:19",
-                  "stateMutability": "nonpayable",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 810,
-                "name": "retailerID",
-                "nodeType": "VariableDeclaration",
-                "scope": 813,
-                "src": "1984:18:19",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_address",
-                  "typeString": "address"
-                },
-                "typeName": {
-                  "id": 809,
-                  "name": "address",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "1984:7:19",
-                  "stateMutability": "nonpayable",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 812,
-                "name": "consumerID",
-                "nodeType": "VariableDeclaration",
-                "scope": 813,
-                "src": "2057:18:19",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_address",
-                  "typeString": "address"
-                },
-                "typeName": {
-                  "id": 811,
-                  "name": "address",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "2057:7:19",
-                  "stateMutability": "nonpayable",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              }
-            ],
-            "name": "Grape",
-            "nodeType": "StructDefinition",
-            "scope": 849,
-            "src": "1217:910:19",
-            "visibility": "public"
+            "src": "1190:195:19"
           },
           {
             "canonicalName": "SupplyChain.Wine",
-            "id": 844,
+            "id": 840,
             "members": [
               {
                 "constant": false,
-                "id": 815,
+                "id": 799,
                 "name": "sku",
                 "nodeType": "VariableDeclaration",
-                "scope": 844,
-                "src": "2212:11:19",
+                "scope": 840,
+                "src": "1522:11:19",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -740,13 +850,224 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 814,
+                  "id": 798,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2212:4:19",
+                  "src": "1522:4:19",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 801,
+                "name": "upc",
+                "nodeType": "VariableDeclaration",
+                "scope": 840,
+                "src": "1572:11:19",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 800,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1572:4:19",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 803,
+                "name": "ownerID",
+                "nodeType": "VariableDeclaration",
+                "scope": 840,
+                "src": "1706:15:19",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 802,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1706:7:19",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 805,
+                "name": "growerID",
+                "nodeType": "VariableDeclaration",
+                "scope": 840,
+                "src": "1829:16:19",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 804,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1829:7:19",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 807,
+                "name": "growerName",
+                "nodeType": "VariableDeclaration",
+                "scope": 840,
+                "src": "1898:18:19",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 806,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1898:6:19",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 809,
+                "name": "growerInformation",
+                "nodeType": "VariableDeclaration",
+                "scope": 840,
+                "src": "1941:25:19",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 808,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1941:6:19",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 811,
+                "name": "growerLatitude",
+                "nodeType": "VariableDeclaration",
+                "scope": 840,
+                "src": "1999:22:19",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 810,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1999:6:19",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 813,
+                "name": "growerLongitude",
+                "nodeType": "VariableDeclaration",
+                "scope": 840,
+                "src": "2055:23:19",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 812,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "2055:6:19",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 815,
+                "name": "producerID",
+                "nodeType": "VariableDeclaration",
+                "scope": 840,
+                "src": "2115:18:19",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 814,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "2115:7:19",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
                   }
                 },
                 "value": null,
@@ -755,24 +1076,24 @@
               {
                 "constant": false,
                 "id": 817,
-                "name": "upc",
+                "name": "producerName",
                 "nodeType": "VariableDeclaration",
-                "scope": 844,
-                "src": "2262:11:19",
+                "scope": 840,
+                "src": "2188:20:19",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
                 },
                 "typeName": {
                   "id": 816,
-                  "name": "uint",
+                  "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2262:4:19",
+                  "src": "2188:6:19",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
                   }
                 },
                 "value": null,
@@ -781,25 +1102,24 @@
               {
                 "constant": false,
                 "id": 819,
-                "name": "ownerID",
+                "name": "producerInformation",
                 "nodeType": "VariableDeclaration",
-                "scope": 844,
-                "src": "2394:15:19",
+                "scope": 840,
+                "src": "2235:27:19",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_address",
-                  "typeString": "address"
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
                 },
                 "typeName": {
                   "id": 818,
-                  "name": "address",
+                  "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2394:7:19",
-                  "stateMutability": "nonpayable",
+                  "src": "2235:6:19",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
                   }
                 },
                 "value": null,
@@ -808,25 +1128,24 @@
               {
                 "constant": false,
                 "id": 821,
-                "name": "originFarmerID",
+                "name": "producerLatitude",
                 "nodeType": "VariableDeclaration",
-                "scope": 844,
-                "src": "2508:22:19",
+                "scope": 840,
+                "src": "2297:24:19",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_address",
-                  "typeString": "address"
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
                 },
                 "typeName": {
                   "id": 820,
-                  "name": "address",
+                  "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2508:7:19",
-                  "stateMutability": "nonpayable",
+                  "src": "2297:6:19",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
                   }
                 },
                 "value": null,
@@ -835,10 +1154,10 @@
               {
                 "constant": false,
                 "id": 823,
-                "name": "originFarmName",
+                "name": "producerLongitude",
                 "nodeType": "VariableDeclaration",
-                "scope": 844,
-                "src": "2583:22:19",
+                "scope": 840,
+                "src": "2352:25:19",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -849,7 +1168,7 @@
                   "id": 822,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2583:6:19",
+                  "src": "2352:6:19",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
@@ -861,24 +1180,24 @@
               {
                 "constant": false,
                 "id": 825,
-                "name": "originFarmInformation",
+                "name": "productID",
                 "nodeType": "VariableDeclaration",
-                "scope": 844,
-                "src": "2630:29:19",
+                "scope": 840,
+                "src": "2411:17:19",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_string_storage_ptr",
-                  "typeString": "string"
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
                 },
                 "typeName": {
                   "id": 824,
-                  "name": "string",
+                  "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2630:6:19",
+                  "src": "2411:4:19",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_string_storage_ptr",
-                    "typeString": "string"
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
                   }
                 },
                 "value": null,
@@ -887,10 +1206,10 @@
               {
                 "constant": false,
                 "id": 827,
-                "name": "originFarmLatitude",
+                "name": "productNotes",
                 "nodeType": "VariableDeclaration",
-                "scope": 844,
-                "src": "2692:26:19",
+                "scope": 840,
+                "src": "2492:20:19",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -901,7 +1220,7 @@
                   "id": 826,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2692:6:19",
+                  "src": "2492:6:19",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
@@ -913,24 +1232,24 @@
               {
                 "constant": false,
                 "id": 829,
-                "name": "originFarmLongitude",
+                "name": "productPrice",
                 "nodeType": "VariableDeclaration",
-                "scope": 844,
-                "src": "2745:27:19",
+                "scope": 840,
+                "src": "2539:20:19",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_string_storage_ptr",
-                  "typeString": "string"
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
                 },
                 "typeName": {
                   "id": 828,
-                  "name": "string",
+                  "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2745:6:19",
+                  "src": "2539:4:19",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_string_storage_ptr",
-                    "typeString": "string"
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
                   }
                 },
                 "value": null,
@@ -939,24 +1258,26 @@
               {
                 "constant": false,
                 "id": 831,
-                "name": "productID",
+                "name": "grapeState",
                 "nodeType": "VariableDeclaration",
-                "scope": 844,
-                "src": "2801:17:19",
+                "scope": 840,
+                "src": "2587:23:19",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
+                  "typeIdentifier": "t_enum$_GrapeState_$789",
+                  "typeString": "enum SupplyChain.GrapeState"
                 },
                 "typeName": {
+                  "contractScope": null,
                   "id": 830,
-                  "name": "uint",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "2801:4:19",
+                  "name": "GrapeState",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 789,
+                  "src": "2587:10:19",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
+                    "typeIdentifier": "t_enum$_GrapeState_$789",
+                    "typeString": "enum SupplyChain.GrapeState"
                   }
                 },
                 "value": null,
@@ -965,77 +1286,25 @@
               {
                 "constant": false,
                 "id": 833,
-                "name": "productNotes",
-                "nodeType": "VariableDeclaration",
-                "scope": 844,
-                "src": "2882:20:19",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_string_storage_ptr",
-                  "typeString": "string"
-                },
-                "typeName": {
-                  "id": 832,
-                  "name": "string",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "2882:6:19",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_string_storage_ptr",
-                    "typeString": "string"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 835,
-                "name": "productPrice",
-                "nodeType": "VariableDeclaration",
-                "scope": 844,
-                "src": "2929:20:19",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
-                },
-                "typeName": {
-                  "id": 834,
-                  "name": "uint",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "2929:4:19",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 837,
                 "name": "wineState",
                 "nodeType": "VariableDeclaration",
-                "scope": 844,
-                "src": "2976:21:19",
+                "scope": 840,
+                "src": "2669:21:19",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_enum$_WineState_$786",
+                  "typeIdentifier": "t_enum$_WineState_$797",
                   "typeString": "enum SupplyChain.WineState"
                 },
                 "typeName": {
                   "contractScope": null,
-                  "id": 836,
+                  "id": 832,
                   "name": "WineState",
                   "nodeType": "UserDefinedTypeName",
-                  "referencedDeclaration": 786,
-                  "src": "2976:9:19",
+                  "referencedDeclaration": 797,
+                  "src": "2669:9:19",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_enum$_WineState_$786",
+                    "typeIdentifier": "t_enum$_WineState_$797",
                     "typeString": "enum SupplyChain.WineState"
                   }
                 },
@@ -1044,11 +1313,65 @@
               },
               {
                 "constant": false,
-                "id": 839,
-                "name": "distributorID",
+                "id": 835,
+                "name": "wholesalerID",
                 "nodeType": "VariableDeclaration",
-                "scope": 844,
-                "src": "3058:21:19",
+                "scope": 840,
+                "src": "2752:20:19",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 834,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "2752:7:19",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 837,
+                "name": "retailerID",
+                "nodeType": "VariableDeclaration",
+                "scope": 840,
+                "src": "2830:18:19",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 836,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "2830:7:19",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 839,
+                "name": "consumerID",
+                "nodeType": "VariableDeclaration",
+                "scope": 840,
+                "src": "2903:18:19",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1059,61 +1382,7 @@
                   "id": 838,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
-                  "src": "3058:7:19",
-                  "stateMutability": "nonpayable",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 841,
-                "name": "retailerID",
-                "nodeType": "VariableDeclaration",
-                "scope": 844,
-                "src": "3138:18:19",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_address",
-                  "typeString": "address"
-                },
-                "typeName": {
-                  "id": 840,
-                  "name": "address",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "3138:7:19",
-                  "stateMutability": "nonpayable",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 843,
-                "name": "consumerID",
-                "nodeType": "VariableDeclaration",
-                "scope": 844,
-                "src": "3211:18:19",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_address",
-                  "typeString": "address"
-                },
-                "typeName": {
-                  "id": 842,
-                  "name": "address",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "3211:7:19",
+                  "src": "2903:7:19",
                   "stateMutability": "nonpayable",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
@@ -1126,57 +1395,57 @@
             ],
             "name": "Wine",
             "nodeType": "StructDefinition",
-            "scope": 849,
-            "src": "2190:1091:19",
+            "scope": 845,
+            "src": "1500:1474:19",
             "visibility": "public"
           },
           {
             "body": {
-              "id": 847,
+              "id": 843,
               "nodeType": "Block",
-              "src": "3309:8:19",
+              "src": "3002:8:19",
               "statements": []
             },
             "documentation": null,
-            "id": 848,
+            "id": 844,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 845,
+              "id": 841,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "3299:2:19"
+              "src": "2992:2:19"
             },
             "returnParameters": {
-              "id": 846,
+              "id": 842,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "3309:0:19"
+              "src": "3002:0:19"
             },
-            "scope": 849,
-            "src": "3288:29:19",
+            "scope": 845,
+            "src": "2981:29:19",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 850,
-        "src": "26:3293:19"
+        "scope": 846,
+        "src": "267:2746:19"
       }
     ],
-    "src": "0:3320:19"
+    "src": "0:3014:19"
   },
   "legacyAST": {
     "absolutePath": "/home/david2099/Documents/nodesall/supplyChainDApp/contracts/winebase/SupplyChain.sol",
     "exportedSymbols": {
       "SupplyChain": [
-        849
+        845
       ]
     },
-    "id": 850,
+    "id": 846,
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -1191,25 +1460,182 @@
         "src": "0:24:19"
       },
       {
-        "baseContracts": [],
-        "contractDependencies": [],
+        "absolutePath": "/home/david2099/Documents/nodesall/supplyChainDApp/contracts/wineaccesscontrol/ConsumerRole.sol",
+        "file": "../wineaccesscontrol/ConsumerRole.sol",
+        "id": 754,
+        "nodeType": "ImportDirective",
+        "scope": 846,
+        "sourceUnit": 160,
+        "src": "25:47:19",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/home/david2099/Documents/nodesall/supplyChainDApp/contracts/wineaccesscontrol/GrowerRole.sol",
+        "file": "../wineaccesscontrol/GrowerRole.sol",
+        "id": 755,
+        "nodeType": "ImportDirective",
+        "scope": 846,
+        "sourceUnit": 263,
+        "src": "73:45:19",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/home/david2099/Documents/nodesall/supplyChainDApp/contracts/wineaccesscontrol/ProducerRole.sol",
+        "file": "../wineaccesscontrol/ProducerRole.sol",
+        "id": 756,
+        "nodeType": "ImportDirective",
+        "scope": 846,
+        "sourceUnit": 366,
+        "src": "119:47:19",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/home/david2099/Documents/nodesall/supplyChainDApp/contracts/wineaccesscontrol/RetailerRole.sol",
+        "file": "../wineaccesscontrol/RetailerRole.sol",
+        "id": 757,
+        "nodeType": "ImportDirective",
+        "scope": 846,
+        "sourceUnit": 469,
+        "src": "167:47:19",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/home/david2099/Documents/nodesall/supplyChainDApp/contracts/wineaccesscontrol/WholesalerRole.sol",
+        "file": "../wineaccesscontrol/WholesalerRole.sol",
+        "id": 758,
+        "nodeType": "ImportDirective",
+        "scope": 846,
+        "sourceUnit": 666,
+        "src": "215:49:19",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 759,
+              "name": "GrowerRole",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 262,
+              "src": "295:10:19",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_GrowerRole_$262",
+                "typeString": "contract GrowerRole"
+              }
+            },
+            "id": 760,
+            "nodeType": "InheritanceSpecifier",
+            "src": "295:10:19"
+          },
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 761,
+              "name": "ProducerRole",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 365,
+              "src": "311:12:19",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_ProducerRole_$365",
+                "typeString": "contract ProducerRole"
+              }
+            },
+            "id": 762,
+            "nodeType": "InheritanceSpecifier",
+            "src": "311:12:19"
+          },
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 763,
+              "name": "WholeSalerRole",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 665,
+              "src": "329:14:19",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_WholeSalerRole_$665",
+                "typeString": "contract WholeSalerRole"
+              }
+            },
+            "id": 764,
+            "nodeType": "InheritanceSpecifier",
+            "src": "329:14:19"
+          },
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 765,
+              "name": "RetailerRole",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 468,
+              "src": "349:12:19",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_RetailerRole_$468",
+                "typeString": "contract RetailerRole"
+              }
+            },
+            "id": 766,
+            "nodeType": "InheritanceSpecifier",
+            "src": "349:12:19"
+          },
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 767,
+              "name": "ConsumerRole",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 159,
+              "src": "367:12:19",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_ConsumerRole_$159",
+                "typeString": "contract ConsumerRole"
+              }
+            },
+            "id": 768,
+            "nodeType": "InheritanceSpecifier",
+            "src": "367:12:19"
+          }
+        ],
+        "contractDependencies": [
+          159,
+          262,
+          365,
+          468,
+          665
+        ],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 849,
+        "id": 845,
         "linearizedBaseContracts": [
-          849
+          845,
+          159,
+          468,
+          665,
+          365,
+          262
         ],
         "name": "SupplyChain",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 755,
+            "id": 770,
             "name": "owner",
             "nodeType": "VariableDeclaration",
-            "scope": 849,
-            "src": "76:13:19",
+            "scope": 845,
+            "src": "409:13:19",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -1217,10 +1643,10 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 754,
+              "id": 769,
               "name": "address",
               "nodeType": "ElementaryTypeName",
-              "src": "76:7:19",
+              "src": "409:7:19",
               "stateMutability": "nonpayable",
               "typeDescriptions": {
                 "typeIdentifier": "t_address",
@@ -1232,11 +1658,11 @@
           },
           {
             "constant": false,
-            "id": 757,
+            "id": 772,
             "name": "upc",
             "nodeType": "VariableDeclaration",
-            "scope": 849,
-            "src": "167:9:19",
+            "scope": 845,
+            "src": "500:9:19",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -1244,10 +1670,10 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 756,
+              "id": 771,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
-              "src": "167:4:19",
+              "src": "500:4:19",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint256",
                 "typeString": "uint256"
@@ -1258,11 +1684,11 @@
           },
           {
             "constant": false,
-            "id": 759,
+            "id": 774,
             "name": "sku",
             "nodeType": "VariableDeclaration",
-            "scope": 849,
-            "src": "250:9:19",
+            "scope": 845,
+            "src": "583:9:19",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -1270,10 +1696,10 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 758,
+              "id": 773,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
-              "src": "250:4:19",
+              "src": "583:4:19",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint256",
                 "typeString": "uint256"
@@ -1284,91 +1710,44 @@
           },
           {
             "constant": false,
-            "id": 763,
-            "name": "grapes",
-            "nodeType": "VariableDeclaration",
-            "scope": 849,
-            "src": "336:30:19",
-            "stateVariable": true,
-            "storageLocation": "default",
-            "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Grape_$813_storage_$",
-              "typeString": "mapping(uint256 => struct SupplyChain.Grape)"
-            },
-            "typeName": {
-              "id": 762,
-              "keyType": {
-                "id": 760,
-                "name": "uint",
-                "nodeType": "ElementaryTypeName",
-                "src": "345:4:19",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
-                }
-              },
-              "nodeType": "Mapping",
-              "src": "336:23:19",
-              "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Grape_$813_storage_$",
-                "typeString": "mapping(uint256 => struct SupplyChain.Grape)"
-              },
-              "valueType": {
-                "contractScope": null,
-                "id": 761,
-                "name": "Grape",
-                "nodeType": "UserDefinedTypeName",
-                "referencedDeclaration": 813,
-                "src": "353:5:19",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_Grape_$813_storage_ptr",
-                  "typeString": "struct SupplyChain.Grape"
-                }
-              }
-            },
-            "value": null,
-            "visibility": "internal"
-          },
-          {
-            "constant": false,
-            "id": 767,
+            "id": 778,
             "name": "wines",
             "nodeType": "VariableDeclaration",
-            "scope": 849,
-            "src": "441:28:19",
+            "scope": 845,
+            "src": "667:28:19",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Wine_$844_storage_$",
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Wine_$840_storage_$",
               "typeString": "mapping(uint256 => struct SupplyChain.Wine)"
             },
             "typeName": {
-              "id": 766,
+              "id": 777,
               "keyType": {
-                "id": 764,
+                "id": 775,
                 "name": "uint",
                 "nodeType": "ElementaryTypeName",
-                "src": "450:4:19",
+                "src": "676:4:19",
                 "typeDescriptions": {
                   "typeIdentifier": "t_uint256",
                   "typeString": "uint256"
                 }
               },
               "nodeType": "Mapping",
-              "src": "441:22:19",
+              "src": "667:22:19",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Wine_$844_storage_$",
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Wine_$840_storage_$",
                 "typeString": "mapping(uint256 => struct SupplyChain.Wine)"
               },
               "valueType": {
                 "contractScope": null,
-                "id": 765,
+                "id": 776,
                 "name": "Wine",
                 "nodeType": "UserDefinedTypeName",
-                "referencedDeclaration": 844,
-                "src": "458:4:19",
+                "referencedDeclaration": 840,
+                "src": "684:4:19",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_Wine_$844_storage_ptr",
+                  "typeIdentifier": "t_struct$_Wine_$840_storage_ptr",
                   "typeString": "struct SupplyChain.Wine"
                 }
               }
@@ -1378,11 +1757,11 @@
           },
           {
             "constant": false,
-            "id": 772,
+            "id": 783,
             "name": "winesHistory",
             "nodeType": "VariableDeclaration",
-            "scope": 849,
-            "src": "643:39:19",
+            "scope": 845,
+            "src": "869:39:19",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -1390,38 +1769,38 @@
               "typeString": "mapping(uint256 => string[])"
             },
             "typeName": {
-              "id": 771,
+              "id": 782,
               "keyType": {
-                "id": 768,
+                "id": 779,
                 "name": "uint",
                 "nodeType": "ElementaryTypeName",
-                "src": "652:4:19",
+                "src": "878:4:19",
                 "typeDescriptions": {
                   "typeIdentifier": "t_uint256",
                   "typeString": "uint256"
                 }
               },
               "nodeType": "Mapping",
-              "src": "643:26:19",
+              "src": "869:26:19",
               "typeDescriptions": {
                 "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_string_storage_$dyn_storage_$",
                 "typeString": "mapping(uint256 => string[])"
               },
               "valueType": {
                 "baseType": {
-                  "id": 769,
+                  "id": 780,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "660:6:19",
+                  "src": "886:6:19",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
                   }
                 },
-                "id": 770,
+                "id": 781,
                 "length": null,
                 "nodeType": "ArrayTypeName",
-                "src": "660:8:19",
+                "src": "886:8:19",
                 "typeDescriptions": {
                   "typeIdentifier": "t_array$_t_string_storage_$dyn_storage_ptr",
                   "typeString": "string[]"
@@ -1433,461 +1812,105 @@
           },
           {
             "canonicalName": "SupplyChain.GrapeState",
-            "id": 778,
+            "id": 789,
             "members": [
               {
-                "id": 773,
+                "id": 784,
                 "name": "Harvested",
                 "nodeType": "EnumValue",
-                "src": "778:9:19"
+                "src": "1004:9:19"
               },
               {
-                "id": 774,
+                "id": 785,
                 "name": "ForSale",
                 "nodeType": "EnumValue",
-                "src": "803:7:19"
+                "src": "1029:7:19"
               },
               {
-                "id": 775,
+                "id": 786,
                 "name": "Sold",
                 "nodeType": "EnumValue",
-                "src": "828:4:19"
+                "src": "1054:4:19"
               },
               {
-                "id": 776,
+                "id": 787,
                 "name": "Shipped",
                 "nodeType": "EnumValue",
-                "src": "853:7:19"
+                "src": "1079:7:19"
               },
               {
-                "id": 777,
+                "id": 788,
                 "name": "Received",
                 "nodeType": "EnumValue",
-                "src": "878:8:19"
+                "src": "1104:8:19"
               }
             ],
             "name": "GrapeState",
             "nodeType": "EnumDefinition",
-            "src": "748:152:19"
+            "src": "974:152:19"
           },
           {
             "canonicalName": "SupplyChain.WineState",
-            "id": 786,
+            "id": 797,
             "members": [
               {
-                "id": 779,
+                "id": 790,
                 "name": "Produced",
                 "nodeType": "EnumValue",
-                "src": "993:8:19"
+                "src": "1219:8:19"
               },
               {
-                "id": 780,
+                "id": 791,
                 "name": "Packed",
                 "nodeType": "EnumValue",
-                "src": "1017:6:19"
+                "src": "1243:6:19"
               },
               {
-                "id": 781,
+                "id": 792,
                 "name": "ForSale",
                 "nodeType": "EnumValue",
-                "src": "1041:7:19"
+                "src": "1267:7:19"
               },
               {
-                "id": 782,
+                "id": 793,
                 "name": "Sold",
                 "nodeType": "EnumValue",
-                "src": "1065:4:19"
+                "src": "1291:4:19"
               },
               {
-                "id": 783,
+                "id": 794,
                 "name": "Shipped",
                 "nodeType": "EnumValue",
-                "src": "1089:7:19"
+                "src": "1315:7:19"
               },
               {
-                "id": 784,
+                "id": 795,
                 "name": "Received",
                 "nodeType": "EnumValue",
-                "src": "1113:8:19"
+                "src": "1339:8:19"
               },
               {
-                "id": 785,
+                "id": 796,
                 "name": "Purchased",
                 "nodeType": "EnumValue",
-                "src": "1137:9:19"
+                "src": "1363:9:19"
               }
             ],
             "name": "WineState",
             "nodeType": "EnumDefinition",
-            "src": "964:195:19"
-          },
-          {
-            "canonicalName": "SupplyChain.Grape",
-            "id": 813,
-            "members": [
-              {
-                "constant": false,
-                "id": 788,
-                "name": "ownerID",
-                "nodeType": "VariableDeclaration",
-                "scope": 813,
-                "src": "1240:15:19",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_address",
-                  "typeString": "address"
-                },
-                "typeName": {
-                  "id": 787,
-                  "name": "address",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "1240:7:19",
-                  "stateMutability": "nonpayable",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 790,
-                "name": "originFarmerID",
-                "nodeType": "VariableDeclaration",
-                "scope": 813,
-                "src": "1354:22:19",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_address",
-                  "typeString": "address"
-                },
-                "typeName": {
-                  "id": 789,
-                  "name": "address",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "1354:7:19",
-                  "stateMutability": "nonpayable",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 792,
-                "name": "originFarmName",
-                "nodeType": "VariableDeclaration",
-                "scope": 813,
-                "src": "1429:22:19",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_string_storage_ptr",
-                  "typeString": "string"
-                },
-                "typeName": {
-                  "id": 791,
-                  "name": "string",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "1429:6:19",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_string_storage_ptr",
-                    "typeString": "string"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 794,
-                "name": "originFarmInformation",
-                "nodeType": "VariableDeclaration",
-                "scope": 813,
-                "src": "1476:29:19",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_string_storage_ptr",
-                  "typeString": "string"
-                },
-                "typeName": {
-                  "id": 793,
-                  "name": "string",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "1476:6:19",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_string_storage_ptr",
-                    "typeString": "string"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 796,
-                "name": "originFarmLatitude",
-                "nodeType": "VariableDeclaration",
-                "scope": 813,
-                "src": "1538:26:19",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_string_storage_ptr",
-                  "typeString": "string"
-                },
-                "typeName": {
-                  "id": 795,
-                  "name": "string",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "1538:6:19",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_string_storage_ptr",
-                    "typeString": "string"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 798,
-                "name": "originFarmLongitude",
-                "nodeType": "VariableDeclaration",
-                "scope": 813,
-                "src": "1591:27:19",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_string_storage_ptr",
-                  "typeString": "string"
-                },
-                "typeName": {
-                  "id": 797,
-                  "name": "string",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "1591:6:19",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_string_storage_ptr",
-                    "typeString": "string"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 800,
-                "name": "productID",
-                "nodeType": "VariableDeclaration",
-                "scope": 813,
-                "src": "1647:17:19",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
-                },
-                "typeName": {
-                  "id": 799,
-                  "name": "uint",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "1647:4:19",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 802,
-                "name": "productNotes",
-                "nodeType": "VariableDeclaration",
-                "scope": 813,
-                "src": "1728:20:19",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_string_storage_ptr",
-                  "typeString": "string"
-                },
-                "typeName": {
-                  "id": 801,
-                  "name": "string",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "1728:6:19",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_string_storage_ptr",
-                    "typeString": "string"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 804,
-                "name": "productPrice",
-                "nodeType": "VariableDeclaration",
-                "scope": 813,
-                "src": "1775:20:19",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
-                },
-                "typeName": {
-                  "id": 803,
-                  "name": "uint",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "1775:4:19",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 806,
-                "name": "grapeState",
-                "nodeType": "VariableDeclaration",
-                "scope": 813,
-                "src": "1822:23:19",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_enum$_GrapeState_$778",
-                  "typeString": "enum SupplyChain.GrapeState"
-                },
-                "typeName": {
-                  "contractScope": null,
-                  "id": 805,
-                  "name": "GrapeState",
-                  "nodeType": "UserDefinedTypeName",
-                  "referencedDeclaration": 778,
-                  "src": "1822:10:19",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_enum$_GrapeState_$778",
-                    "typeString": "enum SupplyChain.GrapeState"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 808,
-                "name": "distributorID",
-                "nodeType": "VariableDeclaration",
-                "scope": 813,
-                "src": "1904:21:19",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_address",
-                  "typeString": "address"
-                },
-                "typeName": {
-                  "id": 807,
-                  "name": "address",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "1904:7:19",
-                  "stateMutability": "nonpayable",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 810,
-                "name": "retailerID",
-                "nodeType": "VariableDeclaration",
-                "scope": 813,
-                "src": "1984:18:19",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_address",
-                  "typeString": "address"
-                },
-                "typeName": {
-                  "id": 809,
-                  "name": "address",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "1984:7:19",
-                  "stateMutability": "nonpayable",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 812,
-                "name": "consumerID",
-                "nodeType": "VariableDeclaration",
-                "scope": 813,
-                "src": "2057:18:19",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_address",
-                  "typeString": "address"
-                },
-                "typeName": {
-                  "id": 811,
-                  "name": "address",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "2057:7:19",
-                  "stateMutability": "nonpayable",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              }
-            ],
-            "name": "Grape",
-            "nodeType": "StructDefinition",
-            "scope": 849,
-            "src": "1217:910:19",
-            "visibility": "public"
+            "src": "1190:195:19"
           },
           {
             "canonicalName": "SupplyChain.Wine",
-            "id": 844,
+            "id": 840,
             "members": [
               {
                 "constant": false,
-                "id": 815,
+                "id": 799,
                 "name": "sku",
                 "nodeType": "VariableDeclaration",
-                "scope": 844,
-                "src": "2212:11:19",
+                "scope": 840,
+                "src": "1522:11:19",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1895,13 +1918,224 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 814,
+                  "id": 798,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2212:4:19",
+                  "src": "1522:4:19",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 801,
+                "name": "upc",
+                "nodeType": "VariableDeclaration",
+                "scope": 840,
+                "src": "1572:11:19",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 800,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1572:4:19",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 803,
+                "name": "ownerID",
+                "nodeType": "VariableDeclaration",
+                "scope": 840,
+                "src": "1706:15:19",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 802,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1706:7:19",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 805,
+                "name": "growerID",
+                "nodeType": "VariableDeclaration",
+                "scope": 840,
+                "src": "1829:16:19",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 804,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1829:7:19",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 807,
+                "name": "growerName",
+                "nodeType": "VariableDeclaration",
+                "scope": 840,
+                "src": "1898:18:19",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 806,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1898:6:19",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 809,
+                "name": "growerInformation",
+                "nodeType": "VariableDeclaration",
+                "scope": 840,
+                "src": "1941:25:19",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 808,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1941:6:19",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 811,
+                "name": "growerLatitude",
+                "nodeType": "VariableDeclaration",
+                "scope": 840,
+                "src": "1999:22:19",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 810,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1999:6:19",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 813,
+                "name": "growerLongitude",
+                "nodeType": "VariableDeclaration",
+                "scope": 840,
+                "src": "2055:23:19",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 812,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "2055:6:19",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 815,
+                "name": "producerID",
+                "nodeType": "VariableDeclaration",
+                "scope": 840,
+                "src": "2115:18:19",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 814,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "2115:7:19",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
                   }
                 },
                 "value": null,
@@ -1910,24 +2144,24 @@
               {
                 "constant": false,
                 "id": 817,
-                "name": "upc",
+                "name": "producerName",
                 "nodeType": "VariableDeclaration",
-                "scope": 844,
-                "src": "2262:11:19",
+                "scope": 840,
+                "src": "2188:20:19",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
                 },
                 "typeName": {
                   "id": 816,
-                  "name": "uint",
+                  "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2262:4:19",
+                  "src": "2188:6:19",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
                   }
                 },
                 "value": null,
@@ -1936,25 +2170,24 @@
               {
                 "constant": false,
                 "id": 819,
-                "name": "ownerID",
+                "name": "producerInformation",
                 "nodeType": "VariableDeclaration",
-                "scope": 844,
-                "src": "2394:15:19",
+                "scope": 840,
+                "src": "2235:27:19",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_address",
-                  "typeString": "address"
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
                 },
                 "typeName": {
                   "id": 818,
-                  "name": "address",
+                  "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2394:7:19",
-                  "stateMutability": "nonpayable",
+                  "src": "2235:6:19",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
                   }
                 },
                 "value": null,
@@ -1963,25 +2196,24 @@
               {
                 "constant": false,
                 "id": 821,
-                "name": "originFarmerID",
+                "name": "producerLatitude",
                 "nodeType": "VariableDeclaration",
-                "scope": 844,
-                "src": "2508:22:19",
+                "scope": 840,
+                "src": "2297:24:19",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_address",
-                  "typeString": "address"
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
                 },
                 "typeName": {
                   "id": 820,
-                  "name": "address",
+                  "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2508:7:19",
-                  "stateMutability": "nonpayable",
+                  "src": "2297:6:19",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
                   }
                 },
                 "value": null,
@@ -1990,10 +2222,10 @@
               {
                 "constant": false,
                 "id": 823,
-                "name": "originFarmName",
+                "name": "producerLongitude",
                 "nodeType": "VariableDeclaration",
-                "scope": 844,
-                "src": "2583:22:19",
+                "scope": 840,
+                "src": "2352:25:19",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -2004,7 +2236,7 @@
                   "id": 822,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2583:6:19",
+                  "src": "2352:6:19",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
@@ -2016,24 +2248,24 @@
               {
                 "constant": false,
                 "id": 825,
-                "name": "originFarmInformation",
+                "name": "productID",
                 "nodeType": "VariableDeclaration",
-                "scope": 844,
-                "src": "2630:29:19",
+                "scope": 840,
+                "src": "2411:17:19",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_string_storage_ptr",
-                  "typeString": "string"
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
                 },
                 "typeName": {
                   "id": 824,
-                  "name": "string",
+                  "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2630:6:19",
+                  "src": "2411:4:19",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_string_storage_ptr",
-                    "typeString": "string"
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
                   }
                 },
                 "value": null,
@@ -2042,10 +2274,10 @@
               {
                 "constant": false,
                 "id": 827,
-                "name": "originFarmLatitude",
+                "name": "productNotes",
                 "nodeType": "VariableDeclaration",
-                "scope": 844,
-                "src": "2692:26:19",
+                "scope": 840,
+                "src": "2492:20:19",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -2056,7 +2288,7 @@
                   "id": 826,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2692:6:19",
+                  "src": "2492:6:19",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
@@ -2068,24 +2300,24 @@
               {
                 "constant": false,
                 "id": 829,
-                "name": "originFarmLongitude",
+                "name": "productPrice",
                 "nodeType": "VariableDeclaration",
-                "scope": 844,
-                "src": "2745:27:19",
+                "scope": 840,
+                "src": "2539:20:19",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_string_storage_ptr",
-                  "typeString": "string"
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
                 },
                 "typeName": {
                   "id": 828,
-                  "name": "string",
+                  "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2745:6:19",
+                  "src": "2539:4:19",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_string_storage_ptr",
-                    "typeString": "string"
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
                   }
                 },
                 "value": null,
@@ -2094,24 +2326,26 @@
               {
                 "constant": false,
                 "id": 831,
-                "name": "productID",
+                "name": "grapeState",
                 "nodeType": "VariableDeclaration",
-                "scope": 844,
-                "src": "2801:17:19",
+                "scope": 840,
+                "src": "2587:23:19",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
+                  "typeIdentifier": "t_enum$_GrapeState_$789",
+                  "typeString": "enum SupplyChain.GrapeState"
                 },
                 "typeName": {
+                  "contractScope": null,
                   "id": 830,
-                  "name": "uint",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "2801:4:19",
+                  "name": "GrapeState",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 789,
+                  "src": "2587:10:19",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
+                    "typeIdentifier": "t_enum$_GrapeState_$789",
+                    "typeString": "enum SupplyChain.GrapeState"
                   }
                 },
                 "value": null,
@@ -2120,77 +2354,25 @@
               {
                 "constant": false,
                 "id": 833,
-                "name": "productNotes",
-                "nodeType": "VariableDeclaration",
-                "scope": 844,
-                "src": "2882:20:19",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_string_storage_ptr",
-                  "typeString": "string"
-                },
-                "typeName": {
-                  "id": 832,
-                  "name": "string",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "2882:6:19",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_string_storage_ptr",
-                    "typeString": "string"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 835,
-                "name": "productPrice",
-                "nodeType": "VariableDeclaration",
-                "scope": 844,
-                "src": "2929:20:19",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
-                },
-                "typeName": {
-                  "id": 834,
-                  "name": "uint",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "2929:4:19",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 837,
                 "name": "wineState",
                 "nodeType": "VariableDeclaration",
-                "scope": 844,
-                "src": "2976:21:19",
+                "scope": 840,
+                "src": "2669:21:19",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_enum$_WineState_$786",
+                  "typeIdentifier": "t_enum$_WineState_$797",
                   "typeString": "enum SupplyChain.WineState"
                 },
                 "typeName": {
                   "contractScope": null,
-                  "id": 836,
+                  "id": 832,
                   "name": "WineState",
                   "nodeType": "UserDefinedTypeName",
-                  "referencedDeclaration": 786,
-                  "src": "2976:9:19",
+                  "referencedDeclaration": 797,
+                  "src": "2669:9:19",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_enum$_WineState_$786",
+                    "typeIdentifier": "t_enum$_WineState_$797",
                     "typeString": "enum SupplyChain.WineState"
                   }
                 },
@@ -2199,11 +2381,65 @@
               },
               {
                 "constant": false,
-                "id": 839,
-                "name": "distributorID",
+                "id": 835,
+                "name": "wholesalerID",
                 "nodeType": "VariableDeclaration",
-                "scope": 844,
-                "src": "3058:21:19",
+                "scope": 840,
+                "src": "2752:20:19",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 834,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "2752:7:19",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 837,
+                "name": "retailerID",
+                "nodeType": "VariableDeclaration",
+                "scope": 840,
+                "src": "2830:18:19",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 836,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "2830:7:19",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 839,
+                "name": "consumerID",
+                "nodeType": "VariableDeclaration",
+                "scope": 840,
+                "src": "2903:18:19",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -2214,61 +2450,7 @@
                   "id": 838,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
-                  "src": "3058:7:19",
-                  "stateMutability": "nonpayable",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 841,
-                "name": "retailerID",
-                "nodeType": "VariableDeclaration",
-                "scope": 844,
-                "src": "3138:18:19",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_address",
-                  "typeString": "address"
-                },
-                "typeName": {
-                  "id": 840,
-                  "name": "address",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "3138:7:19",
-                  "stateMutability": "nonpayable",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 843,
-                "name": "consumerID",
-                "nodeType": "VariableDeclaration",
-                "scope": 844,
-                "src": "3211:18:19",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_address",
-                  "typeString": "address"
-                },
-                "typeName": {
-                  "id": 842,
-                  "name": "address",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "3211:7:19",
+                  "src": "2903:7:19",
                   "stateMutability": "nonpayable",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
@@ -2281,56 +2463,69 @@
             ],
             "name": "Wine",
             "nodeType": "StructDefinition",
-            "scope": 849,
-            "src": "2190:1091:19",
+            "scope": 845,
+            "src": "1500:1474:19",
             "visibility": "public"
           },
           {
             "body": {
-              "id": 847,
+              "id": 843,
               "nodeType": "Block",
-              "src": "3309:8:19",
+              "src": "3002:8:19",
               "statements": []
             },
             "documentation": null,
-            "id": 848,
+            "id": 844,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 845,
+              "id": 841,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "3299:2:19"
+              "src": "2992:2:19"
             },
             "returnParameters": {
-              "id": 846,
+              "id": 842,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "3309:0:19"
+              "src": "3002:0:19"
             },
-            "scope": 849,
-            "src": "3288:29:19",
+            "scope": 845,
+            "src": "2981:29:19",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 850,
-        "src": "26:3293:19"
+        "scope": 846,
+        "src": "267:2746:19"
       }
     ],
-    "src": "0:3320:19"
+    "src": "0:3014:19"
   },
   "compiler": {
     "name": "solc",
     "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "4447": {
+      "events": {},
+      "links": {},
+      "address": "0x8eCD5b4766BE9864DFEbf99dFf237b40bb6F62f5",
+      "transactionHash": "0x8c89e4652e38318106b05f72f673d464bbc630d51f8b440c956828177dd62fb4"
+    },
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0x921e4157aB593FA72754C832EbB6DB9f2171C72E",
+      "transactionHash": "0xea4bfc4d16c7d96090be161f9d4de048893a619a5d805ef83fa1e713ae218738"
+    }
+  },
   "schemaVersion": "3.0.2",
-  "updatedAt": "2019-02-16T11:01:44.774Z",
+  "updatedAt": "2019-02-17T16:38:05.831Z",
   "devdoc": {
     "methods": {}
   },

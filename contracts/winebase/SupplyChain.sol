@@ -1,6 +1,18 @@
 pragma solidity = 0.5.0;
+import "../wineaccesscontrol/ConsumerRole.sol";
+import "../wineaccesscontrol/GrowerRole.sol";
+import "../wineaccesscontrol/ProducerRole.sol";
+import "../wineaccesscontrol/RetailerRole.sol";
+import "../wineaccesscontrol/WholesalerRole.sol";
 
-contract SupplyChain {
+
+contract SupplyChain is
+    GrowerRole,
+    ProducerRole,
+    WholeSalerRole,
+    RetailerRole,
+    ConsumerRole
+{
 
     // Define 'owner'
     address owner;
@@ -70,10 +82,12 @@ contract SupplyChain {
         address wholesalerID;  // Metamask-Ethereum address of the Wholesaler
         address retailerID; // Metamask-Ethereum address of the Retailer
         address consumerID; // Metamask-Ethereum address of the Consumer
+
     }
 
 
     constructor() public {
 
     }
+
 }
