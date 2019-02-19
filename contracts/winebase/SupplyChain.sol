@@ -23,6 +23,13 @@ contract SupplyChain is
     // Define a variable called 'sku' for Stock Keeping Unit (SKU)
     uint  sku;
 
+    // Define a variable called 'grapeID' for indentifying grapes.
+    // The Wine Supply Chain Traceability GS1 Application Guideline
+    // does not recommend the use of GTIN (Global Trade Item Number)
+    // for the grapes as it is not yet a branded product
+    // but we still need a way to uniquely identify the grapes.
+    uint  grapeID;
+
     // Define a public mapping 'grapes' that maps the grapeID to a wine.
     mapping (uint => Grape) grapes;
 
@@ -131,7 +138,7 @@ contract SupplyChain is
         items[_upc].consumerID.transfer(amountToReturn);
     }
 
-    // Define a modifier that checks if an item.grapeState of a upc is Harvested
+    // Define a modifier that checks if an grapes.grapeState of a grapeID is Harvested
     modifier grapeHarvested(uint _grapeId) {
         require(grapes[_grapeId].grapeState == GrapeState.Harvested);
         _;
@@ -210,6 +217,7 @@ contract SupplyChain is
         owner = msg.sender;
         sku = 1;
         upc = 1;
+        grapeID = 1;
     }
 
     // Define a function 'kill' if required
@@ -217,6 +225,70 @@ contract SupplyChain is
         if (msg.sender == owner) {
             selfdestruct(owner);
         }
+    }
+
+    // Define a function 'harvestGrape' that allows a grower to mark grapes 'Harvested'
+    function harvestGrape(
+        uint _grapeID,
+        address payable _growerID,
+        string memory _growerName,
+        string memory _growerInformation,
+        string memory _growerLatitude,
+        string memory _growerLongitude,
+        uint  _grapePrice)
+    public
+    onlyGrower
+    {
+        // Add the new grapes
+        grapes[_grapeID] = Grape(
+            _grapeID,
+            _growerID,
+            _growerID,
+            _growerName,
+            _growerInformation,
+            _growerLatitude,
+            _growerLongitude,
+            _grapePrice,
+            GrapeState.Harvested
+        );
+        // Increment grapeID
+        grapeID = grapeID + 1;
+        // Emit the appropriate event
+        emit GrapeHarvested(_grapeID);
+    }
+
+    function fetchGrape(uint _grapeID) public view returns (
+        uint grapeGrapeID,
+        address payable ownerID,
+        address payable growerID,
+        string memory growerName,
+        string memory growerInformation,
+        string memory growerLatitude,
+        string memory growerLongitude,
+        uint grapePrice,
+        GrapeState grapeState
+    ) {
+        Grape memory grape = grapes[_grapeID];
+        grapeGrapeID = grape.grapeId;
+        ownerID = grape.ownerID;
+        growerID = grape.growerID;
+        growerName = grape.growerName;
+        growerInformation = grape.growerInformation;
+        growerLatitude = grape.growerLatitude;
+        growerLongitude = grape.growerLongitude;
+        grapePrice = grape.grapePrice;
+        grapeState = grape.grapeState;
+        /*return (
+            grapeID,
+            ownerID,
+            growerID,
+            growerName,
+            growerInformation,
+            growerLatitude,
+            growerLongitude,
+            grapePrice,
+            grapeState
+        );*/
     }
 
 }
