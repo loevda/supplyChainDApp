@@ -41,10 +41,10 @@ contract('SupplyChain', function(accounts) {
     console.log("Consumer: accounts[5] ", accounts[4]);
 
     // 1st Test
-    it("Testing smart contract function harvestGrape() that allows a grower to harvest grapes", async() => {
+    it("Testing smart contract function harvestGrapes() that allows a grower to harvest grapes", async() => {
         const supplyChain = await SupplyChain.deployed();
         // Mark an item as Harvested by calling function harvestItem()
-        await supplyChain.harvestGrape(
+        await supplyChain.harvestGrapes(
             grapeID,
             growerID,
             growerName,

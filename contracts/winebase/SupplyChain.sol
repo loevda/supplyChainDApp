@@ -228,7 +228,7 @@ contract SupplyChain is
     }
 
     // Define a function 'harvestGrape' that allows a grower to mark grapes 'Harvested'
-    function harvestGrape(
+    function harvestGrapes(
         uint _grapeID,
         address payable _growerID,
         string memory _growerName,
@@ -278,17 +278,6 @@ contract SupplyChain is
         growerLongitude = grape.growerLongitude;
         grapePrice = grape.grapePrice;
         grapeState = grape.grapeState;
-        /*return (
-            grapeID,
-            ownerID,
-            growerID,
-            growerName,
-            growerInformation,
-            growerLatitude,
-            growerLongitude,
-            grapePrice,
-            grapeState
-        );*/
     }
 
 }
