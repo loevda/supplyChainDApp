@@ -80,13 +80,17 @@ contract('SupplyChain', function(accounts) {
     // 3rd
     it("tests buyGrapes() that lets a producer buy grapes", async() => {
         const supplyChain = await SupplyChain.deployed();
+        var growerInitialBalance = await web3.eth.getBalance(growerID);
         await supplyChain.addProducer(producerID);
         await supplyChain.buyGrapes(grapeID, grapePrice, {from: producerID, value: grapePrice});
         // Verify the result set
         const grapeResult = await supplyChain.fetchGrape.call(grapeID);
         assert.equal(grapeResult[1], producerID, 'Error: Producer is not the owner of the grapes');
         assert.equal(grapeResult[8], 2, 'Error: grape state is not Sold');
-        // check balance of grower
+        // check balance of grower and producer
+        var growerFinalBalance = await web3.eth.getBalance(growerID);
+        var expectedBalance = parseInt(web3.utils.toWei(growerInitialBalance)) + parseInt(web3.utils.toWei(grapePrice));
+        assert.equal(parseInt(web3.utils.toWei(growerFinalBalance)), expectedBalance, 'Error: grower balance is invalid');
     });
 
 
