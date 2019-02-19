@@ -313,4 +313,26 @@ contract SupplyChain is
         grape.growerID.transfer(_grapePrice);
         emit GrapeSold(_grapeID);
     }
+
+    function shipGrapes(uint _grapeID)
+    public
+    onlyGrower
+    grapeSold(_grapeID)
+    {
+        Grape storage grape = grapes[_grapeID];
+        require(msg.sender == grape.growerID);
+        grape.grapeState = GrapeState.Shipped;
+        emit GrapeShipped(_grapeID);
+    }
+
+    function receiveGrapes(uint _grapeID)
+    public
+    onlyProducer
+    grapeShipped(_grapeID)
+    {
+        Grape storage grape = grapes[_grapeID];
+        require(msg.sender == grape.ownerID);
+        grape.grapeState = GrapeState.Received;
+        emit GrapeReceived(_grapeID);
+    }
 }
