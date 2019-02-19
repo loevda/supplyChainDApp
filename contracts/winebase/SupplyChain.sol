@@ -130,6 +130,14 @@ contract SupplyChain is
         _;
     }
 
+    modifier checkGrapeValue(uint _grapeID) {
+        _;
+        uint _price = grapes[_grapeID].grapePrice;
+        uint amountToReturn = msg.value - _price;
+        msg.sender.transfer(amountToReturn);
+    }
+
+
     // Define a modifier that checks the price and refunds the remaining balance
     modifier checkValue(uint _upc) {
         _;
@@ -290,4 +298,19 @@ contract SupplyChain is
         grapeState = grape.grapeState;
     }
 
+    function buyGrapes(uint _grapeID, uint _grapePrice)
+    public
+    payable
+    onlyProducer
+    grapeForSale(_grapeID)
+    paidEnough(_grapePrice)
+    checkGrapeValue(_grapeID)
+    {
+        Grape storage grape = grapes[_grapeID];
+        require(_grapePrice == grape.grapePrice);
+        grape.grapeState = GrapeState.Sold;
+        grape.ownerID = msg.sender;
+        grape.growerID.transfer(_grapePrice);
+        emit GrapeSold(_grapeID);
+    }
 }

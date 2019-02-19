@@ -45,9 +45,7 @@ contract('SupplyChain', function(accounts) {
     it("tests harvestGrapes() that lets a grower harvest grapes", async() => {
         const supplyChain = await SupplyChain.deployed();
         // add a new grower
-        await supplyChain.addGrower(
-            growerID
-        );
+        await supplyChain.addGrower(growerID);
         // Mark an item as Harvested by calling function harvestItem()
         await supplyChain.harvestGrapes(
             grapeID,
@@ -72,7 +70,7 @@ contract('SupplyChain', function(accounts) {
     });
 
     // 2nd Test
-    it("Tests addGrapesForSale() that allows a grower to put grapes for sale", async() => {
+    it("tests addGrapesForSale() that allows a grower to put grapes for sale", async() => {
         const supplyChain = await SupplyChain.deployed();
         await supplyChain.addGrapesForSale(grapeID, {from: growerID});
         const grapeResult = await supplyChain.fetchGrape.call(grapeID);
@@ -80,12 +78,17 @@ contract('SupplyChain', function(accounts) {
     });
 
     // 3rd
-    /*it("Testing smart contract function buyGrapes() that allows a producer to buy grapes", async() => {
-        const supplyChain = await SupplyChain.deployed()
+    it("tests buyGrapes() that lets a producer buy grapes", async() => {
+        const supplyChain = await SupplyChain.deployed();
+        await supplyChain.addProducer(producerID);
+        await supplyChain.buyGrapes(grapeID, grapePrice, {from: producerID, value: grapePrice});
         // Verify the result set
-        assert.equal(true, false, 'Incomplete test');
+        const grapeResult = await supplyChain.fetchGrape.call(grapeID);
+        assert.equal(grapeResult[1], producerID, 'Error: Producer is not the owner of the grapes');
+        assert.equal(grapeResult[8], 2, 'Error: grape state is not Sold');
     });
 
+    /*
     // 4th
     it("Testing smart contract function shipGrapes() that allows a grower to ship grapes", async() => {
         const supplyChain = await SupplyChain.deployed()
