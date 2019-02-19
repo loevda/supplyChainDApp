@@ -230,7 +230,6 @@ contract SupplyChain is
     // Define a function 'harvestGrape' that allows a grower to mark grapes 'Harvested'
     function harvestGrapes(
         uint _grapeID,
-        address payable _growerID,
         string memory _growerName,
         string memory _growerInformation,
         string memory _growerLatitude,
@@ -242,8 +241,8 @@ contract SupplyChain is
         // Add the new grapes
         grapes[_grapeID] = Grape(
             _grapeID,
-            _growerID,
-            _growerID,
+            msg.sender,
+            msg.sender,
             _growerName,
             _growerInformation,
             _growerLatitude,
@@ -255,6 +254,17 @@ contract SupplyChain is
         grapeID = grapeID + 1;
         // Emit the appropriate event
         emit GrapeHarvested(_grapeID);
+    }
+
+    // Let a grower that owns havested grapes to put them for sale
+    function addGrapesForSale(uint _grapeID)
+    public
+    onlyGrower
+    {
+        Grape storage grape = grapes[_grapeID];
+        require(msg.sender == grape.ownerID);
+        grape.grapeState = GrapeState.ForSale;
+        emit GrapeForSale(_grapeID);
     }
 
     function fetchGrape(uint _grapeID) public view returns (

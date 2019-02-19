@@ -7,11 +7,16 @@ contract('SupplyChain', function(accounts) {
     var grapeID = 1;
     const ownerID = accounts[0];
     const growerID = accounts[1];
+    const producerID = accounts[2];
+    const wholesalerID = accounts[3];
+    const retailerID = accounts[4];
+    const consumerID = accounts[5];
 
     const growerName = "Granazzi";
     const growerInformation = "Valpolicella";
     const growerLatitude = "45.491084";
     const growerLongitude = "10.770316";
+
     const grapePrice = web3.utils.toWei("1", "ether");
 
     const producerName = "Valpolinazzi";
@@ -26,10 +31,6 @@ contract('SupplyChain', function(accounts) {
     var grapeState = 0;
     var wineState = 0;
 
-    const wholesalerID = accounts[3];
-    const retailerID = accounts[4];
-    const consumerID = accounts[5];
-
     const emptyAddress = '0x00000000000000000000000000000000000000';
 
     console.log("ganache-cli accounts used here...");
@@ -37,21 +38,25 @@ contract('SupplyChain', function(accounts) {
     console.log("Grower: accounts[1] ", accounts[1]);
     console.log("Producer: accounts[2] ", accounts[2]);
     console.log("Wholesaler: accounts[3] ", accounts[3]);
-    console.log("Retailer: accounts[4] ", accounts[3]);
-    console.log("Consumer: accounts[5] ", accounts[4]);
+    console.log("Retailer: accounts[4] ", accounts[4]);
+    console.log("Consumer: accounts[5] ", accounts[5]);
 
     // 1st Test
-    it("Testing smart contract function harvestGrapes() that allows a grower to harvest grapes", async() => {
+    it("tests harvestGrapes() that lets a grower harvest grapes", async() => {
         const supplyChain = await SupplyChain.deployed();
+        // add a new grower
+        await supplyChain.addGrower(
+            growerID
+        );
         // Mark an item as Harvested by calling function harvestItem()
         await supplyChain.harvestGrapes(
             grapeID,
-            growerID,
             growerName,
             growerInformation,
             growerLatitude,
             growerLongitude,
-            grapePrice
+            grapePrice,
+            {from: growerID}
         );
         // Retrieve the just now saved grape
         const grapeResult = await supplyChain.fetchGrape.call(grapeID);
@@ -67,11 +72,12 @@ contract('SupplyChain', function(accounts) {
     });
 
     // 2nd Test
-    /*it("Testing smart contract function addGrapesForSale() that allows a grower to sell grapes", async() => {
-        const supplyChain = await SupplyChain.deployed()
-        // Verify the result set
-        assert.equal(true, false, 'Incomplete test');
-    });*/
+    it("Tests addGrapesForSale() that allows a grower to put grapes for sale", async() => {
+        const supplyChain = await SupplyChain.deployed();
+        await supplyChain.addGrapesForSale(grapeID, {from: growerID});
+        const grapeResult = await supplyChain.fetchGrape.call(grapeID);
+        assert.equal(grapeResult[8], 1, 'Error: grape state is not For Sale');
+    });
 
     // 3rd
     /*it("Testing smart contract function buyGrapes() that allows a producer to buy grapes", async() => {
