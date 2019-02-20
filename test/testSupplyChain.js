@@ -5,6 +5,7 @@ contract('SupplyChain', function(accounts) {
     var sku = 1;
     var upc = 1;
     var grapeID = 1;
+    // set a producer company prefix
     const ownerID = accounts[0];
     const growerID = accounts[1];
     const producerID = accounts[2];
@@ -113,14 +114,34 @@ contract('SupplyChain', function(accounts) {
         assert.equal(grapeResult[8], 4, 'Error: grape state is not Received');
     });
 
-    /*
+
     // 6th
-    it("Testing smart contract function produceWine() that allows a producer to produce wine", async() => {
-        const supplyChain = await SupplyChain.deployed()
+    it("tests produceWine() that allows a producer to produce wine", async() => {
+        const supplyChain = await SupplyChain.deployed();
+        var wineUPC = await supplyChain.produceWine(
+            producerName,
+            producerInformation,
+            producerLatitude,
+            producerLongitude,
+            productNotes,
+            productPrice,
+            {from: producerID}
+        );
         // Verify the result set
-        assert.equal(true, false, 'Incomplete test');
+        console.log(wineUPC);
+        const wineResult = await supplyChain.fetchWine.call(upc);
+        assert.equal(wineResult[0], sku, 'Error: invalid  sku');
+        assert.equal(wineResult[1], sku, 'Error: invalid upc');
+        assert.equal(wineResult[2], producerID, 'Error: producerID is not the owner of the wine');
+        assert.equal(wineResult[3], producerID, 'Error: invalid producerID');
+        assert.equal(wineResult[4], producerInformation, 'Error: invalid grower information');
+        assert.equal(wineResult[5], producerLatitude, 'Error: invalid grower latitute');
+        assert.equal(wineResult[6], producerLongitude, 'Error: invalid grower longitude');
+        assert.equal(wineResult[7], productPrice, 'Error: invalid grape price');
+        assert.equal(wineResult[8], wineState, 'Error: invalid grape state');
     });
 
+    /*
     // 7th
     it("Testing smart contract function packWine() that allows a producer to pack wine", async() => {
         const supplyChain = await SupplyChain.deployed()
