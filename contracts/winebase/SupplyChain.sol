@@ -4,6 +4,7 @@ import "../wineaccesscontrol/GrowerRole.sol";
 import "../wineaccesscontrol/ProducerRole.sol";
 import "../wineaccesscontrol/RetailerRole.sol";
 import "../wineaccesscontrol/WholesalerRole.sol";
+import "../winecore/Ownable.sol";
 
 
 contract SupplyChain is
@@ -111,12 +112,6 @@ contract SupplyChain is
     event WineForShipped(uint upc);
     event WineReceived(uint upc);
     event WinePurchased(uint upc);
-
-    // Define a modifer that checks to see if msg.sender == owner of the contract
-    modifier onlyOwner() {
-        require(msg.sender == owner);
-        _;
-    }
 
     // Define a modifer that verifies the Caller
     modifier verifyCaller (address _address) {
