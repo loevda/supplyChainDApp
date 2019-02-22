@@ -19,7 +19,8 @@
   "devDependencies": {
     "babel-polyfill": "^6.26.0",
     "babel-register": "^6.26.0",
-    "lite-server": "^2.4.0"
+    "lite-server": "^2.4.0",
+    "truffle-assertions": "^0.8.0"
   },
   "dependencies": {
     "dotenv": "^6.2.0",

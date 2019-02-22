@@ -263,13 +263,14 @@ contract SupplyChain is
     }
 
     // Let a grower that owns havested grapes to put them for sale
-    function addGrapesForSale(uint _grapeID)
+    function addGrapesForSale(uint _grapeID, uint _grapePrice)
     public
     onlyGrower
     verifyCaller(grapes[_grapeID].ownerID)
     {
         Grape storage grape = grapes[_grapeID];
         grape.grapeState = GrapeState.ForSale;
+        grape.grapePrice = _grapePrice;
         emit GrapeForSale(_grapeID);
     }
 

@@ -46,15 +46,15 @@ contract('SupplyChain', function(accounts) {
     it("tests harvestGrapes() that lets a grower harvest grapes", async() => {
         const supplyChain = await SupplyChain.deployed();
         // add a new grower
-        await supplyChain.addGrower(growerID);
+        var roleResult = await supplyChain.addGrower(growerID);
         // Mark an item as Harvested by calling function harvestItem()
-        await supplyChain.harvestGrapes(
+        var result = await supplyChain.harvestGrapes(
             grapeID,
             growerName,
             growerInformation,
             growerLatitude,
             growerLongitude,
-            grapePrice,
+            0,
             {from: growerID}
         );
         // Retrieve the just now saved grape
@@ -66,15 +66,15 @@ contract('SupplyChain', function(accounts) {
         assert.equal(grapeResult[4], growerInformation, 'Error: invalid grower information');
         assert.equal(grapeResult[5], growerLatitude, 'Error: invalid grower latitute');
         assert.equal(grapeResult[6], growerLongitude, 'Error: invalid grower longitude');
-        assert.equal(grapeResult[7], grapePrice, 'Error: invalid grape price');
         assert.equal(grapeResult[8], grapeState, 'Error: invalid grape state');
     });
 
     // 2nd Test
     it("tests addGrapesForSale() that allows a grower to put grapes for sale", async() => {
         const supplyChain = await SupplyChain.deployed();
-        await supplyChain.addGrapesForSale(grapeID, {from: growerID});
+        await supplyChain.addGrapesForSale(grapeID, grapePrice, {from: growerID});
         const grapeResult = await supplyChain.fetchGrape.call(grapeID);
+        assert.equal(grapeResult[7], grapePrice, 'Error: invalid grape price.');
         assert.equal(grapeResult[8], 1, 'Error: grape state is not For Sale');
     });
 
@@ -83,7 +83,7 @@ contract('SupplyChain', function(accounts) {
         const supplyChain = await SupplyChain.deployed();
         var growerInitialBalance = await web3.eth.getBalance(growerID);
         await supplyChain.addProducer(producerID);
-        await supplyChain.buyGrapes(grapeID, grapePrice, {from: producerID, value: grapePrice});
+        var tx = await supplyChain.buyGrapes(grapeID, grapePrice, {from: producerID, value: grapePrice});
         // Verify the result set
         const grapeResult = await supplyChain.fetchGrape.call(grapeID);
         assert.equal(grapeResult[1], producerID, 'Error: Producer is not the owner of the grapes');
@@ -93,6 +93,7 @@ contract('SupplyChain', function(accounts) {
         var expectedBalance = parseInt(growerInitialBalance) + parseInt(grapePrice);
         assert.equal(parseInt(growerFinalBalance),
             expectedBalance, 'Error: grower balance is invalid');
+        console.log(tx);
     });
 
 
@@ -177,6 +178,7 @@ contract('SupplyChain', function(accounts) {
         // Verify the result set
         const wineResultOne = await supplyChain.fetchWineOne.call(upc);
         assert.equal(wineResultOne[0], upc, 'Error: invalid upc');
+        assert.equal(wineResultOne[2], retailerID, 'Error: retailerID is not the onwer of the wine');
         assert.equal(wineResultOne[5], 3, 'Error: invalid wineState');
         assert.equal(wineResultOne[7], retailerID, 'Error: invalid retailerID');
     });
