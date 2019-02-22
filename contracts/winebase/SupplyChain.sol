@@ -381,6 +381,7 @@ contract SupplyChain is
     public
     onlyProducer
     wineProduced(_upc)
+    verifyCaller(items[_upc].ownerID)
     {
         Wine storage wine = items[_upc];
         require(msg.sender == wine.producerID);
@@ -393,6 +394,7 @@ contract SupplyChain is
     public
     onlyProducer
     winePacked(_upc)
+    verifyCaller(items[_upc].ownerID)
     {
         Wine storage wine = items[_upc];
         require(msg.sender == wine.producerID);
@@ -408,6 +410,7 @@ contract SupplyChain is
         Wine storage wine = items[_upc];
         wine.retailerID = msg.sender;
         wine.wineState = WineState.Sold;
+        wine.ownerID = msg.sender;
         emit WineSold(_upc);
     }
 
@@ -415,6 +418,7 @@ contract SupplyChain is
     public
     onlyProducer
     wineSold(_upc)
+    verifyCaller(items[_upc].producerID)
     {
         Wine storage wine = items[_upc];
         wine.wineState = WineState.Shipped;
@@ -425,6 +429,7 @@ contract SupplyChain is
     public
     onlyRetailer
     wineShipped(_upc)
+    verifyCaller(items[_upc].ownerID)
     {
         Wine storage wine = items[_upc];
         wine.wineState = WineState.Received;
@@ -438,6 +443,7 @@ contract SupplyChain is
     {
         Wine storage wine = items[_upc];
         wine.wineState = WineState.Purchased;
+        wine.ownerID = msg.sender;
         emit WinePurchased(_upc);
     }
 
