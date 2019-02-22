@@ -145,46 +145,73 @@ contract('SupplyChain', function(accounts) {
         assert.equal(wineResultOne[8], emptyAddress, 'Error: invalid consumerID - should be empty');
     });
 
-    /*
+
     // 7th
-    it("Testing smart contract function packWine() that allows a producer to pack wine", async() => {
-        const supplyChain = await SupplyChain.deployed()
+    it("tests packWine() that allows a producer to pack wine", async() => {
+        const supplyChain = await SupplyChain.deployed();
+        await supplyChain.packWine(upc, {from: producerID});
         // Verify the result set
-        assert.equal(true, false, 'Incomplete test');
+        const wineResultOne = await supplyChain.fetchWineOne.call(upc);
+        assert.equal(wineResultOne[0], upc, 'Error: invalid upc');
+        assert.equal(wineResultOne[5], 1, 'Error: invalid wineState');
     });
+
+
 
     // 8th
-    it("Testing smart contract function addWineForSale() that allows a producer to sell wine", async() => {
-        const supplyChain = await SupplyChain.deployed()
+    it("tests addWineForSale() that allows a producer to sell wine to retailer", async() => {
+        const supplyChain = await SupplyChain.deployed();
+        await supplyChain.addWineForSale(upc, {from: producerID});
         // Verify the result set
-        assert.equal(true, false, 'Incomplete test');
+        const wineResultOne = await supplyChain.fetchWineOne.call(upc);
+        assert.equal(wineResultOne[0], upc, 'Error: invalid upc');
+        assert.equal(wineResultOne[5], 2, 'Error: invalid wineState');
     });
+
 
     // 9th
-    it("Testing smart contract function buyWine() that allows a wholesaler to buy wine", async() => {
-        const supplyChain = await SupplyChain.deployed()
+    it("test buyWine() that allows a retailer to buy wine", async() => {
+        const supplyChain = await SupplyChain.deployed();
+        await supplyChain.addRetailer(retailerID);
+        await supplyChain.buyWine(upc, {from: retailerID});
         // Verify the result set
-        assert.equal(true, false, 'Incomplete test');
+        const wineResultOne = await supplyChain.fetchWineOne.call(upc);
+        assert.equal(wineResultOne[0], upc, 'Error: invalid upc');
+        assert.equal(wineResultOne[5], 3, 'Error: invalid wineState');
+        assert.equal(wineResultOne[7], retailerID, 'Error: invalid retailerID');
     });
+
+
 
     // 10th
-    it("Testing smart contract function shipWine() that allows a producer to ship wine", async() => {
+    it("tests shipWine() that allows a producer to ship wine", async() => {
         const supplyChain = await SupplyChain.deployed()
+        await supplyChain.shipWine(upc, {from: producerID});
         // Verify the result set
-        assert.equal(true, false, 'Incomplete test');
+        const wineResultOne = await supplyChain.fetchWineOne.call(upc);
+        assert.equal(wineResultOne[0], upc, 'Error: invalid upc');
+        assert.equal(wineResultOne[5], 4, 'Error: invalid wineState');
     });
 
+
     // 11th
-    it("Testing smart contract function receiveWine() that allows a retailer to receive wine", async() => {
-        const supplyChain = await SupplyChain.deployed()
+    it("tests receiveWine() that allows a retailer to receive wine", async() => {
+        const supplyChain = await SupplyChain.deployed();
+        await supplyChain.receiveWine(upc, {from: retailerID});
         // Verify the result set
-        assert.equal(true, false, 'Incomplete test');
+        const wineResultOne = await supplyChain.fetchWineOne.call(upc);
+        assert.equal(wineResultOne[0], upc, 'Error: invalid upc');
+        assert.equal(wineResultOne[5], 5, 'Error: invalid wineState');
     });
 
     // 12th
-    it("Testing smart contract function purchaseWine() that allows a consumer to purchase wine", async() => {
-        const supplyChain = await SupplyChain.deployed()
+    it("tests purchaseWine() that allows a consumer to purchase wine", async() => {
+        const supplyChain = await SupplyChain.deployed();
+        await supplyChain.addConsumer(consumerID);
+        await supplyChain.purchaseWine(upc, {from: consumerID});
         // Verify the result set
-        assert.equal(true, false, 'Incomplete test');
-    });*/
+        const wineResultOne = await supplyChain.fetchWineOne.call(upc);
+        assert.equal(wineResultOne[0], upc, 'Error: invalid upc');
+        assert.equal(wineResultOne[5], 6, 'Error: invalid wineState');
+    });
 });

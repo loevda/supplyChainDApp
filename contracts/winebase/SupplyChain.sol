@@ -108,8 +108,8 @@ contract SupplyChain is
     event WineProduced(uint upc);
     event WinePacked(uint upc);
     event WineForSale(uint upc);
-    event WineForSold(uint upc);
-    event WineForShipped(uint upc);
+    event WineSold(uint upc);
+    event WineShipped(uint upc);
     event WineReceived(uint upc);
     event WinePurchased(uint upc);
 
@@ -420,5 +420,70 @@ contract SupplyChain is
     function fetchWineGrapes(uint _upc) public view returns (uint[] memory wineGrapesIDs) {
         Wine memory wine = items[_upc];
         wineGrapesIDs = wine.grapesIDs;
+    }
+
+    function packWine(uint _upc)
+    public
+    onlyProducer
+    wineProduced(_upc)
+    {
+        Wine storage wine = items[_upc];
+        require(msg.sender == wine.producerID);
+        wine.wineState = WineState.Packed;
+        emit WinePacked(wine.upc);
+    }
+
+
+    function addWineForSale(uint _upc)
+    public
+    onlyProducer
+    winePacked(_upc)
+    {
+        Wine storage wine = items[_upc];
+        require(msg.sender == wine.producerID);
+        wine.wineState = WineState.ForSale;
+        emit WineForSale(wine.upc);
+    }
+
+
+    function buyWine(uint _upc)
+    public
+    onlyRetailer
+    wineForSale(_upc)
+    {
+        Wine storage wine = items[_upc];
+        wine.retailerID = msg.sender;
+        wine.wineState = WineState.Sold;
+        emit WineSold(_upc);
+    }
+
+    function shipWine(uint _upc)
+    public
+    onlyProducer
+    wineSold(_upc)
+    {
+        Wine storage wine = items[_upc];
+        wine.wineState = WineState.Shipped;
+        emit WineShipped(_upc);
+    }
+
+    function receiveWine(uint _upc)
+    public
+    onlyRetailer
+    wineShipped(_upc)
+    {
+        Wine storage wine = items[_upc];
+        wine.wineState = WineState.Received;
+        emit WineReceived(_upc);
+    }
+
+    function purchaseWine(uint _upc)
+    public
+    onlyConsumer
+    wineReceived(_upc)
+    {
+        Wine storage wine = items[_upc];
+        wine.wineState = WineState.Purchased;
+        emit WinePurchased(_upc);
     }
 }
