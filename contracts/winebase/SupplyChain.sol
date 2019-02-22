@@ -132,7 +132,6 @@ contract SupplyChain is
         msg.sender.transfer(amountToReturn);
     }
 
-
     // Define a modifier that checks the price and refunds the remaining balance
     modifier checkValue(uint _upc) {
         _;
@@ -230,6 +229,10 @@ contract SupplyChain is
         }
     }
 
+    /////////////////////////
+    /// GRAPES OPERATIONS ///
+    /////////////////////////
+
     // Define a function 'harvestGrape' that allows a grower to mark grapes 'Harvested'
     function harvestGrapes(
         uint _grapeID,
@@ -263,11 +266,49 @@ contract SupplyChain is
     function addGrapesForSale(uint _grapeID)
     public
     onlyGrower
+    verifyCaller(grapes[_grapeID].ownerID)
     {
         Grape storage grape = grapes[_grapeID];
-        require(msg.sender == grape.ownerID);
         grape.grapeState = GrapeState.ForSale;
         emit GrapeForSale(_grapeID);
+    }
+
+    function buyGrapes(uint _grapeID, uint _grapePrice)
+    public
+    payable
+    onlyProducer
+    grapeForSale(_grapeID)
+    paidEnough(_grapePrice)
+    checkGrapeValue(_grapeID)
+    {
+        Grape storage grape = grapes[_grapeID];
+        require(_grapePrice == grape.grapePrice);
+        grape.grapeState = GrapeState.Sold;
+        grape.ownerID = msg.sender;
+        grape.growerID.transfer(_grapePrice);
+        emit GrapeSold(_grapeID);
+    }
+
+    function shipGrapes(uint _grapeID)
+    public
+    onlyGrower
+    grapeSold(_grapeID)
+    verifyCaller(grapes[_grapeID].growerID)
+    {
+        Grape storage grape = grapes[_grapeID];
+        grape.grapeState = GrapeState.Shipped;
+        emit GrapeShipped(_grapeID);
+    }
+
+    function receiveGrapes(uint _grapeID)
+    public
+    onlyProducer
+    grapeShipped(_grapeID)
+    verifyCaller(grapes[_grapeID].ownerID)
+    {
+        Grape storage grape = grapes[_grapeID];
+        grape.grapeState = GrapeState.Received;
+        emit GrapeReceived(_grapeID);
     }
 
     function fetchGrape(uint _grapeID) public view returns (
@@ -293,43 +334,10 @@ contract SupplyChain is
         grapeState = grape.grapeState;
     }
 
-    function buyGrapes(uint _grapeID, uint _grapePrice)
-    public
-    payable
-    onlyProducer
-    grapeForSale(_grapeID)
-    paidEnough(_grapePrice)
-    checkGrapeValue(_grapeID)
-    {
-        Grape storage grape = grapes[_grapeID];
-        require(_grapePrice == grape.grapePrice);
-        grape.grapeState = GrapeState.Sold;
-        grape.ownerID = msg.sender;
-        grape.growerID.transfer(_grapePrice);
-        emit GrapeSold(_grapeID);
-    }
 
-    function shipGrapes(uint _grapeID)
-    public
-    onlyGrower
-    grapeSold(_grapeID)
-    {
-        Grape storage grape = grapes[_grapeID];
-        require(msg.sender == grape.growerID);
-        grape.grapeState = GrapeState.Shipped;
-        emit GrapeShipped(_grapeID);
-    }
-
-    function receiveGrapes(uint _grapeID)
-    public
-    onlyProducer
-    grapeShipped(_grapeID)
-    {
-        Grape storage grape = grapes[_grapeID];
-        require(msg.sender == grape.ownerID);
-        grape.grapeState = GrapeState.Received;
-        emit GrapeReceived(_grapeID);
-    }
+    ///////////////////////
+    /// WINE OPERATIONS ///
+    //////////////////////
 
     function produceWine(
         string memory _producerName,
@@ -367,6 +375,70 @@ contract SupplyChain is
         upc = upc + 1;
         sku = sku + 1;
         emit WineProduced(_upc);
+    }
+
+    function packWine(uint _upc)
+    public
+    onlyProducer
+    wineProduced(_upc)
+    {
+        Wine storage wine = items[_upc];
+        require(msg.sender == wine.producerID);
+        wine.wineState = WineState.Packed;
+        emit WinePacked(wine.upc);
+    }
+
+
+    function addWineForSale(uint _upc)
+    public
+    onlyProducer
+    winePacked(_upc)
+    {
+        Wine storage wine = items[_upc];
+        require(msg.sender == wine.producerID);
+        wine.wineState = WineState.ForSale;
+        emit WineForSale(wine.upc);
+    }
+
+    function buyWine(uint _upc)
+    public
+    onlyRetailer
+    wineForSale(_upc)
+    {
+        Wine storage wine = items[_upc];
+        wine.retailerID = msg.sender;
+        wine.wineState = WineState.Sold;
+        emit WineSold(_upc);
+    }
+
+    function shipWine(uint _upc)
+    public
+    onlyProducer
+    wineSold(_upc)
+    {
+        Wine storage wine = items[_upc];
+        wine.wineState = WineState.Shipped;
+        emit WineShipped(_upc);
+    }
+
+    function receiveWine(uint _upc)
+    public
+    onlyRetailer
+    wineShipped(_upc)
+    {
+        Wine storage wine = items[_upc];
+        wine.wineState = WineState.Received;
+        emit WineReceived(_upc);
+    }
+
+    function purchaseWine(uint _upc)
+    public
+    onlyConsumer
+    wineReceived(_upc)
+    {
+        Wine storage wine = items[_upc];
+        wine.wineState = WineState.Purchased;
+        emit WinePurchased(_upc);
     }
 
     // fetchWine - 3 functions - stack too deep compilation error
@@ -420,70 +492,5 @@ contract SupplyChain is
     function fetchWineGrapes(uint _upc) public view returns (uint[] memory wineGrapesIDs) {
         Wine memory wine = items[_upc];
         wineGrapesIDs = wine.grapesIDs;
-    }
-
-    function packWine(uint _upc)
-    public
-    onlyProducer
-    wineProduced(_upc)
-    {
-        Wine storage wine = items[_upc];
-        require(msg.sender == wine.producerID);
-        wine.wineState = WineState.Packed;
-        emit WinePacked(wine.upc);
-    }
-
-
-    function addWineForSale(uint _upc)
-    public
-    onlyProducer
-    winePacked(_upc)
-    {
-        Wine storage wine = items[_upc];
-        require(msg.sender == wine.producerID);
-        wine.wineState = WineState.ForSale;
-        emit WineForSale(wine.upc);
-    }
-
-
-    function buyWine(uint _upc)
-    public
-    onlyRetailer
-    wineForSale(_upc)
-    {
-        Wine storage wine = items[_upc];
-        wine.retailerID = msg.sender;
-        wine.wineState = WineState.Sold;
-        emit WineSold(_upc);
-    }
-
-    function shipWine(uint _upc)
-    public
-    onlyProducer
-    wineSold(_upc)
-    {
-        Wine storage wine = items[_upc];
-        wine.wineState = WineState.Shipped;
-        emit WineShipped(_upc);
-    }
-
-    function receiveWine(uint _upc)
-    public
-    onlyRetailer
-    wineShipped(_upc)
-    {
-        Wine storage wine = items[_upc];
-        wine.wineState = WineState.Received;
-        emit WineReceived(_upc);
-    }
-
-    function purchaseWine(uint _upc)
-    public
-    onlyConsumer
-    wineReceived(_upc)
-    {
-        Wine storage wine = items[_upc];
-        wine.wineState = WineState.Purchased;
-        emit WinePurchased(_upc);
     }
 }
