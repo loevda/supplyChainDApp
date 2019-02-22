@@ -337,7 +337,6 @@ contract SupplyChain is
         string memory _producerLatitude,
         string memory _producerLongitude,
         string memory _productNotes,
-        uint _productPrice,
         uint[] memory _grapesIDs,
         WineState _wineState
     )
@@ -345,7 +344,7 @@ contract SupplyChain is
     onlyProducer
     returns (uint _upc)
     {
-        uint _productID = sku + upc; // TODO: rework this part. Maybe add
+        uint _productID = sku + upc; // TODO: rework this part.
         _upc = upc;
         items[_upc] = Wine(
             sku,
@@ -358,7 +357,7 @@ contract SupplyChain is
             _producerLongitude,
             _productID,
             _productNotes,
-            _productPrice,
+            0,
             _grapesIDs,
             _wineState,
             address(0),
@@ -418,7 +417,7 @@ contract SupplyChain is
         productPrice = wine.productPrice;
     }
 
-    function fetchWineThree(uint _upc) public view returns (uint[] memory wineGrapesIDs) {
+    function fetchWineGrapes(uint _upc) public view returns (uint[] memory wineGrapesIDs) {
         Wine memory wine = items[_upc];
         wineGrapesIDs = wine.grapesIDs;
     }

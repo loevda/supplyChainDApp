@@ -32,7 +32,7 @@ contract('SupplyChain', function(accounts) {
     var grapeState = 0;
     var wineState = 0;
 
-    const emptyAddress = '0x00000000000000000000000000000000000000';
+    const emptyAddress = '0x0000000000000000000000000000000000000000';
 
     console.log("ganache-cli accounts used here...");
     console.log("Contract Owner: accounts[0] ", accounts[0]);
@@ -88,10 +88,11 @@ contract('SupplyChain', function(accounts) {
         const grapeResult = await supplyChain.fetchGrape.call(grapeID);
         assert.equal(grapeResult[1], producerID, 'Error: Producer is not the owner of the grapes');
         assert.equal(grapeResult[8], 2, 'Error: grape state is not Sold');
-        // check balance of grower and producer
+        // check balance of grower
         var growerFinalBalance = await web3.eth.getBalance(growerID);
-        var expectedBalance = parseInt(web3.utils.toWei(growerInitialBalance)) + parseInt(web3.utils.toWei(grapePrice));
-        assert.equal(parseInt(web3.utils.toWei(growerFinalBalance)), expectedBalance, 'Error: grower balance is invalid');
+        var expectedBalance = parseInt(growerInitialBalance) + parseInt(grapePrice);
+        assert.equal(parseInt(growerFinalBalance),
+            expectedBalance, 'Error: grower balance is invalid');
     });
 
 
@@ -124,21 +125,24 @@ contract('SupplyChain', function(accounts) {
             producerLatitude,
             producerLongitude,
             productNotes,
-            productPrice,
+            [1],
+            0,
             {from: producerID}
         );
         // Verify the result set
-        console.log(wineUPC);
-        const wineResult = await supplyChain.fetchWine.call(upc);
-        assert.equal(wineResult[0], sku, 'Error: invalid  sku');
-        assert.equal(wineResult[1], sku, 'Error: invalid upc');
-        assert.equal(wineResult[2], producerID, 'Error: producerID is not the owner of the wine');
-        assert.equal(wineResult[3], producerID, 'Error: invalid producerID');
-        assert.equal(wineResult[4], producerInformation, 'Error: invalid grower information');
-        assert.equal(wineResult[5], producerLatitude, 'Error: invalid grower latitute');
-        assert.equal(wineResult[6], producerLongitude, 'Error: invalid grower longitude');
-        assert.equal(wineResult[7], productPrice, 'Error: invalid grape price');
-        assert.equal(wineResult[8], wineState, 'Error: invalid grape state');
+
+        const wineResultOne = await supplyChain.fetchWineOne.call(upc);
+        const wineResultTwo = await supplyChain.fetchWineTwo.call(upc);
+        const wineResultGrapes = await supplyChain.fetchWineGrapes.call(upc);
+        assert.equal(wineResultOne[0], sku, 'Error: invalid  sku');
+        assert.equal(wineResultOne[1], sku, 'Error: invalid upc');
+        assert.equal(wineResultOne[2], producerID, 'Error: producerID is not the owner of the wine');
+        assert.equal(wineResultOne[3], producerID, 'Error: invalid producer ID');
+        assert.equal(wineResultOne[4], 0, 'Error: invalid product price');
+        assert.equal(wineResultOne[5], 0, 'Error: invalid wineState');
+        assert.equal(wineResultOne[6], emptyAddress, 'Error: invalid wholesalerID - should be empty');
+        assert.equal(wineResultOne[7], emptyAddress, 'Error: invalid retailerID - should be empty');
+        assert.equal(wineResultOne[8], emptyAddress, 'Error: invalid consumerID - should be empty');
     });
 
     /*
