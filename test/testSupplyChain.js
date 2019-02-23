@@ -168,7 +168,7 @@ contract('SupplyChain', function(accounts) {
 
         const wineResultOne = await supplyChain.fetchWineOne.call(upc);
         const wineResultTwo = await supplyChain.fetchWineTwo.call(upc);
-        //const wineResultGrapes = await supplyChain.fetchWineGrapes.call(upc);
+        const wineResultGrapes = await supplyChain.fetchWineGrapes.call(upc);
         assert.equal(wineResultOne[0], sku, 'Error: invalid  sku');
         assert.equal(wineResultOne[1], sku, 'Error: invalid upc');
         assert.equal(wineResultOne[2], producerID, 'Error: producerID is not the owner of the wine');
@@ -178,10 +178,10 @@ contract('SupplyChain', function(accounts) {
         assert.equal(wineResultOne[6], emptyAddress, 'Error: invalid wholesalerID - should be empty');
         assert.equal(wineResultOne[7], emptyAddress, 'Error: invalid retailerID - should be empty');
         assert.equal(wineResultOne[8], emptyAddress, 'Error: invalid consumerID - should be empty');
+        assert.equal(wineResultGrapes[0], grapeID, 'Error: invalid grapeIDs');
         truffleAssert.eventEmitted(result, 'WineProduced', (ev) => {
             return parseInt(ev.upc) === upc;
         });
-        //console.log(wineResultGrapes);
     });
 
 
