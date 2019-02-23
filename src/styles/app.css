@@ -29,6 +29,9 @@ body {
     font-weight: 900!important;
 }
 
+.ws {
+    color: whitesmoke;
+}
 
 label {
     display: inline-block;
@@ -43,20 +46,24 @@ label {
 }
 
 input {
-    width: 200px;
     padding: 5px;
     font-size: 16px;
-    border-radius: 0px 6px 6px 0px;
+    border-radius: 0px 6px 3px 0px;
     border: 1px solid whitesmoke;
+    margin-right: 10px;
+}
+
+input[type=number] {
+    width: 90px;
 }
 
 button {
-    padding: 8px;
-    border-radius: 6px 6px 6px 6px;
-    font-size: 22px;
+    padding: 4px;
+    border-radius: 0px 0px 0px 0px;
+    font-size: 18px;
     font-family: 'Bangers', cursive;
     text-align: center;
-    width: 280px;
+    min-width: 140px;
 }
 
 h1, h2 {
@@ -111,6 +118,14 @@ h3 {
 
 .mt40 {
     margin-top: 40px;
+}
+
+.ml10 {
+    margin-left: 10px;
+}
+
+.pl10 {
+    padding-left: 10px;
 }
 
 .smoke {

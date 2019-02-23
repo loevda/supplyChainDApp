@@ -11,11 +11,12 @@ contract SupplyChain is
     ProducerRole,
     WholeSalerRole,
     RetailerRole,
-    ConsumerRole
+    ConsumerRole,
+    Ownable
 {
 
     // Define 'owner'
-    address payable owner;
+    address payable payableOwner;
 
     // Define a variable called 'upc' for Universal Product Code (UPC)
     uint  upc;
@@ -261,7 +262,7 @@ contract SupplyChain is
     // the identifier are simplified here
     // as we should also use the client company prefix for generating UPC
     constructor() public payable {
-        owner = msg.sender;
+        payableOwner = msg.sender;
         sku = 1;
         upc = 1; // for simpicity we'll use this
         // GS1 guidelines said that UPC
@@ -271,10 +272,14 @@ contract SupplyChain is
     }
 
     // Define a function 'kill' if required
-    function kill() public {
-        if (msg.sender == owner) {
-            selfdestruct(owner);
-        }
+    // Either set a new address payable in constructor
+    // or cast to payable address the owner()
+    function kill() public onlyOwner {
+        //address payable owng = address(uint160(owner()));
+        selfdestruct(payableOwner);
+        /*if (msg.sender == owner()) {
+            selfdestruct(payableOwner);
+        }*/
     }
 
     /////////////////////////
