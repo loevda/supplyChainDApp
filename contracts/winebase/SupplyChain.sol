@@ -76,6 +76,8 @@ contract SupplyChain is
         string  growerLongitude;  // Grower plot Longitude
         uint    grapePrice; // Product Price
         GrapeState   grapeState;  // Grape State as represented in the enum above
+        string  grapeVariety; // grape variety
+        bool exist;
     }
 
     // Define a struct 'Item' with the following fields:
@@ -96,6 +98,7 @@ contract SupplyChain is
         address payable wholesalerID;  // Metamask-Ethereum address of the Wholesaler
         address payable retailerID; // Metamask-Ethereum address of the Retailer
         address payable consumerID; // Metamask-Ethereum address of the Consumer
+        bool exist; // use to see entry already exists in mapping
     }
 
     // Define events for grapes
@@ -121,7 +124,8 @@ contract SupplyChain is
 
     // Define a modifier that checks if the paid amount is sufficient to cover the price
     modifier paidEnough(uint _price) {
-        require(msg.value >= _price);
+        require(msg.value >= _price,
+            "Unsufficient fund");
         _;
     }
 
@@ -137,37 +141,55 @@ contract SupplyChain is
         _;
         uint _price = items[_upc].productPrice;
         uint amountToReturn = msg.value - _price;
-        items[_upc].ownerID.transfer(amountToReturn); // TODO: check this value
+        items[_upc].ownerID.transfer(amountToReturn);
+    }
+
+    // Define a modifier that check if grape already exists.
+    modifier grapeAlreadyExists(uint _grapeID) {
+        Grape memory _grape = grapes[_grapeID];
+        require(!_grape.exist, "Grape ID already exists.");
+        _;
     }
 
     // Define a modifier that checks if an grapes.grapeState of a grapeID is Harvested
     modifier grapeHarvested(uint _grapeId) {
-        require(grapes[_grapeId].grapeState == GrapeState.Harvested);
+        require(grapes[_grapeId].grapeState == GrapeState.Harvested,
+            "Grape is not yet harvested");
         _;
     }
 
     // Define a modifier that checks if an item.grapeState of a upc is ForSale
     modifier grapeForSale(uint _grapeId) {
-        require(grapes[_grapeId].grapeState == GrapeState.ForSale);
+        require(grapes[_grapeId].grapeState == GrapeState.ForSale,
+            "Grape is not for sale");
         _;
     }
 
     // Define a modifier that checks if an item.grapeState of a upc is Sold
     modifier grapeSold(uint _grapeId) {
-        require(grapes[_grapeId].grapeState == GrapeState.Sold);
+        require(grapes[_grapeId].grapeState == GrapeState.Sold,
+            "Grape is not sold");
         _;
     }
 
     // Define a modifier that checks if an item.grapeState of a upc is Shipped
     modifier grapeShipped(uint _grapeId) {
-        require(grapes[_grapeId].grapeState == GrapeState.Shipped);
+        require(grapes[_grapeId].grapeState == GrapeState.Shipped,
+            "Grape is not shipped");
         _;
     }
 
-    // Define a modifier that checks if an item.grapeState of a upc is Received
+    // Define a modifier that checks if an grape.grapeState of a grapeID is Received
     modifier grapeReceived(uint _grapeId) {
         require(grapes[_grapeId].grapeState == GrapeState.Received,
         "The grapes have not been received yet");
+        _;
+    }
+
+    // Define a modifier that check if grape already exists in items.
+    modifier wineAlreadyExists(uint _upc) {
+        Wine memory _wine = items[_upc];
+        require(!_wine.exist, "Wine upc already exists.");
         _;
     }
 
@@ -185,53 +207,66 @@ contract SupplyChain is
 
     // Define a modifier that checks if an item.wineState of a upc is Produced
     modifier wineProduced(uint _upc) {
-        require(items[_upc].wineState == WineState.Produced);
+        require(items[_upc].wineState == WineState.Produced,
+            "Wine is not yet produced");
         _;
     }
 
     // Define a modifier that checks if an item.wineState of a upc is Packed
     modifier winePacked(uint _upc) {
-        require(items[_upc].wineState == WineState.Packed);
+        require(items[_upc].wineState == WineState.Packed,
+            "Wine is not yet packed");
         _;
     }
 
     // Define a modifier that checks if an item.wineState of a upc is ForSale
     modifier wineForSale(uint _upc) {
-        require(items[_upc].wineState == WineState.ForSale);
+        require(items[_upc].wineState == WineState.ForSale,
+            "Wine is not for sale");
         _;
     }
 
     // Define a modifier that checks if an item.wineState of a upc is Sold
     modifier wineSold(uint _upc) {
-        require(items[_upc].wineState == WineState.Sold);
+        require(items[_upc].wineState == WineState.Sold,
+            "Wine is not sold");
         _;
     }
 
     // Define a modifier that checks if an item.wineState of a upc is Shipped
     modifier wineShipped(uint _upc) {
-        require(items[_upc].wineState == WineState.Shipped);
+        require(items[_upc].wineState == WineState.Shipped,
+            "Wine is not shipped");
         _;
     }
 
     // Define a modifier that checks if an item.wineState of a upc is Shipped
     modifier wineReceived(uint _upc) {
-        require(items[_upc].wineState == WineState.Received);
+        require(items[_upc].wineState == WineState.Received,
+            "Wine is not received");
         _;
     }
 
     // Define a modifier that checks if an item.wineState of a upc is Purchased
     modifier winePurchased(uint _upc) {
-        require(items[_upc].wineState == WineState.Purchased);
+        require(items[_upc].wineState == WineState.Purchased,
+            "Wine is not purchased");
         _;
     }
 
     // In the constructor set 'owner' to the address that instantiated the contract
     // and set 'sku' to 1
     // and set 'upc' to 1
+    // grapeID to 1
+    // the identifier are simplified here
+    // as we should also use the client company prefix for generating UPC
     constructor() public payable {
         owner = msg.sender;
         sku = 1;
-        upc = 1;
+        upc = 1; // for simpicity we'll use this
+        // GS1 guidelines said that UPC
+        // applies to branded products only
+        // so we use a simple ID
         grapeID = 1;
     }
 
@@ -248,26 +283,29 @@ contract SupplyChain is
 
     // Define a function 'harvestGrape' that allows a grower to mark grapes 'Harvested'
     function harvestGrapes(
-        uint _grapeID,
         string memory _growerName,
         string memory _growerInformation,
         string memory _growerLatitude,
         string memory _growerLongitude,
-        uint  _grapePrice)
+        string memory _grapeVariery)
     public
     onlyGrower
+    grapeAlreadyExists(grapeID)
     {
         // Add the new grapes
+        uint _grapeID = grapeID;
         grapes[_grapeID] = Grape(
-            _grapeID,
+            grapeID,
             msg.sender,
             msg.sender,
             _growerName,
             _growerInformation,
             _growerLatitude,
             _growerLongitude,
-            _grapePrice,
-            GrapeState.Harvested
+            0,
+            GrapeState.Harvested,
+            _grapeVariery,
+            true
         );
         // Increment grapeID
         grapeID = grapeID + 1;
@@ -334,7 +372,8 @@ contract SupplyChain is
         string memory growerLatitude,
         string memory growerLongitude,
         uint grapePrice,
-        GrapeState grapeState
+        GrapeState grapeState,
+        string memory grapeVariety
     ) {
         Grape memory grape = grapes[_grapeID];
         grapeGrapeID = grape.grapeId;
@@ -346,6 +385,7 @@ contract SupplyChain is
         growerLongitude = grape.growerLongitude;
         grapePrice = grape.grapePrice;
         grapeState = grape.grapeState;
+        grapeVariety = grape.grapeVariety;
     }
 
 
@@ -365,10 +405,10 @@ contract SupplyChain is
     public
     onlyProducer
     wineProducerHasAndOwnsGrapes(_grapesIDs)
-    returns (uint _upc)
+    wineAlreadyExists(upc)
     {
         uint _productID = sku + upc;
-        _upc = upc;
+        uint _upc = upc;
         items[_upc] = Wine(
             sku,
             upc,
@@ -385,7 +425,8 @@ contract SupplyChain is
             _wineState,
             address(0),
             address(0),
-            address(0)
+            address(0),
+            true
         );
         upc = upc + 1;
         sku = sku + 1;
@@ -510,8 +551,8 @@ contract SupplyChain is
         productPrice = wine.productPrice;
     }
 
-    function fetchWineGrapes(uint _upc) public view returns (uint[] memory wineGrapesIDs) {
+    function fetchWineGrapes(uint _upc) public view returns (uint[] memory grapesIDs) {
         Wine memory wine = items[_upc];
-        wineGrapesIDs = wine.grapesIDs;
+        grapesIDs = wine.grapesIDs;
     }
 }

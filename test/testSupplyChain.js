@@ -19,7 +19,7 @@ contract('SupplyChain', function(accounts) {
     const growerInformation = "Valpolicella";
     const growerLatitude = "45.491084";
     const growerLongitude = "10.770316";
-
+    const grapeVariety = "CORVINA VERONESE"
     const grapePrice = web3.utils.toWei("25", "ether");
 
     const producerName = "Valpolinazzi";
@@ -51,16 +51,27 @@ contract('SupplyChain', function(accounts) {
         await supplyChain.addGrower(growerID);
         // Mark an item as Harvested by calling function harvestItem()
         var result = await supplyChain.harvestGrapes(
-            grapeID,
             growerName,
             growerInformation,
             growerLatitude,
             growerLongitude,
-            0,
+            grapeVariety,
             {from: growerID}
         );
+
+        // used to test grapeID generation
+        var result2 = await supplyChain.harvestGrapes(
+            growerName,
+            growerInformation,
+            growerLatitude,
+            growerLongitude,
+            grapeVariety,
+            {from: growerID}
+        );
+
         // Retrieve the just now saved grape
         const grapeResult = await supplyChain.fetchGrape.call(grapeID);
+        const grapeResult2 = await supplyChain.fetchGrape.call(grapeID+1);
         assert.equal(grapeResult[0], grapeID, 'Error: invalid grape ID');
         assert.equal(grapeResult[1], growerID, 'Error: grower is not the owner of the grapes');
         assert.equal(grapeResult[2], growerID, 'Error: invalid growerID');
@@ -69,6 +80,8 @@ contract('SupplyChain', function(accounts) {
         assert.equal(grapeResult[5], growerLatitude, 'Error: invalid grower latitute');
         assert.equal(grapeResult[6], growerLongitude, 'Error: invalid grower longitude');
         assert.equal(grapeResult[8], grapeState, 'Error: invalid grape state');
+        assert.equal(grapeResult[9], grapeVariety, 'Error: invalid grape variety');
+        assert.equal(grapeResult2[0], grapeID+1, 'Error: invalid grape ID');
         truffleAssert.eventEmitted(result, 'GrapeHarvested', (ev) => {
             return parseInt(ev.grapeId) === grapeID;
         });
@@ -155,7 +168,7 @@ contract('SupplyChain', function(accounts) {
 
         const wineResultOne = await supplyChain.fetchWineOne.call(upc);
         const wineResultTwo = await supplyChain.fetchWineTwo.call(upc);
-        const wineResultGrapes = await supplyChain.fetchWineGrapes.call(upc);
+        //const wineResultGrapes = await supplyChain.fetchWineGrapes.call(upc);
         assert.equal(wineResultOne[0], sku, 'Error: invalid  sku');
         assert.equal(wineResultOne[1], sku, 'Error: invalid upc');
         assert.equal(wineResultOne[2], producerID, 'Error: producerID is not the owner of the wine');
@@ -168,6 +181,7 @@ contract('SupplyChain', function(accounts) {
         truffleAssert.eventEmitted(result, 'WineProduced', (ev) => {
             return parseInt(ev.upc) === upc;
         });
+        //console.log(wineResultGrapes);
     });
 
 
