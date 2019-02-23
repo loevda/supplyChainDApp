@@ -132,7 +132,7 @@ contract SupplyChain is
         _;
         uint _price = grapes[_grapeID].grapePrice;
         uint amountToReturn = msg.value - _price;
-        msg.sender.transfer(amountToReturn);
+        grapes[_grapeID].ownerID.transfer(amountToReturn);
     }
 
     // Define a modifier that checks the price and refunds the remaining balance
@@ -443,27 +443,34 @@ contract SupplyChain is
         emit WinePacked(wine.upc);
     }
 
-    function addWineForSale(uint _upc)
+    function addWineForSale(uint _upc, uint _productPrice)
     public
     onlyProducer
     winePacked(_upc)
     verifyCaller(items[_upc].ownerID)
     {
         Wine storage wine = items[_upc];
-        require(msg.sender == wine.producerID);
         wine.wineState = WineState.ForSale;
+        // Set the price of the wine for retailer
+        wine.productPrice = _productPrice;
         emit WineForSale(wine.upc);
     }
 
     function buyWine(uint _upc)
     public
-    onlyRetailer
+    payable
+    onlyWholesaler
     wineForSale(_upc)
+    paidEnough(items[_upc].productPrice)
+    checkValue(_upc)
     {
         Wine storage wine = items[_upc];
-        wine.retailerID = msg.sender;
+        wine.wholesalerID = msg.sender; // Update to wholesaler
+        uint _productPrice = wine.productPrice;
         wine.wineState = WineState.Sold;
+        address payable recipient = wine.ownerID;
         wine.ownerID = msg.sender;
+        recipient.transfer(_productPrice);
         emit WineSold(_upc);
     }
 
@@ -478,14 +485,16 @@ contract SupplyChain is
         emit WineShipped(_upc);
     }
 
-    function receiveWine(uint _upc)
+    function receiveWine(uint _upc, uint _productRetailPrice)
     public
     onlyRetailer
     wineShipped(_upc)
-    verifyCaller(items[_upc].ownerID)
     {
         Wine storage wine = items[_upc];
         wine.wineState = WineState.Received;
+        // set price for retail
+        wine.ownerID = msg.sender;
+        wine.productPrice = _productRetailPrice;
         emit WineReceived(_upc);
     }
 
@@ -555,7 +564,6 @@ contract SupplyChain is
     }
 
     function fetchWineGrapes(uint _upc) public view returns (uint[] memory grapesIDs) {
-        Wine memory wine = items[_upc];
-        grapesIDs = wine.grapesIDs;
+        grapesIDs = items[_upc].grapesIDs;
     }
 }
