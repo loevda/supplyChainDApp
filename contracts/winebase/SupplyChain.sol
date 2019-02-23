@@ -144,6 +144,7 @@ contract SupplyChain is
         items[_upc].ownerID.transfer(amountToReturn);
     }
 
+
     // Define a modifier that check if grape already exists.
     modifier grapeAlreadyExists(uint _grapeID) {
         Grape memory _grape = grapes[_grapeID];
@@ -325,17 +326,17 @@ contract SupplyChain is
         emit GrapeForSale(_grapeID);
     }
 
-    function buyGrapes(uint _grapeID, uint _grapePrice)
+    function buyGrapes(uint _grapeID)
     public
     payable
     onlyProducer
     grapeForSale(_grapeID)
-    paidEnough(_grapePrice)
+    paidEnough(grapes[_grapeID].grapePrice)
     checkGrapeValue(_grapeID)
     {
         Grape storage grape = grapes[_grapeID];
-        require(_grapePrice == grape.grapePrice);
         grape.grapeState = GrapeState.Sold;
+        uint _grapePrice = grape.grapePrice;
         grape.ownerID = msg.sender;
         grape.growerID.transfer(_grapePrice);
         emit GrapeSold(_grapeID);
@@ -494,12 +495,18 @@ contract SupplyChain is
 
     function purchaseWine(uint _upc)
     public
+    payable
     onlyConsumer
     wineReceived(_upc)
+    paidEnough(items[_upc].productPrice)
+    checkValue(_upc)
     {
         Wine storage wine = items[_upc];
         wine.wineState = WineState.Purchased;
+        address payable recipient = wine.ownerID;
+        uint _price = wine.productPrice;
         wine.ownerID = msg.sender;
+        recipient.transfer(_price);
         emit WinePurchased(_upc);
     }
 

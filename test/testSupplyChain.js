@@ -20,7 +20,7 @@ contract('SupplyChain', function(accounts) {
     const growerLatitude = "45.491084";
     const growerLongitude = "10.770316";
     const grapeVariety = "CORVINA VERONESE"
-    const grapePrice = web3.utils.toWei("25", "ether");
+    const grapePrice = web3.utils.toWei("20", "ether");
 
     const producerName = "Valpolinazzi";
     const producerInformation = "Valpolicella";
@@ -105,7 +105,9 @@ contract('SupplyChain', function(accounts) {
         var growerInitialBalance = await web3.eth.getBalance(growerID);
         var producerInitialBalance = await web3.eth.getBalance(producerID);
         await supplyChain.addProducer(producerID);
-        var result  = await supplyChain.buyGrapes(grapeID, grapePrice, {from: producerID, value: grapePrice});
+        var result  = await supplyChain.buyGrapes(grapeID, {from: producerID, value: grapePrice});
+        // uncomment line below to try to buy twice the same grapes
+        //var result2  = await supplyChain.buyGrapes(grapeID, {from: producerID, value: grapePrice});
         // Verify the result set
         const grapeResult = await supplyChain.fetchGrape.call(grapeID);
         assert.equal(grapeResult[1], producerID, 'Error: Producer is not the owner of the grapes');
@@ -261,7 +263,7 @@ contract('SupplyChain', function(accounts) {
     it("tests purchaseWine() that allows a consumer to purchase wine", async() => {
         const supplyChain = await SupplyChain.deployed();
         await supplyChain.addConsumer(consumerID);
-        var result = await supplyChain.purchaseWine(upc, {from: consumerID});
+        var result = await supplyChain.purchaseWine(upc, {from: consumerID, value: productPrice});
         // Verify the result set
         const wineResultOne = await supplyChain.fetchWineOne.call(upc);
         assert.equal(wineResultOne[0], upc, 'Error: invalid upc');
