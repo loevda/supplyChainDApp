@@ -1,11 +1,10 @@
 pragma solidity = 0.5.0;
-import "../wineaccesscontrol/ConsumerRole.sol";
 import "../wineaccesscontrol/GrowerRole.sol";
 import "../wineaccesscontrol/ProducerRole.sol";
-import "../wineaccesscontrol/RetailerRole.sol";
 import "../wineaccesscontrol/WholesalerRole.sol";
+import "../wineaccesscontrol/RetailerRole.sol";
+import "../wineaccesscontrol/ConsumerRole.sol";
 import "../winecore/Ownable.sol";
-
 
 contract SupplyChain is
     GrowerRole,
@@ -389,11 +388,9 @@ contract SupplyChain is
         grapeVariety = grape.grapeVariety;
     }
 
-
     ///////////////////////
     /// WINE OPERATIONS ///
     //////////////////////
-
     function produceWine(
         string memory _producerName,
         string memory _producerInformation,
@@ -445,7 +442,6 @@ contract SupplyChain is
         wine.wineState = WineState.Packed;
         emit WinePacked(wine.upc);
     }
-
 
     function addWineForSale(uint _upc)
     public
