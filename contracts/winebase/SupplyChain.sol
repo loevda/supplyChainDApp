@@ -166,7 +166,20 @@ contract SupplyChain is
 
     // Define a modifier that checks if an item.grapeState of a upc is Received
     modifier grapeReceived(uint _grapeId) {
-        require(grapes[_grapeId].grapeState == GrapeState.Received);
+        require(grapes[_grapeId].grapeState == GrapeState.Received,
+        "The grapes have not been received yet");
+        _;
+    }
+
+    // Define a modifier that check if the producer owns the grapes used for making wine
+    modifier wineProducerHasAndOwnsGrapes(uint[] memory _grapesID) {
+        for (uint i=0; i<_grapesID.length; i++) {
+            uint _grapeID = _grapesID[i];
+            require(grapes[_grapeID].ownerID == msg.sender,
+                "Producer does not own the grapes for making this wine");
+            require(grapes[_grapeID].grapeState == GrapeState.Received,
+                "Producer did not yet received all the grapes needed for this wine.");
+        }
         _;
     }
 
@@ -351,9 +364,10 @@ contract SupplyChain is
     )
     public
     onlyProducer
+    wineProducerHasAndOwnsGrapes(_grapesIDs)
     returns (uint _upc)
     {
-        uint _productID = sku + upc; // TODO: rework this part.
+        uint _productID = sku + upc;
         _upc = upc;
         items[_upc] = Wine(
             sku,

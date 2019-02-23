@@ -20,7 +20,7 @@ contract('SupplyChain', function(accounts) {
     const growerLatitude = "45.491084";
     const growerLongitude = "10.770316";
 
-    const grapePrice = web3.utils.toWei("1", "ether");
+    const grapePrice = web3.utils.toWei("25", "ether");
 
     const producerName = "Valpolinazzi";
     const producerInformation = "Valpolicella";
@@ -90,6 +90,7 @@ contract('SupplyChain', function(accounts) {
     it("tests buyGrapes() that lets a producer buy grapes", async() => {
         const supplyChain = await SupplyChain.deployed();
         var growerInitialBalance = await web3.eth.getBalance(growerID);
+        var producerInitialBalance = await web3.eth.getBalance(producerID);
         await supplyChain.addProducer(producerID);
         var result  = await supplyChain.buyGrapes(grapeID, grapePrice, {from: producerID, value: grapePrice});
         // Verify the result set
@@ -98,12 +99,16 @@ contract('SupplyChain', function(accounts) {
         assert.equal(grapeResult[8], 2, 'Error: grape state is not Sold');
         // check balance of grower
         var growerFinalBalance = await web3.eth.getBalance(growerID);
+        var producerFinalBalance = await web3.eth.getBalance(producerID);
         var expectedBalance = parseInt(growerInitialBalance) + parseInt(grapePrice);
         assert.equal(parseInt(growerFinalBalance),
             expectedBalance, 'Error: grower balance is invalid');
         truffleAssert.eventEmitted(result, 'GrapeSold', (ev) => {
             return parseInt(ev.grapeId) === grapeID;
         });
+        //console.log(web3.utils.fromWei(producerInitialBalance, 'ether'));
+        //console.log(web3.utils.fromWei(producerFinalBalance, 'ether'));
+        //console.log(result.receipt);
     });
 
 
@@ -210,8 +215,6 @@ contract('SupplyChain', function(accounts) {
             return parseInt(ev.upc) === upc;
         });
     });
-
-
 
     // 10th
     it("tests shipWine() that allows a producer to ship wine", async() => {
