@@ -13,16 +13,25 @@ App = {
     growerInformation: null,
     growerLatitude: null,
     growerLongitude: null,
-    growerInformation: null,
     grapePrice: 0,
     grapeVariety: null,
     grapeState: 0,
 
     // Wine
-    productPrice: 0,
-    distributorID: "0x0000000000000000000000000000000000000000",
+    itemPrice: 0,
+    producerID: "0x0000000000000000000000000000000000000000",
+    wholesalerID: "0x0000000000000000000000000000000000000000",
     retailerID: "0x0000000000000000000000000000000000000000",
     consumerID: "0x0000000000000000000000000000000000000000",
+    wineOwnerID: "0x0000000000000000000000000000000000000000",
+    producerName: null,
+    producerInformation: null,
+    producerLatitude: null,
+    producerLongitude: null,
+    itemState: 0,
+    itemInformation: null,
+    itemID: null,
+    wineGrapesIDs: [],
 
     init: async function () {
         App.readForm();
@@ -32,40 +41,59 @@ App = {
 
     readForm: function () {
 
-        // Grapes
-
-
-        App.sku = $("#sku").val();
-        App.upc = $("#upc").val();
-
-
-
+        // GRAPES
+        App.grapeID = $("#grapeFetchID").val();
+        App.grapeOwnerID = $("#grapeFetchOwnerID").val();
+        App.growerID = $("#growerID").val();
+        App.growerName = $("#growerName").val();
+        App.growerInformation = $("#growerInformation").val();
+        App.growerLatitude = $("#growerLatitute").val();
+        App.growerLongitude = $("#growerLongitude").val();
+        App.grapeVariety = $("#grapeVariety").val();
+        App.grapePrice = $("#grapePrice").val();
+        // Wines
+        App.sku = $("#wineSKU").val();
+        App.upc = $("#wineFetchUPC").val();
         App.ownerID = $("#ownerID").val();
-        App.originFarmerID = $("#originFarmerID").val();
-        App.originFarmName = $("#originFarmName").val();
-        App.originFarmInformation = $("#originFarmInformation").val();
-        App.originFarmLatitude = $("#originFarmLatitude").val();
-        App.originFarmLongitude = $("#originFarmLongitude").val();
-        App.productNotes = $("#productNotes").val();
-        App.productPrice = $("#productPrice").val();
-        App.distributorID = $("#distributorID").val();
+        App.producerID = $("#producerID").val();
+        App.producerName = $("#producerName").val();
+        App.producerInformation = $("#producerInformation").val();
+        App.producerLatitude = $("#producerLatitute").val();
+        App.producerLongitude = $("#producerLongitude").val();
+        App.itemInformation = $("#itemInformation").val();
+        App.itemPrice = $("#itemPrice").val();
+        App.itemID = $("#itemID").val();
+        App.wholesalerID = $("#wholesalerID").val();
         App.retailerID = $("#retailerID").val();
         App.consumerID = $("#consumerID").val();
 
         console.log(
             App.sku,
             App.upc,
-            App.ownerID,
-            App.originFarmerID,
-            App.originFarmName,
-            App.originFarmInformation,
-            App.originFarmLatitude,
-            App.originFarmLongitude,
-            App.productNotes,
-            App.productPrice,
-            App.distributorID,
+            App.grapeOwnerID,
+            App.growerID,
+            App.growerName,
+            App.growerInformation,
+            App.growerLatitude,
+            App.growerLongitude,
+            App.grapePrice,
+            App.grapeVariety,
+            App.grapeState,
+            // Wine
+            App.itemPrice,
+            App.producerID,
+            App.wholesalerID,
             App.retailerID,
-            App.consumerID
+            App.consumerID,
+            App.wineOwnerID,
+            App.producerName,
+            App.producerInformation,
+            App.producerLatitude,
+            App.producerLongitude,
+            App.itemState,
+            App.itemInformation,
+            App.itemID,
+            App.wineGrapesIDs,
         );
     },
 
