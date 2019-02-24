@@ -1,5 +1,5 @@
 # Supply Chain DApp
-DApp supply chain that lets you track wine authenticity on the Ethereum blockchain.
+DApp supply chain that lets you track wine authenticity on the Ethereum blockchain.<hr />
 ![DApp screenshot](src/img/wineDApp850.jpg?raw=true "Wine Supply Chain DApp")
 ## Setup project:
 __Notes:__ The project has been test with Solidity 0.5.0
