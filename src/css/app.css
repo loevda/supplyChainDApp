@@ -1,0 +1,60 @@
+.work {
+    font-family: 'Work Sans', sans-serif;
+}
+
+.smoke {
+    color: whitesmoke!important;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+textarea {
+    min-height: 146px;
+}
+
+.appTite {
+    color: whitesmoke!important;
+}
+
+header.masthead {
+    text-align: center;
+    color: white;
+    background-image: linear-gradient(0deg,rgba(90,90,90,0.6),rgba(120,120,120,0.6)), url("../img/wine-1761613_1920.jpg")!important;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center center;
+    background-size: cover;
+}
+
+section#grapes {
+    background-color: #212529;
+    background-image: url(../img/map-image.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+section#wines {
+    background-color: #212529;
+    background-image: linear-gradient(0deg,rgba(90,0,90,0.6),rgba(120,0,120,0.6)), url(../img/map-image.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.form-group input, section#contact .form-group textarea {
+    padding: 20px;
+}
+
+.form-group input.form-control {
+    height: auto;
+}
+
+.btn-primary.normal {
+    padding: 14px;
+}
+
