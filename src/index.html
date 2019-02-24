@@ -41,6 +41,9 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav text-uppercase ml-auto">
                 <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#accounts">Accounts</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="#grapes">Grapes</a>
                 </li>
                 <li class="nav-item">
@@ -57,11 +60,65 @@
         <div class="intro-text">
             <div class="intro-lead-in">Track Wine Authencity on the Ethereum Blockchain</div>
             <div class="intro-heading text-uppercase">Wine Supply Chain DApp</div>
+            <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#accounts">Accounts</a>
             <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#grapes">Grapes</a>
             <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#wines">Wines</a>
         </div>
     </div>
 </header>
+
+<!-- Contact -->
+<section id="accounts">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading text-uppercase smoke">ACCOUNTS</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">ID</div>
+                                </div>
+                                <input class="form-control" id="addressID" min="1" name="addressID" type="number" placeholder="ID">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">ROLE</div>
+                                </div>
+                                <select class="form-control">
+                                    <option>--- SELECT A ROLE ---</option>
+                                    <option value="GROWER">Grower</option>
+                                    <option value="GROWER">Producer</option>
+                                    <option value="GROWER">Wholesaler</option>
+                                    <option value="GROWER">Retailer</option>
+                                    <option value="GROWER">Consumer</option>
+                                </select>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <button id="addRole" class="btn btn-primary btn-xl text-uppercase" data-id="20">ADD</button>
+                        </div>
+                        <div class="col-md-1">
+                            <button id="removeRole" class="btn btn-primary btn-xl text-uppercase ml-1" data-id="21">REMOVE</button>
+                        </div>
+                    </div>
+                </div>
+              <!--  <hr class="mb-4" />-->
+            </div>
+        </div>
+
+
+    </div>
+</section>
 
 
 <!-- Contact -->
@@ -95,7 +152,7 @@
                             </div>
                         </div>
                         <div class="col-md-2">
-                            <button id="grapeFetch" class="btn btn-primary btn-xl text-uppercase">FETCH</button>
+                            <button id="grapeFetch" class="btn btn-primary btn-xl text-uppercase" data-id="1">FETCH</button>
                         </div>
                     </div>
                 </div>
@@ -170,12 +227,12 @@
                     </div>
                     <div class="clearfix"></div>
                         <div class="col-lg-12 text-center">
-                            <button id="grapeHarvest" class="btn btn-primary normal text-uppercase">HARVEST</button>
-                            <button id="grapeAddForSale" class="btn btn-primary normal text-uppercase">ADD FOR SALE</button>
-                            <button id="grapeBuy" class="btn btn-primary normal text-uppercase">BUY</button>
-                            <button id="grapeShip" class="btn btn-primary normal text-uppercase">SHIP</button>
-                            <button id="grapeReceive" class="btn btn-primary normal text-uppercase">RECEIVE</button>
-                            <button id="grapeReset" class="btn btn-primary normal text-uppercase">RESET</button>
+                            <button id="grapeHarvest" class="btn btn-primary normal text-uppercase" data-id="2">HARVEST</button>
+                            <button id="grapeAddForSale" class="btn btn-primary normal text-uppercase" data-id="3">ADD FOR SALE</button>
+                            <button id="grapeBuy" class="btn btn-primary normal text-uppercase" data-id="4">BUY</button>
+                            <button id="grapeShip" class="btn btn-primary normal text-uppercase" data-id="5">SHIP</button>
+                            <button id="grapeReceive" class="btn btn-primary normal text-uppercase" data-id="6">RECEIVE</button>
+                            <button id="grapeReset" class="btn btn-primary normal text-uppercase" data-id="7">RESET</button>
                         </div>
                     </div>
 
@@ -216,7 +273,7 @@
                             </div>
                         </div>
                         <div class="col-md-2">
-                            <button id="wineFetch" class="btn btn-primary btn-xl text-uppercase">FETCH</button>
+                            <button id="wineFetch" class="btn btn-primary btn-xl text-uppercase" data-id="7">FETCH</button>
                         </div>
                     </div>
                 </div>
@@ -351,14 +408,14 @@
                     </div>
                     <div class="clearfix"></div>
                     <div class="col-lg-12 text-center">
-                        <button id="wineProduce" class="btn btn-primary normal text-uppercase">PRODUCE</button>
-                        <button id="winePack" class="btn btn-primary normal text-uppercase">PACK</button>
-                        <button id="wineAddForSale" class="btn btn-primary normal text-uppercase">ADD FOR SALE</button>
-                        <button id="wineBuy" class="btn btn-primary normal text-uppercase">BUY</button>
-                        <button id="wineShip" class="btn btn-primary normal text-uppercase">SHIP</button>
-                        <button id="wineReceive" class="btn btn-primary normal text-uppercase">RECEIVE</button>
-                        <button id="winePurchase" class="btn btn-primary normal text-uppercase">PURCHASE</button>
-                        <button id="wineReset" class="btn btn-primary normal text-uppercase">RESET</button>
+                        <button id="wineProduce" class="btn btn-primary normal text-uppercase" data-id="8">PRODUCE</button>
+                        <button id="winePack" class="btn btn-primary normal text-uppercase" data-id="9">PACK</button>
+                        <button id="wineAddForSale" class="btn btn-primary normal text-uppercase" data-id="10">ADD FOR SALE</button>
+                        <button id="wineBuy" class="btn btn-primary normal text-uppercase" data-id="11">BUY</button>
+                        <button id="wineShip" class="btn btn-primary normal text-uppercase" data-id="12">SHIP</button>
+                        <button id="wineReceive" class="btn btn-primary normal text-uppercase" data-id="13">RECEIVE</button>
+                        <button id="winePurchase" class="btn btn-primary normal text-uppercase" data-id="14">PURCHASE</button>
+                        <button id="wineReset" class="btn btn-primary normal text-uppercase" data-id="15">RESET</button>
                     </div>
                 </div>
 

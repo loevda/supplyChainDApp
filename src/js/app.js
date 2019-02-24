@@ -150,8 +150,8 @@ App = {
             App.contracts.SupplyChain = TruffleContract(SupplyChainArtifact);
             App.contracts.SupplyChain.setProvider(App.web3Provider);
 
-            App.fetchItemBufferOne();
-            App.fetchItemBufferTwo();
+            //App.fetchItemBufferOne();
+            //App.fetchItemBufferTwo();
             App.fetchEvents();
 
         });
@@ -173,10 +173,10 @@ App = {
 
         switch(processId) {
             case 1:
-                return await App.harvestItem(event);
+                return; // Fetch
                 break;
             case 2:
-                return await App.processItem(event);
+                return await App.harvestGrapes(event);
                 break;
             case 3:
                 return await App.packItem(event);
@@ -202,26 +202,46 @@ App = {
             case 10:
                 return await App.fetchItemBufferTwo(event);
                 break;
+            case 11:
+                return await App.fetchItemBufferTwo(event);
+                break;
+            case 12:
+                return await App.fetchItemBufferTwo(event);
+                break;
+            case 13:
+                return await App.fetchItemBufferTwo(event);
+                break;
+            case 14:
+                return await App.fetchItemBufferTwo(event);
+                break;
+            case 15:
+                return await App.fetchItemBufferTwo(event);
+                break;
         }
     },
 
-    harvestItem: function(event) {
+
+    // GRAPES
+    harvestGrapes: function(event) {
         event.preventDefault();
         var processId = parseInt($(event.target).data('id'));
 
         App.contracts.SupplyChain.deployed().then(function(instance) {
-            return instance.harvestItem(
-                App.upc,
-                App.metamaskAccountID,
-                App.originFarmName,
-                App.originFarmInformation,
-                App.originFarmLatitude,
-                App.originFarmLongitude,
-                App.productNotes
+            console.log(App.growerName);
+            console.log(App.growerInformation);
+            console.log(App.growerLatitude);
+            console.log(App.growerLongitude);
+            console.log(App.grapeVariety);
+            return instance.harvestGrapes(
+                App.growerName,
+                App.growerInformation,
+                App.growerLatitude,
+                App.growerLongitude,
+                App.grapeVariety
             );
         }).then(function(result) {
             $("#ftc-item").text(result);
-            console.log('harvestItem',result);
+            console.log('harvestGrapes',result);
         }).catch(function(err) {
             console.log(err.message);
         });
