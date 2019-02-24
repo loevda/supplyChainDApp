@@ -4,14 +4,21 @@ App = {
     emptyAddress: "0x0000000000000000000000000000000000000000",
     sku: 0,
     upc: 0,
+    grapeID: 0,
     metamaskAccountID: "0x0000000000000000000000000000000000000000",
-    ownerID: "0x0000000000000000000000000000000000000000",
-    originFarmerID: "0x0000000000000000000000000000000000000000",
-    originFarmName: null,
-    originFarmInformation: null,
-    originFarmLatitude: null,
-    originFarmLongitude: null,
-    productNotes: null,
+    //
+    grapeOwnerID: "0x0000000000000000000000000000000000000000",
+    growerID: "0x0000000000000000000000000000000000000000",
+    growerName: null,
+    growerInformation: null,
+    growerLatitude: null,
+    growerLongitude: null,
+    growerInformation: null,
+    grapePrice: 0,
+    grapeVariety: null,
+    grapeState: 0,
+
+    // Wine
     productPrice: 0,
     distributorID: "0x0000000000000000000000000000000000000000",
     retailerID: "0x0000000000000000000000000000000000000000",
@@ -24,8 +31,15 @@ App = {
     },
 
     readForm: function () {
+
+        // Grapes
+
+
         App.sku = $("#sku").val();
         App.upc = $("#upc").val();
+
+
+
         App.ownerID = $("#ownerID").val();
         App.originFarmerID = $("#originFarmerID").val();
         App.originFarmName = $("#originFarmName").val();

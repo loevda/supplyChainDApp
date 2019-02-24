@@ -76,16 +76,25 @@
             <div class="col-lg-12">
                 <div class="form-group">
                     <div class="row">
-                        <div class="col-md-6 offset-1">
+                        <div class="col-md-3">
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">Grape ID</div>
                                 </div>
-                                <input class="form-control" id="grapeID" name="grapeID" type="text" placeholder="Grape ID">
+                                <input class="form-control" id="grapeFetchID" min="1" name="grapeFetchID" type="number" placeholder="Grape ID">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-7">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">Grape Owner ID</div>
+                                </div>
+                                <input class="form-control" id="grapeID" name="grapeID" type="text" readonly placeholder="Grape Owner ID">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
                             <button id="grapeFetch" class="btn btn-primary btn-xl text-uppercase">FETCH</button>
                         </div>
                     </div>
@@ -188,7 +197,7 @@
             <div class="col-lg-12">
                 <div class="form-group">
                     <div class="row">
-                        <div class="col-md-6 offset-1">
+                        <div class="col-md-3">
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">Wine UPC</div>
@@ -197,7 +206,16 @@
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-7">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">Wine Owner ID</div>
+                                </div>
+                                <input class="form-control" id="wineFetchOwnerID" name="wineFetchOwnerID" type="text" placeholder="Owner ID" readonly>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
                             <button id="wineFetch" class="btn btn-primary btn-xl text-uppercase">FETCH</button>
                         </div>
                     </div>
