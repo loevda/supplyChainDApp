@@ -77,3 +77,26 @@ section#wines {
     padding: 14px;
 }
 
+
+.table {
+    background: whitesmoke!important;
+}
+
+#allEvents {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    background: black;
+    color: lawngreen;
+    height: 100px;
+    padding-top: 14px;
+    overflow: auto!important;
+    z-index: 60000;
+    display: none;
+}
+
+#ftc-events {
+    font-family: "Courier New";
+    list-style: none;
+}
+

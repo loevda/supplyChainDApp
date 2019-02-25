@@ -34,6 +34,10 @@ contract SupplyChain is
     // Define a public mapping 'grapes' that maps the grapeID to a wine.
     mapping (uint => Grape) grapes;
 
+    // Define a public mapping 'itemsHistory' that maps the grapeID to an array of TxHash,
+    // that track its journey through the supply chain -- to be sent from DApp.
+    mapping (uint => string[]) grapesHistory;
+
     // Define a public mapping 'items' that maps the UPC to a wine.
     mapping (uint => Wine) items;
 

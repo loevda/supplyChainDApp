@@ -33,6 +33,17 @@ App = {
     itemID: null,
     wineGrapesIDs: [],
 
+    grapeStates: [
+        "Harvested",  // 0
+        "ForSale",    // 1
+        "Sold",       // 2
+        "Shipped",    // 3
+        "Received"    // 4
+    ],
+    wineState: {
+
+    },
+
     init: async function () {
         App.readForm();
         /// Setup access to blockchain
@@ -41,9 +52,13 @@ App = {
 
     readForm: function () {
 
+        // ROLES
+        App.addressID = $("#addressID").val();
+        App.roleType = $("#roleType").val();
+
         // GRAPES
-        App.grapeID = $("#grapeFetchID").val();
-        App.grapeOwnerID = $("#grapeFetchOwnerID").val();
+        App.grapeID = $("#grapeID").val();
+        App.grapeOwnerID = $("#grapeOwnerID").val();
         App.growerID = $("#growerID").val();
         App.growerName = $("#growerName").val();
         App.growerInformation = $("#growerInformation").val();
@@ -165,42 +180,40 @@ App = {
 
     handleButtonClick: async function(event) {
         event.preventDefault();
-
         App.getMetaskAccountID();
-
         var processId = parseInt($(event.target).data('id'));
         console.log('processId',processId);
 
         switch(processId) {
             case 1:
-                return; // Fetch
+                return await App.addRole(event);
                 break;
             case 2:
-                return await App.harvestGrapes(event);
+                return await App.renounceRole(event);
                 break;
             case 3:
-                return await App.packItem(event);
+                return await App.fetchGrape(event);
                 break;
             case 4:
-                return await App.sellItem(event);
+                return await App.harvestGrapes(event);
                 break;
             case 5:
+                return await App.addGrapeForSale(event);
+                break;
+            /*case 6:
                 return await App.buyItem(event);
                 break;
-            case 6:
+            case 7:
                 return await App.shipItem(event);
                 break;
-            case 7:
+            case 8:
                 return await App.receiveItem(event);
                 break;
-            case 8:
+            case 9:
                 return await App.purchaseItem(event);
                 break;
-            case 9:
-                return await App.fetchItemBufferOne(event);
-                break;
             case 10:
-                return await App.fetchItemBufferTwo(event);
+                return await App.fetchItemBufferOne(event);
                 break;
             case 11:
                 return await App.fetchItemBufferTwo(event);
@@ -217,6 +230,136 @@ App = {
             case 15:
                 return await App.fetchItemBufferTwo(event);
                 break;
+            case 16:
+                return await App.fetchItemBufferTwo(event);
+                break;*/
+        }
+    },
+
+    addRole: function(event) {
+        event.preventDefault();
+        App.readForm();
+        if (!App.addressID || App.roleType === "") {
+            alert("Insert a valid address and select a role type.")
+        }else {
+            App.contracts.SupplyChain.deployed().then(function(instance) {
+                switch(App.roleType) {
+                    case "GROWER":
+                        return instance.addGrower(
+                            App.addressID
+                        );
+                        break;
+                    case "PRODUCER":
+                        return instance.addProducer(
+                            App.addressID
+                        );
+                        break;
+                    case "WHOLESALER":
+                        return instance.addWholesaler(
+                            App.addressID
+                        );
+                        break;
+                    case "RETAILER":
+                        return instance.addRetailer(
+                            App.addressID
+                        );
+                        break;
+                    case "CONSUMER":
+                        return instance.addConsumer(
+                            App.addressID
+                        );
+                        break;
+                    default:
+                        // should not get there but
+                        throw Error("You need to select a role type");
+                        break;
+                }
+            }).then((result) => {
+                console.log(result);
+            }).catch(function(err) {
+                console.log(err.message);
+            });
+        }
+
+    },
+
+    renounceRole: function(event) {
+        event.preventDefault();
+        App.readForm();
+        if (App.roleType === "") {
+            alert("Select a role type.")
+        }else {
+            var goAhead = confirm("You are about to renounce to your role." +
+                "This might affect your ability to interact with this app.");
+            if (goAhead) {
+                App.contracts.SupplyChain.deployed().then(function(instance) {
+                    switch(App.roleType) {
+                        case "GROWER":
+                            return instance.renounceGrower(
+                                App.getMetaskAccountID()
+                            );
+                            break;
+                        case "PRODUCER":
+                            return instance.renounceProducer(
+                                App.getMetaskAccountID()
+                            );
+                            break;
+                        case "WHOLESALER":
+                            return instance.renounceWholesaler(
+                                App.getMetaskAccountID()
+                            );
+                            break;
+                        case "RETAILER":
+                            return instance.renounceRetailer(
+                                App.getMetaskAccountID()
+                            );
+                            break;
+                        case "CONSUMER":
+                            return instance.renounceConsumer(
+                                App.getMetaskAccountID()
+                            );
+                            break;
+                        default:
+                            // should not get there but
+                            throw Error("You need to select a role type");
+                            break;
+                    }
+                }).then((result) => {
+                    console.log(result);
+                }).catch(function(err) {
+                    console.log(err.message);
+                });
+            }
+        }
+    },
+
+    fetchGrape: function(event) {
+        event.preventDefault();
+        App.readForm();
+        if (!parseInt(App.grapeID)) {
+            alert("Please insert a grape ID");
+        } else {
+            App.contracts.SupplyChain.deployed().then((instance) => {
+                return instance.fetchGrape(App.grapeID);
+            }).then((result) => {
+                if (result[0] == 0) {
+                    alert("Unknown grape ID");
+                } else {
+                    $('#grapeID').val(result[0]);
+                    $('#grapeOwnerID').val(result[1]);
+                    $('#growerID').val(result[2]);
+                    $('#growerName').val(result[3]);
+                    $('#growerInformation').val(result[4]);
+                    $('#growerLatitute').val(result[5]);
+                    $('#growerLongitude').val(result[6]);
+                    $('#grapePrice').val(result[7]);
+                    $('#grapeState').val(App.grapeStates[result[8]]);
+                    $('#grapeVariety').val(result[9]);
+                }
+                console.log(result);
+            }).catch((err) => {
+                console.log(error);
+            });
         }
     },
 
@@ -225,32 +368,63 @@ App = {
     harvestGrapes: function(event) {
         event.preventDefault();
         var processId = parseInt($(event.target).data('id'));
+        App.readForm();
+        if (
+            !App.growerName || !App.growerLongitude || !App.growerLongitude
+            || !App.growerInformation || !App.grapeVariety
+        ) {
+            alert("Make sure to provide a grower name, latitude, longitude, information and " +
+                "a grape variety.")
+        } else {
+            var goAhead = confirm("You are about to harvest some grapes. Please confirm " +
+                "the information are correct.")
+            if (goAhead) {
+                App.contracts.SupplyChain.deployed().then(function(instance) {
+                    return instance.harvestGrapes(
+                        App.growerName,
+                        App.growerInformation,
+                        App.growerLatitude,
+                        App.growerLongitude,
+                        App.grapeVariety
+                    )
+                }).then(function(result) {
+                    console.log('harvestGrapes',result);
+                }).catch(function(err) {
+                    console.log(err.message);
+                });
+            }
+        }
 
-        App.contracts.SupplyChain.deployed().then(function(instance) {
-            console.log(App.growerName);
-            console.log(App.growerInformation);
-            console.log(App.growerLatitude);
-            console.log(App.growerLongitude);
-            console.log(App.grapeVariety);
-            return instance.harvestGrapes(
-                App.growerName,
-                App.growerInformation,
-                App.growerLatitude,
-                App.growerLongitude,
-                App.grapeVariety
-            );
-        }).then(function(result) {
-            $("#ftc-item").text(result);
-            console.log('harvestGrapes',result);
-        }).catch(function(err) {
-            console.log(err.message);
-        });
+    },
+
+    addGrapeForSale: function(event) {
+        event.preventDefault();
+        var processId = parseInt($(event.target).data('id'));
+        App.readForm();
+
+        if (App.grapePrice <= 0) {
+            alert("Please enter a valid price in ETHER!");
+        }else{
+            var goAhead = confirm("Are you sure the given price is correct?");
+            if (goAhead) {
+                App.contracts.SupplyChain.deployed().then(function(instance) {
+                    return instance.addGrapesForSale(
+                        App.grapeID,
+                        App.grapePrice
+                    )
+                }).then(function(result) {
+                    console.log('addGrapesForSale',result);
+                }).catch(function(err) {
+                    console.log(err.message);
+                });
+            }
+        }
+
     },
 
     processItem: function (event) {
         event.preventDefault();
         var processId = parseInt($(event.target).data('id'));
-
         App.contracts.SupplyChain.deployed().then(function(instance) {
             return instance.processItem(App.upc, {from: App.metamaskAccountID});
         }).then(function(result) {
@@ -390,13 +564,32 @@ App = {
 
         App.contracts.SupplyChain.deployed().then(function(instance) {
             var events = instance.allEvents(function(err, log){
-                if (!err)
-                    $("#ftc-events").append('<li>' + log.event + ' - ' + log.transactionHash + '</li>');
+                console.log(log.args[0]);
+                try {
+                    var _grapeID = log.args.grapeId;
+                    if(_grapeID) {
+                        $("#grapeID").val(_grapeID);
+                        $("#grapeFetch").click();
+                    }
+                }catch(err){
+                    console.log(err);
+                }
+                try {
+                    var _upc = log.args.upc;
+                    if(_upc) {
+                        console.log(_upc);
+                    }
+                }catch(err){
+                    console.log(err);
+                }
+                if (!err) {
+                    $("#allEvents").show();
+                    $("#ftc-events").prepend('<li>> <b>' + new Date().toLocaleTimeString(navigator.language, {hour: '2-digit', minute:'2-digit', second:'2-digit'}) + '</b>: ' + log.event + ' - ' + log.transactionHash + '</li>');
+                }
             });
         }).catch(function(err) {
             console.log(err.message);
         });
-
     }
 };
 
