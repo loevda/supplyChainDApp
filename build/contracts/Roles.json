@@ -207,10 +207,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2191,
-                        2192
+                        2207,
+                        2208
                       ],
-                      "referencedDeclaration": 2191,
+                      "referencedDeclaration": 2207,
                       "src": "328:7:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -333,10 +333,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2191,
-                        2192
+                        2207,
+                        2208
                       ],
-                      "referencedDeclaration": 2191,
+                      "referencedDeclaration": 2207,
                       "src": "368:7:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -648,10 +648,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2191,
-                        2192
+                        2207,
+                        2208
                       ],
-                      "referencedDeclaration": 2191,
+                      "referencedDeclaration": 2207,
                       "src": "586:7:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -758,10 +758,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2191,
-                        2192
+                        2207,
+                        2208
                       ],
-                      "referencedDeclaration": 2191,
+                      "referencedDeclaration": 2207,
                       "src": "626:7:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -1073,10 +1073,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2191,
-                        2192
+                        2207,
+                        2208
                       ],
-                      "referencedDeclaration": 2191,
+                      "referencedDeclaration": 2207,
                       "src": "891:7:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -1480,10 +1480,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2191,
-                        2192
+                        2207,
+                        2208
                       ],
-                      "referencedDeclaration": 2191,
+                      "referencedDeclaration": 2207,
                       "src": "328:7:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -1606,10 +1606,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2191,
-                        2192
+                        2207,
+                        2208
                       ],
-                      "referencedDeclaration": 2191,
+                      "referencedDeclaration": 2207,
                       "src": "368:7:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -1921,10 +1921,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2191,
-                        2192
+                        2207,
+                        2208
                       ],
-                      "referencedDeclaration": 2191,
+                      "referencedDeclaration": 2207,
                       "src": "586:7:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -2031,10 +2031,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2191,
-                        2192
+                        2207,
+                        2208
                       ],
-                      "referencedDeclaration": 2191,
+                      "referencedDeclaration": 2207,
                       "src": "626:7:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -2346,10 +2346,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2191,
-                        2192
+                        2207,
+                        2208
                       ],
-                      "referencedDeclaration": 2191,
+                      "referencedDeclaration": 2207,
                       "src": "891:7:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -2559,7 +2559,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.2",
-  "updatedAt": "2019-02-26T20:18:18.138Z",
+  "updatedAt": "2019-02-26T23:50:25.252Z",
   "devdoc": {
     "details": "Library for managing addresses assigned to a Role.",
     "methods": {},

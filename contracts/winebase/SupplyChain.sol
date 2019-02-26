@@ -15,8 +15,8 @@ contract SupplyChain is
     Ownable
 {
 
-    // Define 'owner'
-    address payable payableOwner;
+    // Define 'owner' defined by ownable
+    //address payable owner;
 
     // Define a variable called 'upc' for Universal Product Code (UPC)
     uint  upc;
@@ -266,7 +266,7 @@ contract SupplyChain is
     // the identifier are simplified here
     // as we should also use the client company prefix for generating UPC
     constructor() public payable {
-        payableOwner = msg.sender;
+        //payableOwner = msg.sender; see Ownable
         sku = 1;
         upc = 1; // for simpicity we'll use this
         // GS1 guidelines said that UPC
@@ -279,11 +279,10 @@ contract SupplyChain is
     // Either set a new address payable in constructor
     // or cast to payable address the owner()
     function kill() public onlyOwner {
-        //address payable owng = address(uint160(owner()));
-        selfdestruct(payableOwner);
-        /*if (msg.sender == owner()) {
-            selfdestruct(payableOwner);
-        }*/
+        address payable owng = address(uint160(owner()));
+        if (msg.sender == owner()) {
+            selfdestruct(owng);
+        }
     }
 
     /////////////////////////
