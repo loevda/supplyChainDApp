@@ -165,14 +165,12 @@ contract('SupplyChain', function(accounts) {
             producerLongitude,
             productNotes,
             [grapeID],
-            0,
             {from: producerID}
         );
         // Verify the result set
 
         const wineResultOne = await supplyChain.fetchWineOne.call(upc);
         const wineResultTwo = await supplyChain.fetchWineTwo.call(upc);
-        const wineResultGrapes = await supplyChain.fetchWineGrapes.call(upc);
         assert.equal(wineResultOne[0], sku, 'Error: invalid  sku');
         assert.equal(wineResultOne[1], sku, 'Error: invalid upc');
         assert.equal(wineResultOne[2], producerID, 'Error: producerID is not the owner of the wine');
@@ -182,7 +180,7 @@ contract('SupplyChain', function(accounts) {
         assert.equal(wineResultOne[6], emptyAddress, 'Error: invalid wholesalerID - should be empty');
         assert.equal(wineResultOne[7], emptyAddress, 'Error: invalid retailerID - should be empty');
         assert.equal(wineResultOne[8], emptyAddress, 'Error: invalid consumerID - should be empty');
-        assert.equal(wineResultGrapes[0], grapeID, 'Error: invalid grapeIDs');
+        assert.equal(wineResultTwo[8][0], grapeID, 'Error: invalid grapeIDs');
         truffleAssert.eventEmitted(result, 'WineProduced', (ev) => {
             return parseInt(ev.upc) === upc;
         });
@@ -257,19 +255,33 @@ contract('SupplyChain', function(accounts) {
     // 11th
     it("tests receiveWine() that allows a retailer to receive wine", async() => {
         const supplyChain = await SupplyChain.deployed();
-        var result = await supplyChain.receiveWine(upc, productPriceRetail, {from: retailerID});
+        var result = await supplyChain.receiveWine(upc, {from: retailerID});
         // Verify the result set
         const wineResultOne = await supplyChain.fetchWineOne.call(upc);
         assert.equal(wineResultOne[0], upc, 'Error: invalid upc');
         assert.equal(wineResultOne[2], retailerID, 'Error: retailerID is not the onwer of the wine');
-        assert.equal(wineResultOne[4], productPriceRetail, 'Error: invalid product price');
         assert.equal(wineResultOne[5], 5, 'Error: invalid wineState');
         truffleAssert.eventEmitted(result, 'WineReceived', (ev) => {
             return parseInt(ev.upc) === upc;
         });
     });
 
-    // 12th
+    // 12th setWineRetailPrice
+    it("tests setWineRetailPrice() that lets a retailer set the wine retail price", async() => {
+        const supplyChain = await SupplyChain.deployed();
+        var result = await supplyChain.setWineRetailPrice(upc, productPriceRetail, {from: retailerID});
+        // Verify the result set
+        const wineResultOne = await supplyChain.fetchWineOne.call(upc);
+        assert.equal(wineResultOne[0], upc, 'Error: invalid upc');
+        assert.equal(wineResultOne[2], retailerID, 'Error: retailerID is not the onwer of the wine');
+        assert.equal(wineResultOne[4], productPriceRetail, 'Error: invalid product price');
+        assert.equal(wineResultOne[5], 6, 'Error: invalid wineState');
+        truffleAssert.eventEmitted(result, 'WineForPurchase', (ev) => {
+            return parseInt(ev.upc) === upc;
+        });
+    });
+
+    // 13th
     it("tests purchaseWine() that allows a consumer to purchase wine", async() => {
         const supplyChain = await SupplyChain.deployed();
         await supplyChain.addConsumer(consumerID);
@@ -279,7 +291,7 @@ contract('SupplyChain', function(accounts) {
         const wineResultOne = await supplyChain.fetchWineOne.call(upc);
         assert.equal(wineResultOne[0], upc, 'Error: invalid upc');
         assert.equal(wineResultOne[2], consumerID, 'Error: consumerID is not the owner of the wine');
-        assert.equal(wineResultOne[5], 6, 'Error: invalid wineState');
+        assert.equal(wineResultOne[5], 7, 'Error: invalid wineState');
         truffleAssert.eventEmitted(result, 'WinePurchased', (ev) => {
             return parseInt(ev.upc) === upc;
         });

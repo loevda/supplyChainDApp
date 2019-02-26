@@ -64,7 +64,8 @@ contract SupplyChain is
         Sold,      // 3
         Shipped,   // 4
         Received,  // 5
-        Purchased   // 6
+        ForPurchase, // 6
+        Purchased   // 7
     }
 
     //TODO: set default states for grapes and items
@@ -118,6 +119,7 @@ contract SupplyChain is
     event WineSold(uint upc);
     event WineShipped(uint upc);
     event WineReceived(uint upc);
+    event WineForPurchase(uint upc);
     event WinePurchased(uint upc);
 
     // Define a modifer that verifies the Caller
@@ -249,6 +251,13 @@ contract SupplyChain is
     modifier wineReceived(uint _upc) {
         require(items[_upc].wineState == WineState.Received,
             "Wine is not received");
+        _;
+    }
+
+    // Define a modifier that checks if an item.wineState of a upc is ForSale
+    modifier wineForPurchase(uint _upc) {
+        require(items[_upc].wineState == WineState.ForPurchase,
+            "Wine is not for purchase");
         _;
     }
 
@@ -406,8 +415,7 @@ contract SupplyChain is
         string memory _producerLatitude,
         string memory _producerLongitude,
         string memory _productNotes,
-        uint[] memory _grapesIDs,
-        WineState _wineState
+        uint[] memory _grapesIDs
     )
     public
     onlyProducer
@@ -429,7 +437,7 @@ contract SupplyChain is
             _productNotes,
             0,
             _grapesIDs,
-            _wineState,
+            WineState.Produced,
             address(0),
             address(0),
             address(0),
@@ -494,7 +502,7 @@ contract SupplyChain is
         emit WineShipped(_upc);
     }
 
-    function receiveWine(uint _upc, uint _productRetailPrice)
+    function receiveWine(uint _upc)
     public
     onlyRetailer
     wineShipped(_upc)
@@ -503,15 +511,26 @@ contract SupplyChain is
         wine.wineState = WineState.Received;
         // set price for retail
         wine.ownerID = msg.sender;
-        wine.productPrice = _productRetailPrice;
         emit WineReceived(_upc);
+    }
+
+    function setWineRetailPrice(uint _upc, uint _productRetailPrice)
+    public
+    onlyRetailer
+    wineReceived(_upc)
+    verifyCaller(items[_upc].ownerID)
+    {
+        Wine storage wine = items[_upc];
+        wine.wineState = WineState.ForPurchase;
+        wine.productPrice = _productRetailPrice;
+        emit WineForPurchase(_upc);
     }
 
     function purchaseWine(uint _upc)
     public
     payable
     onlyConsumer
-    wineReceived(_upc)
+    wineForPurchase(_upc)
     paidEnough(items[_upc].productPrice)
     checkValue(_upc)
     {
@@ -551,18 +570,17 @@ contract SupplyChain is
     // fetchWineTwo
     function fetchWineTwo(uint _upc) public view returns (
         uint wineSku,
-        uint wineUpc,
         string memory producerName,
         string memory producerInformation,
         string memory producerLatitude,
         string memory producerLongitude,
         uint productID,
         string memory productNotes,
-        uint productPrice
+        uint productPrice,
+        uint[] memory grapesIDs
     ) {
         Wine memory wine = items[_upc];
         wineSku = wine.sku;
-        wineUpc = wine.upc;
         producerName = wine.producerName;
         producerInformation = wine.producerInformation;
         producerLatitude = wine.producerLatitude;
@@ -570,9 +588,6 @@ contract SupplyChain is
         productID = wine.productID;
         productNotes = wine.productNotes;
         productPrice = wine.productPrice;
-    }
-
-    function fetchWineGrapes(uint _upc) public view returns (uint[] memory grapesIDs) {
         grapesIDs = items[_upc].grapesIDs;
     }
 }
