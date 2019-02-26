@@ -2,7 +2,7 @@
 DApp supply chain that lets you track wine authenticity on the Ethereum blockchain.<hr />
 ![DApp screenshot](src/img/wineDApp.jpg?raw=true "Wine Supply Chain DApp")
 ## Setup project:
-__Notes:__ The project has been test with __Truffle v5.0.4__, __Solidity 0.5.0__ and __npm v10.15.1__
+__Notes:__ The project has been tested with __Truffle v5.0.4__, __Solidity 0.5.0__ and __npm v10.15.1__
 1. Clone the repository
 2. Run command __npm install__ to install the project dependencies.
 3. Start Ganache
