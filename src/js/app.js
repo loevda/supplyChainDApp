@@ -200,16 +200,16 @@ App = {
             case 5:
                 return await App.addGrapeForSale(event);
                 break;
-            /*case 6:
-                return await App.buyItem(event);
+            case 6:
+                return await App.buyGrapes(event);
                 break;
             case 7:
-                return await App.shipItem(event);
+                return await App.shipGrapes(event);
                 break;
             case 8:
-                return await App.receiveItem(event);
+                return await App.receiveGrapes(event);
                 break;
-            case 9:
+            /*case 9:
                 return await App.purchaseItem(event);
                 break;
             case 10:
@@ -352,7 +352,7 @@ App = {
                     $('#growerInformation').val(result[4]);
                     $('#growerLatitute').val(result[5]);
                     $('#growerLongitude').val(result[6]);
-                    $('#grapePrice').val(result[7]);
+                    $('#grapePrice').val(web3.fromWei(result[7].toString(), "ether"));
                     $('#grapeState').val(App.grapeStates[result[8]]);
                     $('#grapeVariety').val(result[9]);
                 }
@@ -401,16 +401,18 @@ App = {
         event.preventDefault();
         var processId = parseInt($(event.target).data('id'));
         App.readForm();
+        web3 = new Web3(App.web3Provider);
 
         if (App.grapePrice <= 0) {
             alert("Please enter a valid price in ETHER!");
         }else{
             var goAhead = confirm("Are you sure the given price is correct?");
             if (goAhead) {
+                const _grapePrice = web3.toWei(App.grapePrice, "ether");
                 App.contracts.SupplyChain.deployed().then(function(instance) {
                     return instance.addGrapesForSale(
                         App.grapeID,
-                        App.grapePrice
+                        _grapePrice
                     )
                 }).then(function(result) {
                     console.log('addGrapesForSale',result);
@@ -420,6 +422,60 @@ App = {
             }
         }
 
+    },
+
+    buyGrapes: function(event) {
+        event.preventDefault();
+        var processId = parseInt($(event.target).data('id'));
+        App.readForm();
+
+        var goAhead = confirm(`Are you sure you want to buy these grapes for ${App.grapePrice} ETH?`);
+        if (goAhead) {
+            App.contracts.SupplyChain.deployed().then(function(instance) {
+                return instance.buyGrapes(
+                    App.grapeID,
+                    {from: App.getMetaskAccountID(), value: web3.toWei(App.grapePrice, "ether")}
+                );
+            }).then(function(result) {
+                console.log('buyGrapes',result);
+            }).catch(function(err) {
+                console.log(err.message);
+            });
+        }
+    },
+
+    shipGrapes: function(event) {
+        event.preventDefault();
+        var processId = parseInt($(event.target).data('id'));
+        App.readForm();
+
+        var goAhead = confirm(`Are you sure you want to ship to ${App.grapeOwnerID}?`);
+        if (goAhead) {
+            App.contracts.SupplyChain.deployed().then(function(instance) {
+                return instance.shipGrapes(
+                    App.grapeID
+                );
+            }).then(function(result) {
+                console.log('shipGrapes',result);
+            }).catch(function(err) {
+                console.log(err.message);
+            });
+        }
+    },
+
+    receiveGrapes: function(event) {
+        event.preventDefault();
+        var processId = parseInt($(event.target).data('id'));
+        App.readForm();
+        App.contracts.SupplyChain.deployed().then(function(instance) {
+            return instance.receiveGrapes(
+                App.grapeID
+            );
+        }).then(function(result) {
+            console.log('shipGrapes',result);
+        }).catch(function(err) {
+            console.log(err.message);
+        });
     },
 
     processItem: function (event) {
