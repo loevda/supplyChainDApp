@@ -57,6 +57,19 @@ App = {
         return castArr;
     },
 
+    resetGrapeForm: function() {
+        $("#grapeID").val("");
+        $("#grapeOwnerID").val("");
+        $("#growerID").val("");
+        $("#growerName").val("");
+        $("#growerInformation").val("");
+        $("#growerLatitute").val("");
+        $("#growerLongitude").val("");
+        $("#grapeVariety").val("");
+        $("#grapePrice").val("");
+        $("#grapeState").val("");
+    },
+
     resetWineForm: function () {
         $("#itemSKU").val("");
         $("#itemUPC").val("");
@@ -74,6 +87,21 @@ App = {
         $("#retailerID").val("");
         $("#consumerID").val("");
         $("#grapesIDs").val("");
+    },
+
+    setFieldReadOnly: function () {
+        if (["Harvested"].indexOf($("#grapeState").val()) > -1) {
+            $("#grapePrice").prop('readonly', false);
+        }else{
+            $("#grapePrice").prop('readonly', true);
+        }
+
+        if (["Produced", "ForSale", "Received", "Purchased", "Sold"]
+                .indexOf($("#itemState").val()) > -1) {
+            $("#itemPrice").prop('readonly', true);
+        }else{
+            $("#itemPrice").prop('readonly', false);
+        }
     },
 
     init: async function () {
@@ -199,11 +227,7 @@ App = {
             var SupplyChainArtifact = data;
             App.contracts.SupplyChain = TruffleContract(SupplyChainArtifact);
             App.contracts.SupplyChain.setProvider(App.web3Provider);
-
-            //App.fetchItemBufferOne();
-            //App.fetchItemBufferTwo();
             App.fetchEvents();
-
         });
 
         return App.bindEvents();
@@ -245,6 +269,7 @@ App = {
                 return await App.receiveGrapes(event);
                 break;
             case 9:
+                App.resetGrapeForm();
                 break;
             case 10:
                 return await App.fetchWine(event);
@@ -285,29 +310,19 @@ App = {
             App.contracts.SupplyChain.deployed().then(function(instance) {
                 switch(App.roleType) {
                     case "GROWER":
-                        return instance.addGrower(
-                            App.addressID
-                        );
+                        return instance.addGrower(App.addressID);
                         break;
                     case "PRODUCER":
-                        return instance.addProducer(
-                            App.addressID
-                        );
+                        return instance.addProducer(App.addressID);
                         break;
                     case "WHOLESALER":
-                        return instance.addWholesaler(
-                            App.addressID
-                        );
+                        return instance.addWholesaler(App.addressID);
                         break;
                     case "RETAILER":
-                        return instance.addRetailer(
-                            App.addressID
-                        );
+                        return instance.addRetailer(App.addressID);
                         break;
                     case "CONSUMER":
-                        return instance.addConsumer(
-                            App.addressID
-                        );
+                        return instance.addConsumer(App.addressID);
                         break;
                     default:
                         // should not get there but
@@ -335,29 +350,19 @@ App = {
                 App.contracts.SupplyChain.deployed().then(function(instance) {
                     switch(App.roleType) {
                         case "GROWER":
-                            return instance.renounceGrower(
-                                App.getMetaskAccountID()
-                            );
+                            return instance.renounceGrower(App.getMetaskAccountID());
                             break;
                         case "PRODUCER":
-                            return instance.renounceProducer(
-                                App.getMetaskAccountID()
-                            );
+                            return instance.renounceProducer(App.getMetaskAccountID());
                             break;
                         case "WHOLESALER":
-                            return instance.renounceWholesaler(
-                                App.getMetaskAccountID()
-                            );
+                            return instance.renounceWholesaler(App.getMetaskAccountID());
                             break;
                         case "RETAILER":
-                            return instance.renounceRetailer(
-                                App.getMetaskAccountID()
-                            );
+                            return instance.renounceRetailer(App.getMetaskAccountID());
                             break;
                         case "CONSUMER":
-                            return instance.renounceConsumer(
-                                App.getMetaskAccountID()
-                            );
+                            return instance.renounceConsumer(App.getMetaskAccountID());
                             break;
                         default:
                             // should not get there but
@@ -400,6 +405,8 @@ App = {
             }).catch((err) => {
                 console.log(error);
             });
+            // set the readonly fields
+            App.setFieldReadOnly();
         }
     },
 
@@ -432,6 +439,7 @@ App = {
                 }).catch(function(err) {
                     console.log(err.message);
                 });
+                App.setFieldReadOnly();
             }
         }
 
@@ -539,11 +547,6 @@ App = {
                     $('#retailerID').val(result[7]);
                     $('#consumerID').val(result[8]);
                 }
-                if (["Produced", "ForSale", "Received", "Purchased", "Sold"].indexOf($("#itemState").val()) > -1) {
-                    $("#itemPrice").prop('readonly', true);
-                }else{
-                    $("#itemPrice").prop('readonly', false);
-                }
                 console.log(result);
             }).catch((err) => {
                 console.log(err);
@@ -567,6 +570,8 @@ App = {
             }).catch((err) => {
                 console.log(err);
             });
+            // set the readonly fields
+            App.setFieldReadOnly();
 
         }
     },
@@ -743,6 +748,7 @@ App = {
                     $("#allEvents").show();
                     $("#ftc-events").prepend('<li>> <b>' + new Date().toLocaleTimeString(navigator.language, {hour: '2-digit', minute:'2-digit', second:'2-digit'}) + '</b>: ' + log.event + ' - ' + log.transactionHash + '</li>');
                 }
+                App.setFieldReadOnly();
             });
         }).catch(function(err) {
             console.log(err.message);
