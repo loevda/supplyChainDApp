@@ -266,26 +266,35 @@
             <div class="col-lg-12">
                 <div class="form-group">
                     <div class="row">
-                        <div class="col-md-3">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">Wine UPC</div>
-                                </div>
-                                <input class="form-control" id="wineFetchUPC" name="wineFetchUPC" type="text" placeholder="UPC">
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-                        <div class="col-md-7">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">Wine Owner ID</div>
-                                </div>
-                                <input class="form-control" id="wineFetchOwnerID" name="wineFetchOwnerID" type="text" placeholder="Owner ID" readonly>
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
                         <div class="col-md-2">
-                            <button id="wineFetch" class="btn btn-primary btn-xl text-uppercase" data-id="10">FETCH</button>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">UPC</div>
+                                </div>
+                                <input class="form-control" id="itemUPC" name="itemUPC" type="text" placeholder="UPC">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">Owner ID</div>
+                                </div>
+                                <input class="form-control" id="itemOwnerID" name="itemOwnerID" type="text" placeholder="Owner ID" readonly>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">Producer ID</div>
+                                </div>
+                                <input class="form-control" id="producerID" name="producerID" type="text" placeholder="Producer ID" readonly>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <button id="wineFetch" class="btn btn-primary normal mt-1 text-uppercase" data-id="10">FETCH</button>
                         </div>
                     </div>
                 </div>
@@ -300,18 +309,9 @@
                         <div class="form-group">
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <div class="input-group-text">Item UPC</div>
+                                    <div class="input-group-text">Item SKU</div>
                                 </div>
-                                <input class="form-control" id="wineUPC" name="wineUPC" type="text" placeholder="Item UPC">
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">Producer ID</div>
-                                </div>
-                                <input class="form-control" id="producerID" name="producerID" type="text" placeholder="Producer ID">
+                                <input class="form-control" id="itemSKU" name="itemSKU" type="text" placeholder="Item SKU">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
@@ -371,15 +371,7 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">Item SKU</div>
-                                </div>
-                                <input class="form-control" id="wineSKU" name="wineSKU" type="text" placeholder="Item SKU">
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
+
                         <div class="form-group">
                             <div class="input-group">
                                 <div class="input-group-prepend">

@@ -40,9 +40,17 @@ App = {
         "Shipped",    // 3
         "Received"    // 4
     ],
-    wineState: {
+    wineStates: [
+        "Produced",  // 0
+        "Packed",    // 1
+        "ForSale",   // 2
+        "Sold",      // 3
+        "Shipped",   // 4
+        "Received",  // 5
+        "Purchased"   // 6
+    ]
 
-    },
+    ,
 
     init: async function () {
         App.readForm();
@@ -66,10 +74,11 @@ App = {
         App.growerLongitude = $("#growerLongitude").val();
         App.grapeVariety = $("#grapeVariety").val();
         App.grapePrice = $("#grapePrice").val();
+
         // Wines
-        App.sku = $("#wineSKU").val();
-        App.upc = $("#wineFetchUPC").val();
-        App.ownerID = $("#ownerID").val();
+        App.sku = $("#itemSKU").val();
+        App.upc = $("#itemUPC").val();
+        App.itemOwnerID = $("#itemOwnerID").val();
         App.producerID = $("#producerID").val();
         App.producerName = $("#producerName").val();
         App.producerInformation = $("#producerInformation").val();
@@ -78,6 +87,7 @@ App = {
         App.itemInformation = $("#itemInformation").val();
         App.itemPrice = $("#itemPrice").val();
         App.itemID = $("#itemID").val();
+        App.itemState = $("#itemState").val();
         App.wholesalerID = $("#wholesalerID").val();
         App.retailerID = $("#retailerID").val();
         App.consumerID = $("#consumerID").val();
@@ -209,13 +219,12 @@ App = {
             case 8:
                 return await App.receiveGrapes(event);
                 break;
-            /*case 9:
-                return await App.purchaseItem(event);
+            case 9:
                 break;
             case 10:
-                return await App.fetchItemBufferOne(event);
+                return await App.fetchWine(event);
                 break;
-            case 11:
+            /*case 11:
                 return await App.fetchItemBufferTwo(event);
                 break;
             case 12:
@@ -476,6 +485,65 @@ App = {
         }).catch(function(err) {
             console.log(err.message);
         });
+    },
+
+    fetchWine: function(event) {
+        event.preventDefault();
+        App.readForm();
+        if (!parseInt(App.grapeID)) {
+            alert("Please insert an UPC code");
+        } else {
+            App.contracts.SupplyChain.deployed().then((instance) => {
+                return instance.fetchWineOne(App.upc);
+            }).then((result) => {
+                if (result[0] == 0) {
+                    alert("Unknown UPC");
+                } else {
+                    $('#itemUPC').val(result[0]);
+                    $('#itemSKU').val(result[1]);
+                    $('#itemOwnerID').val(result[2]);
+                    $('#producerID').val(result[3]);
+                    $('#itemPrice').val(result[4]);
+                    $('#itemState').val(App.wineStates[result[5]]);
+                    $('#wholesalerID').val(result[6]);
+                    $('#retailerID').val(result[7]);
+                    $('#consumerID').val(result[8]);
+                }
+                console.log(result);
+            }).catch((err) => {
+                console.log(error);
+            });
+            App.contracts.SupplyChain.deployed().then((instance) => {
+                return instance.fetchWineTwo(App.upc);
+            }).then((result) => {
+                if (result[0] == 0) {
+                    alert("Unknown UPC");
+                } else {
+                    /*uint wineSku,
+                     uint wineUpc,
+                     address payable ownerID,
+                     address payable producerID,
+                     uint productPrice,
+                     WineState wineState,
+                     address wholesalerID,
+                     address retailerID,
+                     address consumerID*/
+                    $('#itemUPC').val(result[0]);
+                    $('#itemSKU').val(result[1]);
+                    $('#itemOwnerID').val(result[2]);
+                    $('#producerID').val(result[3]);
+                    $('#itemPrice').val(result[4]);
+                    $('#itemState').val(App.wineStates[result[5]]);
+                    $('#wholesalerID').val(result[6]);
+                    $('#retailerID').val(result[7]);
+                    $('#consumerID').val(result[8]);
+                }
+                console.log(result);
+            }).catch((err) => {
+                console.log(error);
+            });
+
+        }
     },
 
     processItem: function (event) {
