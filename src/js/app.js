@@ -57,6 +57,25 @@ App = {
         return castArr;
     },
 
+    resetWineForm: function () {
+        $("#itemSKU").val("");
+        $("#itemUPC").val("");
+        $("#itemOwnerID").val("");
+        $("#producerID").val("");
+        $("#producerName").val("");
+        $("#producerInformation").val("");
+        $("#producerLatitute").val("");
+        $("#producerLongitude").val("");
+        $("#itemInformation").val("");
+        $("#itemPrice").val("");
+        $("#itemID").val("");
+        $("#itemState").val("");
+        $("#wholesalerID").val("");
+        $("#retailerID").val("");
+        $("#consumerID").val("");
+        $("#grapesIDs").val("");
+    },
+
     init: async function () {
         App.readForm();
         /// Setup access to blockchain
@@ -250,6 +269,9 @@ App = {
                 break;
             case 17:
                 return await App.purchaseWine(event);
+                break;
+            case 18:
+                App.resetWineForm();
                 break;
         }
     },
@@ -517,8 +539,10 @@ App = {
                     $('#retailerID').val(result[7]);
                     $('#consumerID').val(result[8]);
                 }
-                if ($("#itemState").val() === "Produced") {
-                    altert("produced");
+                if (["Produced", "ForSale", "Received", "Purchased", "Sold"].indexOf($("#itemState").val()) > -1) {
+                    $("#itemPrice").prop('readonly', true);
+                }else{
+                    $("#itemPrice").prop('readonly', false);
                 }
                 console.log(result);
             }).catch((err) => {
