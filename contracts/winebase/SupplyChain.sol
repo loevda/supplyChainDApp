@@ -64,8 +64,7 @@ contract SupplyChain is
         Sold,      // 3
         Shipped,   // 4
         Received,  // 5
-        ForPurchase, // 6
-        Purchased   // 7
+        Purchased   // 6
     }
 
     //TODO: set default states for grapes and items
@@ -119,7 +118,6 @@ contract SupplyChain is
     event WineSold(uint upc);
     event WineShipped(uint upc);
     event WineReceived(uint upc);
-    event WineForPurchase(uint upc);
     event WinePurchased(uint upc);
 
     // Define a modifer that verifies the Caller
@@ -251,13 +249,6 @@ contract SupplyChain is
     modifier wineReceived(uint _upc) {
         require(items[_upc].wineState == WineState.Received,
             "Wine is not received");
-        _;
-    }
-
-    // Define a modifier that checks if an item.wineState of a upc is ForSale
-    modifier wineForPurchase(uint _upc) {
-        require(items[_upc].wineState == WineState.ForPurchase,
-            "Wine is not for purchase");
         _;
     }
 
@@ -502,7 +493,7 @@ contract SupplyChain is
         emit WineShipped(_upc);
     }
 
-    function receiveWine(uint _upc)
+    function receiveWine(uint _upc, uint _productRetailPrice)
     public
     onlyRetailer
     wineShipped(_upc)
@@ -511,26 +502,16 @@ contract SupplyChain is
         wine.wineState = WineState.Received;
         // set price for retail
         wine.ownerID = msg.sender;
-        emit WineReceived(_upc);
-    }
-
-    function setWineRetailPrice(uint _upc, uint _productRetailPrice)
-    public
-    onlyRetailer
-    wineReceived(_upc)
-    verifyCaller(items[_upc].ownerID)
-    {
-        Wine storage wine = items[_upc];
-        wine.wineState = WineState.ForPurchase;
+        wine.retailerID = msg.sender;
         wine.productPrice = _productRetailPrice;
-        emit WineForPurchase(_upc);
+        emit WineReceived(_upc);
     }
 
     function purchaseWine(uint _upc)
     public
     payable
     onlyConsumer
-    wineForPurchase(_upc)
+    wineReceived(_upc)
     paidEnough(items[_upc].productPrice)
     checkValue(_upc)
     {
