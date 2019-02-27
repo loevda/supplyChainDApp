@@ -21,7 +21,8 @@ __Notes:__ The project has been tested with __Truffle v5.0.4__, __Solidity 0.5.0
 ## UML:
 __IMPORTANT NOTE__: __Activity__, __sequence__ and __state__ diagrams have been updated.
 Consumer __buyWine__ has been renamed __purchaseWine__ to remove ambiguity with retailer __buyWine__.
-The class diagram has been updated to reflect changes in the DApp smart contracts inheritance.
+The __sequence diagram__ has been updated: __fetchHistory__ has been removed, __fetchGrape__ has been added. 
+The __class diagram__ has been updated to reflect changes in the DApp smart contracts inheritance.
 
 ---
 ##### Activity diagram
