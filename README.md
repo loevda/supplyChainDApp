@@ -10,11 +10,14 @@ __Notes:__ The project has been tested with __Truffle v5.0.4__, __Solidity 0.5.0
 4. __truffle --network ganache migrate --reset__
 3. __npm run dev__ to run the application
 
+##### Notes
+If switching accounts while using Metamask you probably will have to cancel the transaction history from the settings and reload the page.
+
 ## Contract on Rinkeby
 
 | Contract address on Rinkeby test network                           | 
 |--------------------------------------------------------------------|
-| *******************************************                        |
+| 0x0BB5AE997acB147Ce45Bac4e568AB2C29Ae03a35                         |
 
 
 
@@ -39,6 +42,12 @@ The __class diagram__ has been updated to reflect changes in the DApp smart cont
 ---
 ##### Class diagram
 ![Class diagram](UML/CLASS.png?raw=true "Class")
+
+## Roadmap
+I'm running late and have been busy with exceptional workload so a lot of features are missing and I hope to develop then further:
+1. Store the tx history inside the blockchain;
+2. Integrate Google Map on the front-end;
+3. Deploy the DApp to IPFS;
 
 ## Credits
 ##### Wine supply chain
