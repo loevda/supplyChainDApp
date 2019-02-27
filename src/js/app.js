@@ -88,20 +88,46 @@ App = {
         $("#retailerID").val("");
         $("#consumerID").val("");
         $("#grapesIDs").val("");
+        App.setFieldReadOnly();
     },
 
     setFieldReadOnly: function () {
-        if (["Harvested"].indexOf($("#grapeState").val()) > -1) {
-            $("#grapePrice").prop('readonly', false);
+        // GRAPES
+        ["Harvested"].indexOf($("#grapeState").val()) > -1 ?
+            $("#grapePrice").prop('readonly', false) : $("#grapePrice").prop('readonly', true);
+        if ($("#grapeState").val() === "") {
+            $("#growerName").prop('readonly', false);
+            $("#growerLatitute").prop('readonly', false);
+            $("#growerLongitude").prop('readonly', false);
+            $("#grapeVariety").prop('readonly', false);
+            $("#growerInformation").prop('readonly', false);
         }else{
-            $("#grapePrice").prop('readonly', true);
+            $("#growerName").prop('readonly', true);
+            $("#growerLatitute").prop('readonly', true);
+            $("#growerLongitude").prop('readonly', true);
+            $("#grapeVariety").prop('readonly', true);
+            $("#growerInformation").prop('readonly', true);
         }
+        // WINE
+        ["", "Produced", "ForSale", "Received", "Purchased", "Sold"]
+                .indexOf($("#itemState").val()) > -1 ?
+            $("#itemPrice").prop('readonly', true)
+        : $("#itemPrice").prop('readonly', false);
 
-        if (["Produced", "ForSale", "Received", "Purchased", "Sold"]
-                .indexOf($("#itemState").val()) > -1) {
-            $("#itemPrice").prop('readonly', true);
+        if ($("#itemState").val() === "") {
+            $("#producerName").prop('readonly', false);
+            $("#producerLatitute").prop('readonly', false);
+            $("#producerLongitude").prop('readonly', false);
+            $("#producerInformation").prop('readonly', false);
+            $("#itemInformation").prop('readonly', false);
+            $("#grapesIDs").prop('readonly', false);
         }else{
-            $("#itemPrice").prop('readonly', false);
+            $("#producerName").prop('readonly', true);
+            $("#producerLatitute").prop('readonly', true);
+            $("#producerLongitude").prop('readonly', true);
+            $("#producerInformation").prop('readonly', true);
+            $("#itemInformation").prop('readonly', true);
+            $("#grapesIDs").prop('readonly', true);
         }
     },
 
@@ -392,27 +418,27 @@ App = {
             alert("Please insert a grape ID");
         } else {
             App.contracts.SupplyChain.deployed().then(async (instance) => {
-                try {
-                    const result = await instance.fetchGrape(App.grapeID);
-                    if (result[0] == 0) {
-                        alert("Unknown grape ID");
-                    } else {
-                        $('#grapeID').val(result[0]);
-                        $('#grapeOwnerID').val(result[1]);
-                        $('#growerID').val(result[2]);
-                        $('#growerName').val(result[3]);
-                        $('#growerInformation').val(result[4]);
-                        $('#growerLatitute').val(result[5]);
-                        $('#growerLongitude').val(result[6]);
-                        $('#grapePrice').val(web3.fromWei(result[7].toString(), "ether"));
-                        $('#grapeState').val(App.grapeStates[result[8]]);
-                        $('#grapeVariety').val(result[9]);
-                        App.setFieldReadOnly();
-                    }
-                    console.log(result);
-                } catch (err) {
-                    console.log(err.message);
+
+                const result = await instance.fetchGrape(App.grapeID);
+                if (result[0] == 0) {
+                    alert("Unknown grape ID");
+                } else {
+                    $('#grapeID').val(result[0]);
+                    $('#grapeOwnerID').val(result[1]);
+                    $('#growerID').val(result[2]);
+                    $('#growerName').val(result[3]);
+                    $('#growerInformation').val(result[4]);
+                    $('#growerLatitute').val(result[5]);
+                    $('#growerLongitude').val(result[6]);
+                    $('#grapePrice').val(web3.fromWei(result[7].toString(), "ether"));
+                    $('#grapeState').val(App.grapeStates[result[8]]);
+                    $('#grapeVariety').val(result[9]);
+                    App.setFieldReadOnly();
                 }
+                console.log(result);
+
+            }).catch(function(err) {
+                console.log(err.message);
             });
         }
     },
@@ -468,7 +494,6 @@ App = {
 
     buyGrapes: function(event) {
         event.preventDefault();
-        var processId = parseInt($(event.target).data('id'));
         App.readForm();
         var goAhead = confirm(`Are you sure you want to buy these grapes for ${App.grapePrice} ETH?`);
         if (goAhead) {
@@ -512,9 +537,9 @@ App = {
         if (!parseInt(App.upc)) {
             alert(`Please insert an UPC code`);
         } else {
-            App.contracts.SupplyChain.deployed().then((instance) => {
-                return instance.fetchWineOne(App.upc);
-            }).then((result) => {
+            App.contracts.SupplyChain.deployed().then(async (instance) => {
+                const result = await instance.fetchWineOne(App.upc);
+                const res = await  instance.fetchWineTwo(App.upc);
                 if (result[0] == 0) {
                     alert("Unknown UPC");
                 } else {
@@ -529,12 +554,6 @@ App = {
                     $('#consumerID').val(result[8]);
                 }
                 console.log(result);
-            }).catch((err) => {
-                console.log(err);
-            });
-            App.contracts.SupplyChain.deployed().then((instance) => {
-                return instance.fetchWineTwo(App.upc);
-            }).then((res) => {
                 if (res[0] == 0) {
                     console.log("Unknown UPC in fetchWineTwo");
                 } else {
@@ -548,18 +567,16 @@ App = {
                     $('#grapesIDs').val(res[8].toString());
                 }
                 console.log(res);
-            }).catch((err) => {
-                console.log(err);
+                // set the readonly fields
+                App.setFieldReadOnly();
+            }).catch(function(err) {
+                console.log(err.message);
             });
-            // set the readonly fields
-            App.setFieldReadOnly();
-
         }
     },
 
     produceWine: function(event) {
         event.preventDefault();
-        var processId = parseInt($(event.target).data('id'));
         App.readForm();
         if (
             !App.producerName || !App.producerLatitude || !App.producerLongitude
@@ -571,33 +588,29 @@ App = {
             var goAhead = confirm("You are about to produce some awesome wine. Please confirm " +
                 "the information are correct.")
             if (goAhead) {
-                App.contracts.SupplyChain.deployed().then(function(instance) {
+                App.contracts.SupplyChain.deployed().then(async function(instance) {
                     const arrIds = App.castGrapesIDs(App.grapesIDs);
-                    return instance.produceWine(
+                    const result = await instance.produceWine(
                         App.producerName,
                         App.producerInformation,
                         App.producerLatitude,
                         App.producerLongitude,
                         App.itemInformation,
                         arrIds
-                    )
-                }).then(function(result) {
+                    );
                     console.log('produceWine',result);
                 }).catch(function(err) {
                     console.log(err.message);
                 });
             }
         }
-
     },
 
     packWine: function(event) {
         event.preventDefault();
-        var processId = parseInt($(event.target).data('id'));
         App.readForm();
-        App.contracts.SupplyChain.deployed().then(function(instance) {
-            return instance.packWine(App.upc);
-        }).then(function(result) {
+        App.contracts.SupplyChain.deployed().then(async function(instance) {
+            const result = await instance.packWine(App.upc);
             console.log('packWine',result);
         }).catch(function(err) {
             console.log(err.message);
@@ -606,17 +619,15 @@ App = {
 
     addWineForSale: function(event) {
         event.preventDefault();
-        var processId = parseInt($(event.target).data('id'));
         App.readForm();
         if (App.itemPrice <= 0) {
             alert("Please enter a valid price in ETHER!");
         }else {
             var goAhead = confirm("Are you sure the given price is correct?");
             if (goAhead) {
-                const _price = web3.toWei(App.itemPrice, "ether");
-                App.contracts.SupplyChain.deployed().then(function (instance) {
-                    return instance.addWineForSale(App.upc, _price);
-                }).then(function (result) {
+                App.contracts.SupplyChain.deployed().then(async function (instance) {
+                    const _price = web3.toWei(App.itemPrice, "ether");
+                    const result = await instance.addWineForSale(App.upc, _price);
                     console.log('addWineForSale', result);
                 }).catch(function (err) {
                     console.log(err.message);
@@ -627,16 +638,13 @@ App = {
 
     buyWine: function(event) {
         event.preventDefault();
-        var processId = parseInt($(event.target).data('id'));
         App.readForm();
         var goAhead = confirm(`Are you sure you want to buy the wine for ${App.itemPrice} ETH?`);
         if (goAhead) {
-            App.contracts.SupplyChain.deployed().then(function(instance) {
-                return instance.buyWine(
-                    App.upc,
-                    {from: App.getMetaskAccountID(), value: web3.toWei(App.itemPrice, "ether")}
-                );
-            }).then(function(result) {
+            App.contracts.SupplyChain.deployed().then(async function(instance) {
+                const _value = web3.toWei(App.itemPrice, "ether");
+                const result = await instance.buyWine(
+                    App.upc, {from: App.getMetaskAccountID(), value: _value});
                 console.log('buyWine',result);
             }).catch(function(err) {
                 console.log(err.message);
@@ -646,28 +654,23 @@ App = {
 
     shipWine: function(event) {
         event.preventDefault();
-        var processId = parseInt($(event.target).data('id'));
         App.readForm();
-        App.contracts.SupplyChain.deployed().then(function(instance) {
-            return instance.shipWine(App.upc);
-        }).then(function(result) {
+        App.contracts.SupplyChain.deployed().then(async function(instance) {
+            const result = await instance.shipWine(App.upc);
             console.log('shipWine',result);
         }).catch(function(err) {
             console.log(err.message);
         });
-
     },
 
     receiveWine: function(event) {
         event.preventDefault();
-        var processId = parseInt($(event.target).data('id'));
         App.readForm();
-        const _price = web3.toWei(App.itemPrice, "ether");
-        var goAhead = confirm(`Did you update the item price for retail?`);
+        const goAhead = confirm(`Did you update the item price for retail?`);
         if (goAhead) {
-            App.contracts.SupplyChain.deployed().then(function (instance) {
-                return instance.receiveWine(App.upc, _price);
-            }).then(function (result) {
+            App.contracts.SupplyChain.deployed().then(async function (instance) {
+                const _price = web3.toWei(App.itemPrice, "ether");
+                const res = await  instance.receiveWine(App.upc, _price);
                 console.log('receiveWine', result);
             }).catch(function (err) {
                 console.log(err.message);
@@ -677,16 +680,13 @@ App = {
 
     purchaseWine: function(event) {
         event.preventDefault();
-        var processId = parseInt($(event.target).data('id'));
         App.readForm();
-
-        var goAhead = confirm(`Are you sure you want to purchase the wine for ${App.itemPrice} ETH?`);
+        const goAhead = confirm(`Are you sure you want to purchase the wine for ${App.itemPrice} ETH?`);
         if (goAhead) {
-            const _price = web3.toWei(App.itemPrice, "ether");
-            App.contracts.SupplyChain.deployed().then(function(instance) {
-                return instance.purchaseWine(App.upc,
+            App.contracts.SupplyChain.deployed().then(async function(instance) {
+                const _price = web3.toWei(App.itemPrice, "ether");
+                const result = await instance.purchaseWine(App.upc,
                     {from: App.getMetaskAccountID(), value: _price});
-            }).then(function(result) {
                 console.log('purchaseWine',result);
             }).catch(function(err) {
                 console.log(err.message);
