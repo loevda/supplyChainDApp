@@ -10,6 +10,14 @@ __Notes:__ The project has been tested with __Truffle v5.0.4__, __Solidity 0.5.0
 4. __truffle --network ganache migrate --reset__
 3. __npm run dev__ to run the application
 
+## Contract on Rinkeby
+
+| Contract address on Rinkeby test network                           | 
+|--------------------------------------------------------------------|
+| *******************************************                        |
+
+
+
 ## UML:
 __IMPORTANT NOTE__: __Activity__, __sequence__ and __state__ diagrams have been updated.
 Consumer __buyWine__ has been renamed __purchaseWine__ to remove ambiguity with retailer __buyWine__.
